@@ -1,0 +1,32 @@
+\renewcommand{\myepsfbox}[1]{\epsfbox{appC/#1}}
+
+\newpage
+\onecolumn
+\chapter{命令表}
+\label{insttbl}
+
+次のページにTeC7の機械語命令表，
+その次のページにTeC6の機械語命令表を掲載します．
+これらはケース蓋の裏に張り付けてあるものと同じ内容です．
+
+%\pagestyle{empty}
+\begin{figure*}[btph]
+\begin{center}
+\epsfxsize=14.5cm
+%\epsfysize=22.5cm
+\myepsfbox{InstTblA4.pdf} \\
+\caption{TeC7命令表}
+\end{center}
+\end{figure*}
+
+\pagestyle{empty}
+\begin{figure*}[btph]
+\begin{center}
+\epsfxsize=14cm
+%%\epsfysize=22.5cm
+\myepsfbox{InstTblA4TeC6.pdf} \\
+\caption{TeC6命令表}
+\end{center}
+\end{figure*}
+
+

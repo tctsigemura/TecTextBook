@@ -1,0 +1,30 @@
+siod	equ	2
+sios	equ	3
+
+	ld	sp,#0dch
+	ld	g1,data
+	ld	g2,#8
+l1	ld	g0,#'1'
+	shll	g1
+	jc	l2
+	ld	g0,#'0'
+l2	call	putch
+	sub	g2,#1
+	jz	l3
+	jmp	l1
+
+l3	ld	g0,#0dh
+	call	putch
+	ld	g0,#0ah
+	call	putch
+	halt
+
+putch	push	g1
+wait	in	g1,sios
+	and	g1,#80h
+	jz	wait
+	out	g0,siod
+	pop	g1
+	ret
+
+data	dc	0cah

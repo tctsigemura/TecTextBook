@@ -1,0 +1,24 @@
+siod	equ	02h
+sios	equ	03h
+
+start	ld	sp,#0dch
+	ld	g1,#0
+	ld	g2,#9
+loop	ld	g0,data,g1
+	push	g1
+	call	putch
+	pop	g1
+	add	g1,#1
+	sub	g2,#1
+	jz	end
+	jmp	loop
+
+end	halt
+
+putch	in	g1,sios
+	and	g1,#80h
+	jz	putch
+	out	g0,siod
+	ret
+
+data	dc	"SHIGEMURA"

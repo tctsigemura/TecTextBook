@@ -1,0 +1,47 @@
+int2v	equ	0deh
+siod	equ	02h
+sioc	equ	03h
+
+start	ld	sp,#0dch	; SP初期化
+	ld	g0,#sioxint	; 割込みルーチン
+	st	g0,int2v	; を登録
+	ld	g0,#80h		; SIO 送信割込み
+	out	g0,sioc		; 許可ビットON
+	ld	g0,#data	; データの位置を
+	st	g0,pointer	; セットする
+	ld	g0,#1		; 出力中フラグ
+	st	g0,flag		; セット
+	ei			; 割込み許可
+loop	ld	g0,flag		; 出力中フラグ
+	cmp	g0,#0		; がクリアされ
+	jz	end		; たら終了
+	jmp	loop		; 割込み待ち
+
+end	halt
+
+data	dc	"SHIGEMURA",0
+
+sioxint	pushf		; SIO送信割込み処理
+	push	g0
+	push	g1
+	ld	g1,pointer	; 一文字
+	ld	g0,0,g1		; 取り出す
+	cmp	g0,#0		; 文字列の
+	jz	owari		; 終わりか？
+	out	g0,siod		; 送信する
+	add	g1,#1		; 次の文字
+	st	g1,pointer	; に進める
+	jmp	kaeri
+
+owari	ld	g0,#00h		; SIO送信割込み
+	out	g0,sioc		; 許可ビットOFF
+	st	g0,flag		; フラグクリア
+
+kaeri	pop	g1
+	pop	g0
+	popf
+	reti
+
+	; 割込み処理プログラムのデータ
+pointer	ds	1		; 文字列位置
+flag	ds	1		; 動作中フラグ

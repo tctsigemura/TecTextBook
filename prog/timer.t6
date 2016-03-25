@@ -1,0 +1,21 @@
+INT0VEC	equ	0dch
+
+	; メインプログラム
+start	ld	sp,#0dch
+	ld	g0,#int0	; 割込みプログラムのアドレス
+	st	g0,int0vec
+	ei
+l1	jmp	l1
+
+	; 割込み処理プログラム
+int0	pushf
+	push	g0
+	ld	g0,a
+	xor	g0,#0ffh
+	out	g0,00h
+	st	g0,a
+	pop	g0
+	popf
+	reti
+
+a	ds	1

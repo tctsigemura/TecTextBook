@@ -1,0 +1,31 @@
+INT0V	EQU	0DCH
+
+start	ld	sp,#0dch	; SP初期化
+	ld	g0,#0		; フラグと
+	st	g0,flag		; カウンタ
+	st	g0,cnt		; リセット
+	ld	g0,#tint
+	st	g0,int0v	; ベクタ設定
+	ei			; 割込み許可
+l1	ld	g0,flag		; フラグが0
+	cmp	g0,#0		; の間
+	jz	l1		; 繰り返す
+	ld	g0,#01h
+	out	g0,00h		; ブザーON
+	halt			; 終了
+
+tint	pushf			; コンテキス
+	push	g0		; スト保存
+	ld	g0,cnt		; 回数のカウ
+	add	g0,#1		; ント
+	st	g0,cnt
+	cmp	g0,#180		; 3分経過
+	jz	tint1
+	jmp	tint2
+tint1	st	g0,flag		; フラグON
+tint2	pop	g0		; コンテキ
+	popf			; スト復元
+	reti
+
+flag	ds	1		; フラグ
+cnt	ds	1		; カウンタ

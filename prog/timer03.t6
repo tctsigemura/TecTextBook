@@ -1,0 +1,32 @@
+; 実行に１秒かかるプログラム
+start	ld	sp,#0dch
+loop	ld	g0,#1
+	out	g0,0
+	call	ms200
+	ld	g0,#0
+	out	g0,0
+	call	ms200
+	call	ms200
+	call	ms200
+	call	ms200
+	jmp	loop
+	halt
+
+; 200ms サブルーチン
+ms200	push	g0
+	ld	g0,#200
+l1	call	ms1
+	sub	g0,#1
+	jz	l2
+	jmp	l1
+l2	pop	g0
+	ret
+
+; 1ms サブルーチン
+ms1	push	g0
+	ld	g0,#174
+matu	sub	g0,#1
+	jz	kaeru
+	jmp	matu
+kaeru	pop	g0
+	ret

@@ -1,0 +1,54 @@
+siod	equ	2
+sios	equ	3
+
+	ld	sp,#0dch
+	ld	g0,data		; 表示データ
+	; データを桁に分解
+	ld	g2,#10
+l1	call	div
+	push	g0
+	cmp	g1,#0
+	jz	l2
+	push	g1
+	pop	g0
+	jmp	l1
+
+l2	pop	g0
+	add	g0,#'0'
+	call	putch
+	cmp	sp,#0dch
+	jz	l3
+	jmp	l2
+
+	; 改行出力
+l3	ld	g0,#0dh		; 復帰
+	call	putch
+	ld	g0,#0ah		; 改行
+	call	putch
+	; 終わり
+	halt
+
+data	dc	123
+
+	; 割算サブルーチン
+	; G0 <= G0 % G2
+	; G1 <= G0 / G2
+div	st	g2,divtmp
+	ld	g1,#0
+div1	cmp	g0,divtmp
+	jm	div2
+	sub	g0,divtmp
+	add	g1,#1
+	jmp	div1
+div2	ret
+divtmp	ds	1
+
+	; １文字出力サブルーチン
+putch	push	g1
+wait	in	g1,sios
+	and	g1,#80h
+	jz	wait
+	out	g0,siod
+	pop	g1
+	ret
+
