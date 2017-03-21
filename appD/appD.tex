@@ -1,4 +1,4 @@
-\renewcommand{\myepsfbox}[1]{\epsfbox{appD/#1}}
+\renewcommand{\myincludegraphics}[2]{\includegraphics[#2]{appD/#1}}
 
 \newpage
 \onecolumn
@@ -16,25 +16,7 @@ TeC7に搭載されているXilinx Spartan-6 FPGA (XC6LX9-2TQG144C)の
 ピンがどのように利用されているか示す一覧表です．
 
 \newpage
-\begin{figure*}[btph]
-\begin{center}
-%\includegraphics[angle=90,clip, bb=0 0 842 595, width=12cm]
-%\includegraphics[angle=90,clip, bb=20 25 822 525, width=14cm]
-\includegraphics[angle=90,width=14cm]
-{appD/TeC7a.pdf}
-\caption{TeC7基板回路図}
-\end{center}
-\end{figure*}
+\myfigureNA{btph}{angle=90,scale=0.80}{TeC7a.pdf}{TeC7a基板回路図}{appD:kairo}
 
 \newpage
-\begin{figure*}[btph]
-\begin{center}
-%\includegraphics[angle=90,clip, bb=50 120 792 545, width=13cm]
-\includegraphics[angle=90, width=12.5cm]
-{appD/TeC7aPIN.pdf}
-\caption{TeC7ピン配置図}
-\end{center}
-\end{figure*}
-
-%\includegraphics[angle=90,bb=100 100 横ピクセル数 縦ピクセル数,width=16.8]{ファイル名}
-
+\myfigureNA{btph}{angle=90,scale=0.85}{TeC7aPIN.pdf}{TeC7aピン配置}{appD:pin}

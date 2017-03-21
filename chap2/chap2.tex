@@ -1,59 +1,37 @@
-\renewcommand{\myepsfbox}[1]{\epsfbox{chap2/#1}}
+\renewcommand{\myincludegraphics}[2]{\includegraphics[#2]{chap2/#1}}
 
 \chapter{情報の表現}
 この章では，コンピュータ内部でどのように情報が表現されているのか，
 その情報をどのような回路で扱うことができるのか，簡単に紹介します．
 
+%\pagebreak
 \section{コンピュータ内部の情報表現}
 人は，情報を音声や文字，絵等で表現することができます．
 コンピュータも表面的には音声や文字，絵を扱うことができますが，
 コンピュータの内部は電子回路で構成されているので，最終的には
 電圧や電流で情報を表現せざるを得ません．
 
-\begin{center}
-\fbox{\parbox{7cm}{
-\[ 情報の表現  =  \left(
+{\small\[ 情報の表現  =  \left(
  \begin{array}{l}
   人 : 音声，文字，絵，．．． \\
   コンピュータ : 電圧，電流 \\
  \end{array} \right)
-\]
-}}
-\end{center}
+\]}
 
 \subsection{電気を用いた情報の表現}
 電圧や電流で情報表現する方法には，いろいろなアイデアがあります．
-しかし，現在のコンピュータは，電圧が{\bf ある/ない(ON/OFF)}か，
+しかし，現代のコンピュータは，電圧が{\bf ある/ない(ON/OFF)}か，
 電流が{\bf 流れている/流れていない(ON/OFF)}のような，
 二つの状態だけを用いて情報を表現する方法を使っています．
-(デジタル・コンピュータ)
+二つの状態だけを考えれば良いので回路が作りやすいからです．
 
-\begin{center}
-\fbox{\parbox{7cm}{
-コンピュータの情報表現 \\
-　電圧が{\bf ある/ない}\\
-　電流が{\bf 流れる/流れない}\\
-　　　↓\\
-　ONとOFFの二つの状態だけを用いて\\
-　情報を表現する．(回路が作りやすい)
-}}
-\end{center}
-
-次の例を見て下さい．電気の「ON/OFF」で「おおかみが来たか/来ていないか」の
+\figref{chap2:ookami1}を見て下さい．
+電気の「ON/OFF」で「おおかみが来たか/来ていないか」の
 どちらの状態なのかを伝達できる「情報の表示装置」を実現することができます．
 電気の「ON/OFF」を用いて情報を表現することができました．
 
-\begin{center}
-\fbox{\parbox{7cm}{
-{\bf 例 おおかみが来た情報表示装置} \\
-　ランプ点灯：おおかみが来た\\
-　ランプ消灯：おおかみが来ていない\\
-\vspace{0.2cm}
-\epsfxsize=7cm
-%\epsfysize=22.5cm
-\myepsfbox{ookami.pdf}
-}}
-\end{center}
+\myfigureN{tb}{width=\columnwidth}{ookami.pdf}
+{おおかみが来た情報表示装置}{chap2:ookami1}
 
 \subsection{ビット}
 
@@ -62,35 +40,28 @@
 になります．情報の最小単位のことを{\bf 「ビット(bit)」}と呼びます．
 
 \begin{center}
-\fbox{\parbox{7cm}{
-{\bf on/offのどちらか → 情報の最小単位(ビット)}
-}}
+\fbox{\parbox{0.9\columnwidth}{\small
+{\bf on/offのどちらか → 情報の最小単位(ビット)}}}
 \end{center}
 
 通常，ビットの値は「ON/OFF」ではなく，「1/0」で書きます．
-\begin{center}
-{\small
-\fbox{\parbox{7cm}{
-\[\left(
- \begin{array}{l}
-　ＯＮ　：　1 \\
-ＯＦＦ　：　0
- \end{array} \right)
-\]
-}}}
-\end{center}
 
-「おおかみが来た情報」は，ビットの値に次のように対応付けできます．
+{\small\[\left(\begin{array}{l c l}
+ON  & : & 1 \\
+OFF & : & 0
+\end{array}\right)\]}
 
-\begin{center}
-\begin{tabular}{|l|l|} \hline
-ビット値 & おおかみが来た情報 \\
+「おおかみが来た情報」は，
+ビットの値に\tabref{chap2:ookami1}のように対応付けできます．
+
+\begin{mytable}{tb}{おおかみが来た情報}{chap2:ookami1}
+{\small\begin{tabular}{c|l} \hline\hline
+ビット値 & \multicolumn{1}{c}{意　味} \\
 \hline
-0(off) & おおかみがきていない \\
+0(off) & おおかみは来ていない \\
 1(on)  & おおかみが来た！！！ \\
-\hline
-\end{tabular}
-\end{center}
+\end{tabular}}
+\end{mytable}
 
 \subsection{より複雑な情報の表現}
 
@@ -102,67 +73,47 @@
 情報だけでは十分ではなく，{\bf 「たくさん来たか」}を知らせる必要が
 あります．それには，複数のビットを組み合わせて使用します．
 
-以下に，複数のビットの組み合わせて表現した「拡張おおかみが来た情報」
-を示します．
+\tabref{chap2:ookami2}に
+複数のビットの組み合わせて表現した「拡張おおかみが来た情報」を，
+\figref{chap2:ookami2}に「拡張おおかみが来た情報表示装置」を示します．
 
-\begin{center}
-\begin{tabular}{|c|l|l} \cline{1-2}
-ビット値 & 拡張おおかみが来た情報 & \\
-\cline{1-2}
-00 & おおかみがきていない   & 平気 \\
-01 & おおかみが1頭来た     & 戦う\\
-10 & おおかみが2頭来た     & ？\\
-11 & おおかみがたくさん来た & 逃げる \\
-\cline{1-2}
-\end{tabular}
-\end{center}
+\begin{mytable}{tb}{拡張おおかみが来た情報}{chap2:ookami2}
+{\small\begin{tabular}{c|l} \hline\hline
+ビット値 & \multicolumn{1}{c}{意　味}  \\
+\hline
+00 & おおかみはきていない（平気）      \\
+01 & おおかみが1頭来た（戦う）         \\
+10 & おおかみが2頭来た（？）           \\
+11 & おおかみがたくさん来た（逃げる）  \\
+\end{tabular}}
+\end{mytable}
 
-\begin{center}
-\fbox{\parbox{7cm}{
-{\bf 例 拡張おおかみが来た情報表示装置} \\
-\vspace{0.2cm}
-\epsfxsize=7cm
-%\epsfysize=22.5cm
-\myepsfbox{ookami2.pdf}
-}}
-\end{center}
+\myfigureN{tb}{width=\columnwidth}{ookami2.pdf}{拡張おおかみが来た情報表示装置}{chap2:ookami2}
 
-この例で見たように，2ビットを用いれば4種類の情報を表現することが
-できます．
-
+このように2ビット用いれば4種類の情報を表現することができます．
+\tabref{chap2:bits}はビット数と表現できる組合せの関係を示したものです．
 一般に，ｎビットを用いると$2^n$種類の情報を表現することができます．
 システム内で必要なビット数を決めて，それの組合せに意味付けをすれば，
 どんな情報だって表現できます．
 
-{\footnotesize
-\begin{center}
-\begin{tabular}{|c|l|c|} \hline
+\begin{mytable}{tb}{ビットの組合せの数}{chap2:bits}
+{\small\begin{tabular}{c|l|c} \hline\hline
 ビット数 & \multicolumn{1}{c|}{ビットの組合せ} & 組合せ数\\
 \hline
 1 & 0 1   & 2 \\
 2 & 00 01 10 11 & 4 \\
-3 & 000 001 010 011 100 101 110 111 & 8 \\
+3 & 000 001 010 011 &   \\
+  & 100 101 110 111 & 8 \\
 ...& ... &\\
 n &  & $2^n$ \\
-\hline
-\end{tabular}
-\end{center}
-}
+\end{tabular}}
+\end{mytable}
 
 ビットだけでは情報の単位として小さすぎるので，4ビットまとめたもの，
 8ビットまとめたものにも名前があります．
+「4ビット」を{\bf 「1ニブル」}，「8ビット」を{\bf 「1バイト」}と呼びます．
 
-{\small
-\begin{center}
-\fbox{\parbox{7cm}{
-\begin{tabular}{l l l}
-「4ビット」& ＝ &「1ニブル」 \\
-「8ビット」& ＝ & 「1バイト」 \\
-\end{tabular}
-}}
-\end{center}
-}
-
+%\pagebreak
 \section{数値の表現}
 
 ビットの組合せをどのように意味付けするかは，前節の例のように
@@ -175,35 +126,31 @@ n &  & $2^n$ \\
 コンピュータの内部では，数値を2進数で表すのが普通です．
 我々が普段使用している10進数と，2進数の特徴比較を次に示します．
 
-{\small
-\begin{center}
-\fbox{\parbox{7cm}{
-{\bf 10進数と2進数の比較} \\
-　10進数の特徴 \\
-　　(1) 0 〜 9の10種類の数字を使用する．\\
-　　(2) 1桁毎に10倍の重みをもつ．\\
-　2進数の特徴 \\
-　　(1) 0と1の2種類の数字を使用する．\\
-　　(2) 1桁毎に2倍の重みをもつ．\\
-}}
-\end{center}
-}
+{\small\begin{flushleft}
+{\bf 10進数の特徴}
+\begin{enumerate}
+\item[(1)] 0 〜 9の10種類の数字を使用する．
+\item[(2)] 1桁毎に10倍の重みをもつ．
+\end{enumerate}
+{\bf 2進数の特徴}
+\begin{enumerate}
+\item[(1)] 0と1の2種類の数字を使用する．
+\item[(2)] 1桁毎に2倍の重みをもつ．
+\end{enumerate}
+\end{flushleft}}
 
 コンピュータの内部では，ビットが情報の表現に使用されています．
 そこで，ビット値の0/1をそのまま2進数の1桁と考えれば数値が表現できます．
 
-例えば，4ビット用いると0 〜 15の数が次のように表現できます．
+例えば，4ビット用いると0 〜 15の数が\tabref{chap2:bin4}のように表現できます．
+一般にnビットで$0~〜~2^n-1$の範囲の数を表現することができます．
 
-\begin{center}
-{\footnotesize
-\begin{tabular}{|c|c|c|c|l }
-\cline{1-4}
-{\footnotesize ビット3}&
-{\footnotesize ビット2}&
-{\footnotesize ビット1}&
-{\footnotesize ビット0}&意味\\
+\begin{mytable}{tb}{4ビットの２進数}{chap2:bin4}
+{\small\begin{tabular}{c|c|c|c|r}
+\hline\hline
+bit 3 & bit 2 & bit 1 & bit 0 & 意味\\
 ($b_3$)&($b_2$)&($b_1$)&($b_0$)&\\
-\cline{1-4}
+\hline
  0 &  0 &  0 &  0 &  0 \\
  0 &  0 &  0 &  1 &  1 \\
  0 &  0 &  1 &  0 &  2 \\
@@ -220,99 +167,112 @@ n &  & $2^n$ \\
  1 &  1 &  0 &  1 & 13 \\
  1 &  1 &  1 &  0 & 14 \\
  1 &  1 &  1 &  1 & 15 \\
-\cline{1-4}
-\end{tabular}
-}
-\end{center}
+\end{tabular}}
+\end{mytable}
 
-一般にnビットで$0~〜~2^n-1$の範囲の数を表現することができます．
 
 \subsection{2進数と10進数の相互変換}
 
-前の4ビットの例なら，2進数と10進数の対応を暗記することが可能です．
+\tabref{chap2:bin4}に示した4ビットの範囲なら，
+2進数と10進数の対応を暗記することが可能です．
 しかし，8ビットの場合ならどうでしょう？
 
-組合せは256もあり，とても暗記できそうにありません．対応を計算で
-求める必要があります．
+組合せは256もあり，とても暗記できそうにありません．
+対応を計算で求める必要があります．
 
 \begin{enumerate}
 \item 2進から10進への変換
 
 2進数の桁ごとの重みは，桁の番号をnとすると$2^n$になります．
-\begin{center}
-\begin{tabular}{c c c c c }
-$b_3$ & $b_2$ & $b_1$ & $b_0$ \\
-$2^3 = 8$ & $2^2 = 4$ & $2^1 = 2$ & $2^0 = 1$ \\
-\end{tabular}
-\end{center}
+
+{\small\[
+\begin{array}{c c c c c }
+b_3     & b_2     & b_1     & b_0     \\
+2^3 = 8 & 2^2 = 4 & 2^1 = 2 & 2^0 = 1 \\
+\end{array}
+\]}
+
 2進数の数値は，その桁の重みと桁の値を掛け合わせたものの合計です．
 例えば2進数の$1010_2$は，$2^3$の桁が1，$2^2$の桁が0，
 $2^1$の桁が1，$2^0$の桁が0ですから，
 次のように計算できます．
-{\small
-\begin{eqnarray}
-1010_2 = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 \nonumber \\
- = 1 \times 8 + 0 \times 4 + 1 \times 2 + 0 \times 1 \nonumber \\
- = 8 + 0 + 2 + 0 \nonumber \\
- = 10_{10} \nonumber
-\end{eqnarray}
-}
+{\small\begin{align*}
+1010_2 &= 2^3 \times 1 + 2^2 \times 0 + 2^1 \times 1 + 2^0 \times 0 \\
+       &= 8 \times 1 + 4 \times 0 + 2 \times 1 + 1 \times 0 \\
+       &= 8 + 0 + 2 + 0 \\
+       &= 10_{10}
+\end{align*}}
 
 \item 10進から2進への変換
 
-次に，10進数を2進数に変換する方法を考えます．ここで着目するのは
-桁の移動です．
+次に，10進数を2進数に変換する方法を考えます．
+ここで着目するのは桁の移動です．
 
-10進数では，値を10で割ると右に1桁移動します．2進数では，2で
-割ると右に1桁移動します．どちらの場合でも，割算をした時の余りは，最
-下位の桁からはみ出した数になります．
+\figref{chap2:mod2}に例を示すように，
+2進数を2で割ると右に1桁移動します．
+その時の余りは最下位の桁からはみ出した数になります．
+同じ値の10進数を2で割っても余りは同じです．
 
-つまり，数値を2で割った時の余りは2進数を右に1桁移動したときはみ出
-してきた数を表しています．
+\begin{figure}[tb]
+\begin{center}{\small
+\begin{tabular}{l r l l }
+          & $10_{10}$ & = & $1010_2$                       \\
+$\div 2$↓ &                   &                            \\
+          & $5_{10}^{\cdots 0}$  & = & $0101_2^{\cdots 0}$ \\
+$\div 2$↓ &                    &                           \\
+          & $2_{10}^{\cdots 1}$  & = & $0010_2^{\cdots 1}$ \\
+$\div 2$↓ &                    &                           \\
+          & $1_{10}^{\cdots 0}$  & = & $0001_2^{\cdots 0}$ \\
+$\div 2$↓ &                    &                           \\
+          & $0_{10}^{\cdots 1}$  & = & $0000_2^{\cdots 1}$ \\
+\end{tabular}}
+\caption{数値を２で割った時の余り}
+\label{fig:chap2:mod2}
+\end{center}
+\end{figure}
 
-そこで，2で割る操作を繰り返しながらはみ出して来た数を記録すれば，
+つまり，数値を2で割った時の余りは2進数を右に
+1桁移動したときはみ出してきた数を表しています．
+そこで\figref{chap2:decToBin}のように，
+2で割る操作を繰り返しながらはみ出して来た数を記録すれば，
 もとの数を2進数で表したときの0/1の並びが分かります．
 
-\begin{center}
-\begin{tabular}{l r l l }
-      & $12_{10}$ & = & $1100_2$ \\
-$1/2$↓ &                   &                         \\
-      & $6_{10}^{\cdots 0}$  & = & $0110_2^{\cdots 0}$ \\
-$1/2$↓ &                    &                         \\
-      & $3_{10}^{\cdots 0}$  & = & $0011_2^{\cdots 0}$ \\
-$1/2$↓ &                    &                         \\
-      & $1_{10}^{\cdots 1}$  & = & $0001_2^{\cdots 1}$ \\
-$1/2$↓ &                    &                         \\
-      & $0_{10}^{\cdots 1}$  & = & $0000_2^{\cdots 1}$ \\
-\end{tabular}
-\end{center}
-\end{enumerate}
-\begin{center}
-\fbox{\parbox{6.8cm}{
-{\bf 計算方法と計算例}
+\begin{figure}[tb]
+\begin{center}{\small
+\begin{minipage}{0.5\columnwidth}
 \begin{quote}
-$2 \underline{) ~~100 } $\\
-$2 \underline{) ~~~50  } {\cdots 0}$ \\
-$2 \underline{) ~~~25  } {\cdots 0}$ \\
-$2 \underline{) ~~~12  } {\cdots 1}$ \\
-$2 \underline{) ~~~~6  } {\cdots 0}$ \\
-$2 \underline{) ~~~~3  } {\cdots 0}$ \\
-$2 \underline{) ~~~~1  } {\cdots 1}$ \\
-$~~  ~~~~~0 {\cdots 1}$
+$2 \underline{) ~~10 } $\\
+$2 \underline{) ~~~5  } {\cdots 0}$ \\
+$2 \underline{) ~~~2  } {\cdots 1}$ \\
+$2 \underline{) ~~~1  } {\cdots 0}$ \\
+$~~            ~~~~0    {\cdots 1}$
 \end{quote}
-余りを右から順に並べると $1100100_2$
-}}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+余りを右から順に並べると $1010_2$
+\end{minipage}}
+\caption{10を２進数に変換する例}
+\label{fig:chap2:decToBin}
 \end{center}
+\end{figure}
+
+\end{enumerate}
 
 \subsection{16進数}
 
-2進数は，桁数が多くなり書き表すのに不便です．そこで，2進数
-4桁をまとめて16進数一桁で書き表します．
-9より大きな数字が無いので，
-16進数ではアルファベットを数字の代用にします．
+2進数は，桁数が多くなり書き表すのに不便です．
+そこで，\tabref{chap2:hex}のように2進数4桁をまとめて16進数一桁で書き表します．
+9より大きな数字が無いので，16進数ではアルファベットを数字の代用にします．
 
-\begin{center}{\small
-\begin{tabular}{| c | c | c | }
+何進数で書いてあるのかをはっきりさせるために，
+\tabref{chap2:hex}のように数値の右に小さな字で何進数かを書き加えます．
+ときには，数字の代わりに「2進数='b'」，「16進数='H'」を加えることもあります．
+例えば，「$01100100_2$を$01100100_b$」，「$64_{16}$を64H」のように書きます．
+
+
+\begin{mytable}{tb}{2進数，16進数，10進数対応表}{chap2:hex}
+{\small\begin{tabular}{ c | c | c }
+\hline
 \hline
 {\bf 2進数} & {\bf 16進数} & {\bf 10進数} \\
 \hline
@@ -332,37 +292,16 @@ $1100_2$ & $C_{16}$ & $12_{10}$ \\
 $1101_2$ & $D_{16}$ & $13_{10}$ \\
 $1110_2$ & $E_{16}$ & $14_{10}$ \\
 $1111_2$ & $F_{16}$ & $15_{10}$ \\
-\hline
 \end{tabular}}
-\end{center}
+\end{mytable}
 
-{\small
-\begin{center}
-\fbox{\parbox{7cm}{
-{\bf n進数の表記}
-\begin{quote}
-日常生活では，数値を書き表すときは「いつも10進数」で書きます．
-しかし，コンピュータの世界では2進数，10進数，16進数を場合により
-使い分けます．そのため，何進数で書いてあるのか分からなくて
-困ることがあります．
-
-そこで，上の表のように数値の右に小さな字で何進数かを書き加えます．
-ときには，数字の代わりに「2進数='b'」，「16進数='H'」を加えること
-もあります．
-
-例えば，「$01100100_2$を$01100100_b$」，「$64_{16}$を64H」のよう
-に書きます．
-\end{quote}
-}}
-\end{center}
-}
-\vspace{0.2cm}
+%%\pagebreak
 \begin{flushleft}
+%\parbox{\columnwidth}{
 {\bf 問題}
-\end{flushleft}
 \begin{enumerate}
 \item
-上の「2進数，16進数，10進数対応表」を暗記しなさい．
+\tabref{chap2:hex}「2進数，16進数，10進数対応表」を暗記しなさい．
 \item
 10進数の16，50，100，127，130を，2進数(8桁)，
 16進数(2桁)で書き表しなさい．
@@ -374,12 +313,14 @@ $1111_2$ & $F_{16}$ & $15_{10}$ \\
 2進数(8桁)で書き表しなさい．
 また，10進数で書き表しなさい．
 \end{enumerate}
+%}
+\end{flushleft}
 
+%\pagebreak
 \section{負数の表現}
 \label{minus}
 拡張おおかみが来た情報表示装置では，
-「表示装置の二つのビット(二つのランプ)を，あのように読む」
-ことを約束しました．
+「表示装置の二つのランプ（２ビット）の読み方」を約束しました．
 つぎに，数値の場合は，
 「n個のビットを2進数として読む」ことを約束しました．
 
@@ -393,59 +334,41 @@ $1111_2$ & $F_{16}$ & $15_{10}$ \\
 これを「符号ビット」と呼ぶことにします．
 通常，符号ビットには最上位(左端)のビットを使用します．
 
-次の例のように4ビット使用して，
+\tabref{chap2:signedInt}のように4ビット使用して，
 $-7$ 〜 $+7$ の範囲を表すことができます．
 この表現方法は分かりやすくて都合が良いのですが，
 実際に使われることはあまりありません．
 
-\begin{center}
-\begin{tabular}{ |r c l | }
+\begin{mytable}{tb}{符号付き絶対値表現(4ビット)}{chap2:signedInt}
+{\small\begin{tabular}{ r | r || r | r }
 \hline
-\multicolumn{3}{|c|}{\bf 符号付き絶対値表現(4ビット)の例}\\
 \hline
-$-7$ & ~~~~ & $1111_2$ \\
-$-6$ & ~~~~ & $1110_2$ \\
-$-5$ & ~~~~ & $1101_2$ \\
-...  & ~~~~ & ...      \\
-$-1$ & ~~~~ & $1001_2$ \\
-$-0$ & ~~~~ & $1000_2$ \\
-$+0$ & ~~~~ & $0000_2$ \\
-$+1$ & ~~~~ & $0001_2$ \\
-...  & ~~~~ & ...      \\
-$+5$ & ~~~~ & $0101_2$ \\
-$+6$ & ~~~~ & $0110_2$ \\
-$+7$ & ~~~~ & $0111_2$ \\
+負数 & 2進数    & 正数 & 2進数 \\
 \hline
-\end{tabular}
-\end{center}
+$-7$ & $1111_2$ & $+7$ & $0111_2$ \\
+$-6$ & $1110_2$ & $+6$ & $0110_2$ \\
+$-5$ & $1101_2$ & $+5$ & $0101_2$ \\
+...  & ...      & ...  & ... \\
+$-1$ & $1001_2$ & $+1$ & $0001_2$ \\
+$-0$ & $1000_2$ & $+0$ & $0000_2$ \\
+\end{tabular}}
+\end{mytable}
 
 \subsection{補数表現}
-n桁のb進数でにおいて$b^n$からxを引いた数yをxに対する「bの補数」と言います．
+n桁のb進数において$b^n$からxを引いた数yをxに対する「bの補数」と言います．
 n桁のb進数でにおいて$b^n-1$からxを引いた数zを
 xに対する「(b-1)の補数」と言います．
+{\small\begin{align*}
+y&= b^n-x     &(yはxに対するbの補数) \\
+z&= b^n-1-x   &(zはxに対する(b-1)の補数)
+\end{align*}}
+10進数の例を\figref{chap2:sc10}に，
+2進数の例を\figref{chap2:sc2}に
+示します．
 
-{\small
-\begin{eqnarray}
-y = b^n - x ~~~ (yはxに対するbの補数) \nonumber\\
-z = b^n - 1 - x ~~~ (zはxに対する(b-1)の補数) \nonumber
-\end{eqnarray}
-}
-
-%{\small
-%\begin{tabular}{l l}
-%$y = b^n - x$     & (yはxに対するbの補数)\\
-%$z = b^n - 1 - x$ & (zはxに対する(b-1)の補数)\\
-%\end{tabular}
-%}
-
-例えば，10進数の世界で次のような例があります．
-
+\begin{figure}[tb]
 \begin{center}
-\begin{tabular}{| l c r c l |}
-\hline
-\multicolumn{5}{|c|}{\bf 2桁の10進数で補数の例} \\
-\hline
-%              &   &       &   &        \\
+{\small\begin{tabular}{ l c r c l }
 $b=10進数$    & ~ &       &   &              \\
 $n=2桁$       & ~ & $100$ &   &              \\
 $b^n = 100$   & ~ & $-25$ & ~ & 75は25に対す \\
@@ -457,19 +380,15 @@ $n=2桁$       & ~ &  $99$ &   &              \\
 $b^n-1 = 99$  & ~ & $-25$  & ~ & 74は25に対す \\
 \cline{3-3}
 $x = 25$      &   &  $74$ &   & る9の補数   \\
-%              &   &       &   &        \\
-\hline
-\end{tabular}
+\end{tabular}}
+\caption{2桁の10進数で補数の例}
+\label{fig:chap2:sc10}
 \end{center}
+\end{figure}
 
-2進数の世界では次のような例があります．
-
+\begin{figure}[tb]
 \begin{center}
-\begin{tabular}{| l c r c l |}
-\hline
-\multicolumn{5}{|c|}{\bf 4桁の2進数で補数の例} \\
-\hline
-%                &   &           &   &            \\
+{\small\begin{tabular}{ l c r c l }
 $b=2進数$       & ~ &          &   & $0110_2$は  \\ 
 $n=4桁$         & ~ & $10000_2$ &   & $1010_2$に  \\
 $b^n = 10000_2$ & ~ & $-1010_2$ & ~ & 対する      \\
@@ -481,46 +400,55 @@ $n=4桁$         & ~ & $1111_2$  &   & $1010_2$に \\
 $b^n-1 = 1111_2$& ~ & $-1010_2$  & ~ & 対する      \\
 \cline{3-3}
 $x = 1010_2$    &   & $0101_2$  &   & \underline{1の補数} \\
-%                &   &           &   &            \\
-\hline
-\end{tabular}
+\end{tabular}}
+\caption{4桁の2進数で補数の例}
+\label{fig:chap2:sc2}
 \end{center}
+\end{figure}
 
 \subsection{1の補数による負数の表現}
 
-上の{\bf「４桁の２進数で補数の例」}にあるように，
+\figref{chap2:sc2}{\bf「４桁の２進数で補数の例」}にあるように，
 $11...1_2$からもとの数(x)を引いた数をxに対する「1の補数」と呼びます．
-次の表は$0$ 〜 $7$ に対する1の補数を計算したものです．
+\tabref{chap2:1sc}は$0$ 〜 $7$ に対する1の補数を計算したものです．
 
-\begin{center}
-\begin{tabular}{ | l | l |}
+\begin{mytable}{tb}{4ビット2進数の1補数}{chap2:1sc}
+{\small\begin{tabular}{ c | r c r}
 \hline
-\multicolumn{2}{|c|}{\bf 4ビット2進数の1補数} \\
 \hline
-$0$  & $1111_2 - 0000_2 = 1111_2$ \\
-$1$  & $1111_2 - 0001_2 = 1110_2$ \\
-$2$  & $1111_2 - 0010_2 = 1101_2$ \\
-$3$  & $1111_2 - 0011_2 = 1100_2$ \\
-$4$  & $1111_2 - 0100_2 = 1011_2$ \\
-$5$  & $1111_2 - 0101_2 = 1010_2$ \\
-$6$  & $1111_2 - 0110_2 = 1001_2$ \\
-$7$  & $1111_2 - 0111_2 = 1000_2$ \\
+もとの数 & \multicolumn{1}{|c}{補数へ変換} & & \multicolumn{1}{c}{補数} \\
 \hline
-\end{tabular}
-\end{center}
+$0$  & $1111_2 - 0000_2$ & $=$ & $1111_2$ \\
+$1$  & $1111_2 - 0001_2$ & $=$ & $1110_2$ \\
+$2$  & $1111_2 - 0010_2$ & $=$ & $1101_2$ \\
+$3$  & $1111_2 - 0011_2$ & $=$ & $1100_2$ \\
+$4$  & $1111_2 - 0100_2$ & $=$ & $1011_2$ \\
+$5$  & $1111_2 - 0101_2$ & $=$ & $1010_2$ \\
+$6$  & $1111_2 - 0110_2$ & $=$ & $1001_2$ \\
+$7$  & $1111_2 - 0111_2$ & $=$ & $1000_2$ \\
+\end{tabular}}
+\end{mytable}
 
 「$0001_2$に対する1の補数を$-0001_2$を表現するために使用する．」，
 「$0010_2$に対する1の補数を$-0010_2$を表現するために使用する．」
 つまり，
 {\bf 「1の補数を負の数を表現するために使用する．」}と約束すれば，
-次の表のように$-7$ 〜 $+7$の範囲の数を表現できます．
+\figref{chap2:1sc}のように$-7$ 〜 $+7$の範囲の数を表現できます．
+一般に，1の補数表現を用いたnビット符号付き2進数が表現できる数値の
+範囲は次の式で計算できます．
+{\small\begin{align*}
+-(2^{n-1}-1) ~~ 〜 ~~ 2^{n-1}-1
+\end{align*}}
+\figref{chap2:1sc}で$+7$と$-7$が結んであるのは，
+「互いに1の補数」であることを表すためです．
+また，「互いに１の補数」の2数を見比べると
+ビットの0/1が入れ替わった関係になっていることが分かります．
+1の補数は引算だけではなく{\bf 「ビット反転」}でも計算できます．
 
 \newcommand{\h}{$\vert$}
+\begin{figure}[tb]
 \begin{center}
-\begin{tabular}{ | l | l c c c c c c c c |}
-\hline
-\multicolumn{10}{|c|}{\bf 1の補数を用いた符号付き数値} \\
-\hline
+{\small\begin{tabular}{ r r c c c c c c c c }
 $-7$  & $1000_2$ &--&--&--&--&--&--&--& +\\
 $-6$  & $1001_2$ &--&--&--&--&--&--&+ &\h\\
 $-5$  & $1010_2$ &--&--&--&--&--&+ &\h&\h\\
@@ -537,76 +465,68 @@ $+4$  & $0100_2$ &--&--&--&--&+ &\h&\h&\h\\
 $+5$  & $0101_2$ &--&--&--&--&--&+ &\h&\h\\
 $+6$  & $0110_2$ &--&--&--&--&--&--&+ &\h\\
 $+7$  & $0111_2$ &--&--&--&--&--&--&--& +\\
-\hline
-\end{tabular}
+\end{tabular}}
+\caption{1の補数を用いた符号付き数値}
+\label{fig:chap2:1sc}
 \end{center}
+\end{figure}
 
-次のように1の補数(z)を求める式を$x=$の形に変形しても同じ形になるので，
+次に1の補数からもとの数を求める計算を考えてみましょう．
+以下のように1の補数(z)を求める式を$x=$の形に変形しても同じ形になるので，
 $x$と$z$は「互いに1の補数」です．
-
-{\small
-\begin{eqnarray}
-z = 2^n - 1 - x ~~~ (zはxに対する1の補数) \nonumber\\
-x = 2^n - 1 - z ~~~ (xはzに対する1の補数) \nonumber
-\end{eqnarray}
-}
-
-%{\small
-%\begin{tabular}{l l}
-%$z = 2^n - 1 - x$ & (zはxに対する1の補数)\\
-%$x = 2^n - 1 - z$ & (xはzに対する1の補数)\\
-%\end{tabular}
-%}
-
-なお，表で$+7$と$-7$が結んであるのは，
-「互いに1の補数」であることを表すためです．
-また，「互いに１の補数」の2数を見比べると
-ビットの0/1が入れ替わった関係になっていることが分かります．
-1の補数は引算だけではなく{\bf 「ビット反転」}でも計算できます．
-
-
+1の補数からもとの数を求める計算は，
+もとの数から1の補数を求める計算と同じです．
+(ビット反転のビット反転で元に戻る．)
+{\small\begin{align*}
+z &= 2^n - 1 - x &(zはxに対する1の補数) \\
+x &= 2^n - 1 - z &(xはzに対する1の補数)
+\end{align*}}
 1の補数を使用した方法も，実際に使われることはあまりありません．
 コンピュータの内部で実際に使用されるのは，
 次に説明する2の補数による表現です．
 
 \subsection{2の補数による負数の表現}\label{chap2:2c}
 
-前出の{\bf「４桁の２進数で補数の例」}にあるように，
+\figref{chap2:sc2}{\bf「４桁の２進数で補数の例」}にあるように，
 $100...0_2$からもとの数(x)を引いた数をxに対する「2の補数」と呼びます．
-次の表は$0$ 〜 $8$ に対する2の補数を計算したものです．
-5ビットで表現さている部分もありますが，
+\tabref{chap2:2sc}は$0$ 〜 $8$ に対する2の補数を計算したものです．
+5ビットで表現されている部分もありますが，
 四角で囲んだ4ビットに注目してください．
 
-\begin{center}
-\begin{tabular}{ | l | l r |}
+\begin{mytable}{tb}{4ビット2進数の2補数}{chap2:2sc}
+{\small\begin{tabular}{ c | r c r}
 \hline
-\multicolumn{3}{|c|}{\bf 4ビット2進数の2補数} \\
 \hline
-$0$  & $1$\fbox{$0000$}$_2 - $\fbox{$0000$}$_2 = $ & $1$\fbox{$0000$}$_2$ \\
-$1$  & $1$\fbox{$0000$}$_2 - $\fbox{$0001$}$_2 = $ & \fbox{$1111$}$_2$ \\
-$2$  & $1$\fbox{$0000$}$_2 - $\fbox{$0010$}$_2 = $ & \fbox{$1110$}$_2$ \\
-$3$  & $1$\fbox{$0000$}$_2 - $\fbox{$0011$}$_2 = $ & \fbox{$1101$}$_2$ \\
-$4$  & $1$\fbox{$0000$}$_2 - $\fbox{$0100$}$_2 = $ & \fbox{$1100$}$_2$ \\
-$5$  & $1$\fbox{$0000$}$_2 - $\fbox{$0101$}$_2 = $ & \fbox{$1011$}$_2$ \\
-$6$  & $1$\fbox{$0000$}$_2 - $\fbox{$0110$}$_2 = $ & \fbox{$1010$}$_2$ \\
-$7$  & $1$\fbox{$0000$}$_2 - $\fbox{$0111$}$_2 = $ & \fbox{$1001$}$_2$ \\
-$8$  & $1$\fbox{$0000$}$_2 - $\fbox{$1000$}$_2 = $ & \fbox{$1000$}$_2$ \\
+もとの数 & \multicolumn{1}{|c}{補数へ変換} & & \multicolumn{1}{c}{補数} \\
 \hline
-\end{tabular}
-\end{center}
+$0$  & $1$\fbox{$0000$}$_2 - $\fbox{$0000$}$_2$ & $=$ & $1$\fbox{$0000$}$_2$ \\
+$1$  & $1$\fbox{$0000$}$_2 - $\fbox{$0001$}$_2$ & $=$ & \fbox{$1111$}$_2$ \\
+$2$  & $1$\fbox{$0000$}$_2 - $\fbox{$0010$}$_2$ & $=$ & \fbox{$1110$}$_2$ \\
+$3$  & $1$\fbox{$0000$}$_2 - $\fbox{$0011$}$_2$ & $=$ & \fbox{$1101$}$_2$ \\
+$4$  & $1$\fbox{$0000$}$_2 - $\fbox{$0100$}$_2$ & $=$ & \fbox{$1100$}$_2$ \\
+$5$  & $1$\fbox{$0000$}$_2 - $\fbox{$0101$}$_2$ & $=$ & \fbox{$1011$}$_2$ \\
+$6$  & $1$\fbox{$0000$}$_2 - $\fbox{$0110$}$_2$ & $=$ & \fbox{$1010$}$_2$ \\
+$7$  & $1$\fbox{$0000$}$_2 - $\fbox{$0111$}$_2$ & $=$ & \fbox{$1001$}$_2$ \\
+$8$  & $1$\fbox{$0000$}$_2 - $\fbox{$1000$}$_2$ & $=$ & \fbox{$1000$}$_2$ \\
+\end{tabular}}
+\end{mytable}
 
 「$0001_2$に対する2の補数を$-0001_2$を表現するために使用する．」，
 「$0010_2$に対する2の補数を$-0010_2$を表現するために使用する．」つまり
 {\bf 「2の補数を負の数を表すために使用する．」}と約束すれば，
-次の表のように$-8$ 〜 $+7$の範囲の数を表現できます．
+\figref{chap2:2sc}のように$-8$ 〜 $+7$の範囲の数を表現できます．
 （ただし$1000_2$は$-8$を表現することとします．
 4ビットでは$+8$を表現することはできません．）
 
+一般に，2の補数表現を用いたnビット符号付き2進数が表現できる数値の
+範囲は次の式で計算できます．
+{\small\begin{align*}
+-2^{n-1} ~~ 〜 ~~ 2^{n-1} -1
+\end{align*}}
+
+\begin{figure}[tb]
 \begin{center}
-\begin{tabular}{ | r | l c c c c c c c c |}
-\hline
-\multicolumn{10}{|c|}{\bf 2の補数を用いた符号付き数値} \\
-\hline
+{\small\begin{tabular}{ r l c c c c c c c c }
 $-8$  & $1000_2$ &  &  &  &  &  &  &  &  \\
 $-7$  & $1001_2$ &--&--&--&--&--&--&--&+ \\
 $-6$  & $1010_2$ &--&--&--&--&--&--&+ &\h\\
@@ -623,85 +543,57 @@ $ 4$  & $0100_2$ &--&--&--&--&+ &\h&\h&\h\\
 $ 5$  & $0101_2$ &--&--&--&--&--&+ &\h&\h\\
 $ 6$  & $0110_2$ &--&--&--&--&--&--&+ &\h\\
 $ 7$  & $0111_2$ &--&--&--&--&--&--&--&+ \\
-\hline
-\end{tabular}
+\end{tabular}}
+\caption{2の補数を用いた符号付き数値}
+\label{fig:chap2:2sc}
 \end{center}
+\end{figure}
 
-
-次のように2の補数(y)を求める式を$x=$の形に変形しても同じ形になるので，
-$x$と$y$は「互いに2の補数」です．
-
-{\small
-\begin{eqnarray}
-y = 2^n - x ~~~ (yはxに対する2の補数) \nonumber\\
-x = 2^n - y ~~~ (xはyに対する2の補数) \nonumber
-\end{eqnarray}
-}
-
-%「2の補数を負の数を表現するために使用する．」と約束することにより，
-%4ビットで $-8$ 〜 $+7$ までの数を表現することができました．
-
-一般に，2の補数表現を用いたnビット符号付き2進数が表現できる数値の
-範囲は次の式で計算できます．
-{\small
-\begin{eqnarray}
--2^{n-1} ~~ 〜 ~~ 2^{n-1} -1 \nonumber
-\end{eqnarray}
-}
-
-2の補数表現を用いると，
-2進数の足し算・引き算が，
-正負のどちらの数でも同じ手順で計算できます(詳しくは後述)．
-「手順が同じ＝演算回路が同じ」ことになりますので，
-実際にコンピュータを製作する上では非常に都合がよく，
-現在のコンピュータは，
+次に2の補数からもとの数を求める計算を考えてみましょう．
+以下のように2の補数(z)を求める式を$x=$の形に変形しても同じ形になるので，
+$x$と$z$は「互いに2の補数」です．
+2の補数からもとの数を求める計算は，
+もとの数から2の補数を求める計算と同じです．
+{\small\begin{align*}
+z &= 2^n - x &(zはxに対する2の補数) \\
+x &= 2^n - z &(xはzに対する2の補数)
+\end{align*}}
+現代のコンピュータは，
 ほとんどの機種で2の補数表現を採用しています．
+{\bf 2の補数表現を用いると2進数の足し算・引き算が，
+正負のどちらの数でも同じ手順で計算できます}(詳しくは後述)．
+「手順が同じ＝演算回路が同じ」ことになりますので，
+コンピュータを製作する上では非常に都合がよいのです．
 
 \subsection{2の補数を求める手順}
 
 $-x$ をnビット2の補数表現($y$)で表します．
 2の補数の定義より，$y$は次のように計算できます．
-{\small
-\begin{eqnarray}
-y = 2^n - x                  \label{equb} \\
-  = (2^n - 1 - x) + 1        \nonumber    \\
-  = ( xの1の補数 ) + 1       \nonumber
-\end{eqnarray}
-}
+{\small\begin{align*}
+y &= 2^n - x             \\
+  &= (2^n - 1 - x) + 1   \\
+  &= (xに対する1の補数 ) + 1
+\end{align*}}
 「xに対する1の補数」はビット反転で簡単に求めることができます．
 「xに対する2の補数」は「xをビット反転した後，1を加える」ことにより
 簡単に求めることができます．
 
 \begin{center}
-\fbox{ビット反転した後，1を加える．}
+\fbox{\small\bf ビット反転した後，1を加える．}
 \end{center}
 
 \subsection{2の補数から元の数を求める手順}
 \label{hanten}
 
 次に，逆変換について考えます．
-%xに対する2の補数yからxを求める手順です．
 既に\ref{chap2:2c}で触れたように2の補数と元の数は互いに「2の補数」ですから，
 2の補数を求めるのと同じ計算で，2の補数から元の数を求めることができます．
 
-%{\small
-%\begin{eqnarray}
-%B = 2^n - A            \nonumber \\
-%0 = 2^n - A - B        \nonumber \\
-%A = 2^n - B            \label{equa}
-%\end{eqnarray}
-%}
-%(\ref{equb})式と(\ref{equa})式では，AとBが入れ換わっただけで，
-%同じ型をしています．
-%このことから，AからBを求める計算と，BからAを求める計算の手順が同じことが
-%分かります．
-
 \begin{center}
-\fbox{ビット反転した後，1を加える．}
+\fbox{\small\bf ビット反転した後，1を加える．}
 \end{center}
 
 %\pagebreak
-
 \section{2進数の計算}
 
 ここでは，2進数の和と差の計算方法を学びます．
@@ -710,14 +602,12 @@ y = 2^n - x                  \label{equb} \\
 2進数の計算も10進数と同じ要領です．
 桁上がりが10ではなく，
 2で発生することに注意してください．
+\figref{chap2:cal2vs10}に例を示します．
+2進数で計算しても10進数で計算しても同じ計算結果になります．
 
-もちろん，2進数で計算しても10進数で計算しても同じ計算結果になります．
-
+\begin{figure}[tbp]
 \begin{center}
-\fbox{\parbox{7cm}{
-{\bf 2進数と10進数の計算を比較}\\
-
-\begin{tabular}{  l r l  l r l l}
+{\small\begin{tabular}{  l r l  l r l l}
 \multicolumn{2}{c}{10進数}  & ~~~  & \multicolumn{2}{c}{2進数} & \\
                      & $07$ &      &     & $0111_2$ & (10進の7) \\
                  $+$ & $05$ &      & $+$ & $0101_2$ & (10進の5) \\
@@ -728,11 +618,14 @@ y = 2^n - x                  \label{equb} \\
                  $-$ & $05$ &      & $-$ & $0101_2$ & (10進の5) \\
 \cline{1-2} \cline{4-5}
                      & $07$ &      &     & $0111_2$ & (10進の7) \\
-\end{tabular}
-\\ \\
+\end{tabular}\\
+\vspace{0.2cm}
 何進数で計算しても同じ結果になる．
-}}
+}
+\caption{2進数と10進数の計算を比較}
+\label{fig:chap2:cal2vs10}
 \end{center}
+\end{figure}
 
 \subsection{負の数を含む計算}
 
@@ -745,39 +638,44 @@ $X + B$の計算($X + (-A)$)
 \begin{enumerate}
 \item 結果が負の場合($|A| > |X|$)\\
 解は $-(A - X)$ になるはず！
-{\small
-\begin{eqnarray}
-X + B = X + (2^n - A) \nonumber \\
-      = 2^n - (A - X) \label{eque}
-\end{eqnarray}
-}
+{\small\begin{align}
+X + B &= X + (2^n - A) \notag \\
+      &= 2^n - (A - X) \label{eque}
+\end{align}}
 (\ref{eque})式は，正解$-(A - X)$の2の補数表現になっています．
+\figref{chap2:addex1}に計算例を示します．
 
-\fbox{\parbox{6cm}{\small
-例　$3+(-5)=-2$ (4ビット2の補数表現)\\
+\begin{figure}[tbp]
+\begin{center}
+\parbox{0.9\columnwidth}{\small
+$3+(-5)=-2$ (4ビット2の補数表現)\\
 \begin{quote}
 $3$を2進数に変換すると$0011_2$ \\
 $-5$を2進数に変換すると$1011_2$ \\
 \\
 「和を計算する」 \\
 $0011_2+1011_2=1110_2= -2_{10}$ \\
-\end{quote}
-}}
+\end{quote}}
+\caption{結果が負になる足し算の例}
+\label{fig:chap2:addex1}
+\end{center}
+\end{figure}
 
 \item 結果が正またはゼロの場合($|X| \geq |A|$)\\
 解は $(X - A)$ になるはず！
-{\small
-\begin{eqnarray}
-X + B = X + (2^n - A) \nonumber \\
-      = 2^n + (X - A) \label{equf} \\
-      = X - A         \nonumber
-\end{eqnarray}
-}
+{\small\begin{align}
+X + B &= X + (2^n - A) \notag \\
+      &= 2^n + (X - A) \label{equf} \\
+      &= X - A         \notag
+\end{align}}
 (\ref{equf})式の$2^n$は，桁あふれにより結果に残らないので，
 正解($X - A$)となります．
+\figref{chap2:addex2}に計算例を示します．
 
-\fbox{\parbox{6cm}{\small
-例　$5+(-3)=2$ (4ビット2の補数表現)\\
+\begin{figure}[tbp]
+\begin{center}
+\parbox{0.9\columnwidth}{\small
+$5+(-3)=2$ (4ビット2の補数表現)\\
 \begin{quote}
 $5$を2進数に変換すると$0101_2$ \\
 $-3$を2進数に変換すると$1101_2$ \\
@@ -785,8 +683,11 @@ $-3$を2進数に変換すると$1101_2$ \\
 「和を計算する」 \\
 $0101_2 + 1101_2 = \fbox{1}0010_2 =  2_{10}$ \\
 (5ビット目の1は桁あふれで消滅)
-\end{quote}
-}}
+\end{quote}}
+\caption{結果が正になる足し算の例}
+\label{fig:chap2:addex2}
+\end{center}
+\end{figure}
 \end{enumerate}
 
 \subsubsection{負の数と負の数の和}
@@ -794,20 +695,19 @@ $0101_2 + 1101_2 = \fbox{1}0010_2 =  2_{10}$ \\
 負の数($-A_2$)(2の補数($B_2$))の和\\
 $B_1 + B_2$の計算($(-A_1) + (-A_2)$)\\
 解は$-(A_1 + A_2)$になるはず！
-{\small
-\begin{eqnarray}
-B_1 + B_2 = (2^n - A_1) + (2^n - A_2) \nonumber \\
-      = 2^n + (2^n - (A_1 + A_2))     \label{equc} \\
-      = 2^n - (A_1 + A_2)             \label{equd}
-\end{eqnarray}
-}
-(\ref{equc})式の最初の$2^n$は，桁あふれにより消滅する．
-(\ref{equd})式は正解($-(A_1 + A_2)$)の2の補数表現になっている．
+{\small\begin{align}
+B_1 + B_2 &= (2^n - A_1) + (2^n - A_2) \notag \\
+          &= 2^n + (2^n - (A_1 + A_2)) \label{equc} \\
+          &= 2^n - (A_1 + A_2)         \label{equd}
+\end{align}}
+(\ref{equc})式の最初の$2^n$は，桁あふれにより消滅するので
+(\ref{equd})式は正解($-(A_1 + A_2)$)の2の補数表現になっています．
+\figref{chap2:addex3}に計算例を示します．
 
-
-\vspace{0.2cm}
-\fbox{\parbox{6.5cm}{\small
-例　$(-1)+(-3)=(-4)$ (4ビット2の補数表現)\\
+\begin{figure}[tbp]
+\begin{center}
+\parbox{0.9\columnwidth}{\small
+$(-1)+(-3)=(-4)$ (4ビット2の補数表現)\\
 \begin{quote}
 $-1$を2進数に変換すると$1111_2$ \\
 $-3$を2進数に変換すると$1101_2$ \\
@@ -815,29 +715,17 @@ $-3$を2進数に変換すると$1101_2$ \\
 「和を計算する」 \\
 $1111_2 + 1101_2 = \fbox{1}1100_2 =  -4_{10}$ \\
 (5ビット目の1は桁あふれで消滅)
-\end{quote}
-}}
-\vspace{0.2cm}
+\end{quote}}
+\caption{負の数と負の数の足し算の例}
+\label{fig:chap2:addex3}
+\end{center}
+\end{figure}
 
 以上のように，2の補数表現を使用すると負の数を含んだ足し算が簡単に
 計算できます．ここでは省略しますが，引き算も同様に正負の区別をする
 ことなく計算できます．
 
-\vspace{0.8cm}
-\fbox{\parbox{7cm}{
-{\bf MSBとLSB}\\
-　「2の補数表現を用いると，最上位ビットが1なら負の数と分かります．」
-のように\underline{最上位ビット}と言う言葉をよく使います．\\
-　「最上位ビット」と言うのは長いので，これを英語にした「Most Significant
-Bit」の頭文字を取りMSBと略すことが良くあります．憶えておいて下さい．\\
-　同様に「最下位ビット」のことは英語で「Least Significant Bit」なので，
-略してLSBと呼びます．これも，憶えておきましょう．
-}}
-
-\vspace{0.3cm}
-\begin{flushleft}
-{\bf 問題}
-\end{flushleft}
+\subsubsection{問題}
 \begin{enumerate}
 \item
 次の数を「2の補数表現を用いた4ビット符号付き2進数」で書き表しなさい．\\
@@ -852,46 +740,67 @@ $1100_2$，$1011_2$，$0100_2$，$1101_2$
 \item
 次の2進数は「2の補数表現を用いた符号付き2進数」です．空欄を埋めなさい．
 
+{\small\begin{center}
 \begin{tabular}{ l c r  c c r }
 1) &   & $0011~1100_2$ &    &   & $\fbox{　　　}_{10}$ \\
    & + & $0010~1101_2$ & → & + & $\fbox{　　　}_{10}$ \\
 \cline{2-3} \cline{5-6}
-   &   & $\fbox{　　　　}_2$ & ~ & + & $\fbox{　　　}_{10}$ \\
-   &   &                     &   &   &                      \\
+   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
+\end{tabular}
+\end{center}}
+
+{\small\begin{center}
+\begin{tabular}{ l c r  c c r }
 2) &   & $0110~0100_2$ &    &   & $\fbox{　　　}_{10}$ \\
    & + & $1000~0001_2$ & → & + & $\fbox{　　　}_{10}$ \\
 \cline{2-3} \cline{5-6}
-   &   & $\fbox{　　　　}_2$ & ~ & + & $\fbox{　　　}_{10}$ \\
-   &   &                     &   &   &                      \\
+   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
+\end{tabular}
+\end{center}}
+
+{\small\begin{center}
+\begin{tabular}{ l c r  c c r }
 3) &   & $1110~0100_2$ &    &   & $\fbox{　　　}_{10}$ \\
    & + & $0100~0001_2$ & → & + & $\fbox{　　　}_{10}$ \\
 \cline{2-3} \cline{5-6}
-   &   & $\fbox{　　　　}_2$ & ~ & + & $\fbox{　　　}_{10}$ \\
-   &   &                     &   &   &                      \\
+   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
+\end{tabular}
+\end{center}}
+
+{\small\begin{center}
+\begin{tabular}{ l c r  c c r }
 4) &   & $1110~0100_2$ &    &   & $\fbox{　　　}_{10}$ \\
    & + & $1100~0001_2$ & → & + & $\fbox{　　　}_{10}$ \\
 \cline{2-3} \cline{5-6}
-   &   & $\fbox{　　　　}_2$ & ~ & + & $\fbox{　　　}_{10}$ \\
-%   &   &                     &   &   &                      \\
+   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
 \end{tabular}
+\end{center}}
+
+%\begin{tabular}{ l c r  c c r }
+%5) &     & $1110~0100_2$ &    &   & $\fbox{　　　}_{10}$ \\
+%   & $-$ & $1100~0001_2$ & → & $-$ & $\fbox{　　　}_{10}$ \\
+%\cline{2-3} \cline{5-6}
+%   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
+%\end{tabular}
+
 \end{enumerate}
 
+%\pagebreak
 \section{小数の表現}
 
 この節では，小数を2進数で表現する方法を紹介します．
 
 \subsection{2進数による小数の表現}
 
-小数を含む数を，
-コンピュータ内部で2進数を用いて表現する方法は何種類かあります．
-ここでは，その中でも最も基本的な，固定小数点形式を紹介します．
+コンピュータ内部で，2進数を用いて，
+小数を含む数を表現する方法は何種類かあります．
+ここでは，その中でも最も基本的な固定小数点形式を紹介します．
 
 これまでの2進数は，暗黙のうちに小数点が右端にあると考えました．
 小数点の位置を右端以外だと約束すれば，小数を含む数の表現も可能になります．
+以下に4ビットの2桁目に小数点があると考えた場合の例を示します．
 
-\vspace{0.2cm}
-\fbox{\parbox{6.5cm}{\small
-例　4ビットで小数点が2桁目なら
+{\small
 \begin{quote}
 $00.00_2 = 0.0_{10}$  \\
 $00.01_2 = 0.25_{10}$  \\
@@ -905,8 +814,7 @@ $10.00_2 = 2.0_{10}$  \\
 ...\\
 $11.11_2 = 3.75_{10}$
 \end{quote}
-}}
-\vspace{0.2cm}
+}
 
 小数点を中心に，左は1桁毎に2倍，右は1桁毎に$1/2$倍になります．
 (10進数では，左は1桁毎に10倍，右は1桁毎に$1/10$倍になりましたね．)
@@ -916,84 +824,93 @@ $11.11_2 = 3.75_{10}$
 \item
 2進数から10進数への変換 \\
 整数の場合と同様に桁の重みを加算すれば10進数に変換できます．
+次に例を示します．
 
-\fbox{\parbox{6.5cm}{\small
-例　2進10進変換
 \begin{quote}
 $10.01_2 = 2 + 1/4 = 2.25_{10}$
 \end{quote}
-}}
 
 \item
 10進数から2進数への変換 \\
 整数の場合は，$1/2$倍することで右にシフト(桁移動)し，小数点を横切った
 $0/1$を判定しました．(小数点を$1$が横切ると，余りが出ていました．)
 
-小数点以下の数値は，$2$倍することで左にシフトし，小数点を横切った
-$0/1$を判定すれば2進数に変換できます．
-\begin{center}
-\fbox{\parbox{7cm}{
-{\bf 例 小数を表す10進数から2進数への変換}\\
+\figref{chap2:henkan}に例を示すように，
+小数点以下の数値は，$2$倍することで左にシフトし，
+小数点を横切った$0/1$を判定すれば2進数に変換できます．
 
+\begin{figure}[tb]
+\centerline{\parbox{0.8\columnwidth}{\small
+\begin{center}
 \begin{tabular}{ r l  l r}
 \multicolumn{1}{c}{2進数} &  ~~~$\times 2$は~~~ & \multicolumn{2}{c}{10進数}\\
-                $0.101_2$ &        左シフ       &           & $0.625$ \\
+$0.101_2$ &        左シフ       &           & $0.625$ \\
 \multicolumn{1}{c}{$\swarrow$} &   トと同じ     & $\times$  &     $2$ \\
 \cline{3-4}
-                $1.010_2$      &                &           & $\underline{1}.250$ \\
+$1.010_2$      &                &           & $\underline{1}.250$ \\
 &&&\\
 \multicolumn{1}{c}{2進数} &  ~~~$\times 2$は~~~ & \multicolumn{2}{c}{10進数}\\
-                $0.010_2$ &        左シフ       &           & $0.250$ \\
+$0.010_2$ &        左シフ       &           & $0.250$ \\
 \multicolumn{1}{c}{$\swarrow$} &   トと同じ     & $\times$  &     $2$ \\
 \cline{3-4}
-                $0.100_2$      &                &           & $\underline{0}.500$ \\
+$0.100_2$      &                &           & $\underline{0}.500$ \\
 &&&\\
 \multicolumn{1}{c}{2進数} &  ~~~$\times 2$は~~~ & \multicolumn{2}{c}{10進数}\\
-                $0.100_2$ &        左シフ       &           & $0.500$ \\
+$0.100_2$ &        左シフ       &           & $0.500$ \\
 \multicolumn{1}{c}{$\swarrow$} &   トと同じ     & $\times$  &     $2$ \\
 \cline{3-4}
-                $1.000_2$      &                &           & $\underline{1}.000$ \\
+$1.000_2$      &                &           & $\underline{1}.000$ \\
 \end{tabular}
-\\ \\
+\end{center}
 10進数で計算したとき，小数点を横切って整数部に出てきた数を
-小数点の右に順番に並べる．
-\begin{center}
-\Large{$0.\underline{101}_2$}
-\end{center}
-}}
-\end{center}
+小数点の右に順番に並べると $0.\underline{101}_2$ になる．}}
+\caption{小数を表す10進数から2進数への変換例}
+\label{fig:chap2:henkan}
+\end{figure}
 
 \item 整数部と小数部の両方がある場合 \\
 整数部分と小数部分を分離して，別々に計算します．
 \end{enumerate}
 
-%\vspace{0.3cm}
-\begin{flushleft}
-{\bf 問題}
-\end{flushleft}
+\subsubsection{問題}
 \begin{enumerate}
-\item
-次の2進数を10進数に変換しなさい．
+\item 次の2進数を10進数に変換しなさい．
 \begin{enumerate}
 \item $0.1001_2$
 \item $0.0101_2$
 \item $11.11_2$
 \end{enumerate}
-\item
-次の10進数を2進数に変換しなさい．
+
+\item 次の10進数を2進数に変換しなさい．
 \begin{enumerate}
 \item $0.0625_{10}$
 \item $0.1875_{10}$
 \item $0.4375_{10}$
 \end{enumerate}
-\item
-次の10進数を2進数に変換しなさい．(難しい問題)
+
+\item 次の10進数を2進数に変換しなさい．(難問)
 \begin{enumerate}
 \item $0.8_{10}$
 \item $0.7_{10}$
 \end{enumerate}
 \end{enumerate}
 
+\begin{figure}[tbp]
+\fbox{\parbox{0.9\columnwidth}{\parindent=1zw
+\hspace{-1zw}{\bf MSBとLSB}
+
+「2の補数表現を用いると，最上位ビットが1なら負の数と分かります．」
+のように{\bf 最上位ビット}と言う言葉をよく使います．
+
+「最上位ビット」と言うのは長いので，これを英語にした「Most Significant
+Bit」の頭文字を取りMSBと略すことが良くあります．憶えておいて下さい．
+
+同様に「最下位ビット」のことは英語で「Least Significant Bit」なので，
+略してLSBと呼びます．これも，憶えておきましょう．
+}}
+\end{figure}
+
+%\pagebreak
 \section{文字の表現}
 \label{char}
 
@@ -1014,18 +931,11 @@ $0/1$を判定すれば2進数に変換できます．
 ASCII(American Standard Code for Information Interchange)コードは，
 1963年にアメリカ規格協会(ANSI)が定めた情報交換用の文字コードです．
 英字，数字，記号等が含まれます．
-現在のパーソナルコンピュータ等で使用される文字コードは，ASCIIコードが
+現代のパーソナルコンピュータ等で使用される文字コードは，ASCIIコードが
 基本になっています．
+\figref{chap2:ascii}にASCII文字コード表を示します．
 
-\begin{center}
-{\bf ASCII文字コード表}
-\vspace{0.2cm}
-\fbox{\parbox{7cm}{
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{ascii.pdf}
-}}
-\end{center}
+\myfigureN{tbp}{scale=1.0}{ascii.pdf}{ASCII文字コード表}{chap2:ascii}
 
 文字コード表で 00H 〜 1FH と 7FH は，機能(改行等)を表す特殊な文字に
 なっています．20H(SP)は空白を表す文字です．
@@ -1040,8 +950,9 @@ ASCII文字コードは7ビットで表現されます．しかし，コンピ�
 (英数記号＋カナ＋ひらがな＋カタカナ＋漢字．．．)が定められています．
 
 JIS 8ビットコードは，ASCIIコードに半角カタカナを追加したものです．
-記号，数字，英字の部分は同じ並びになっています．
+記号，数字，英字の部分は，\.ほ\.ぼ，同じ並びになっています．
 
+%\pagebreak
 \section{補助単位}
 
 長さや重さを書くとき，1,000m を 1km， 1,000g を 1kg のように書きました．
@@ -1051,36 +962,38 @@ JIS 8ビットコードは，ASCIIコードに半角カタカナを追加した�
 M(メガ=$10^6$)，G(ギガ=$10^9$)，T(テラ=$10^{12}$)等があります．
 (1,000倍毎に補助単位があります．)
 パソコンのカタログに「CPUのクロックは 1GHz」のような記述を見かけますね．
+よく使う補助単位を\tabref{chap2:hojyo}にまとめます．
 
 記憶容量を表す場合の補助単位は，$1,000$の代わりに$2^{10} = 1,024$を使用します．
 1,000 も 1,024 も k で表現すると紛らわしいので，
-k の代わりに ki と書き表すこともあります．
-つまり，$1kB =1kiB = 2^{10}B = 1,024B$，
+k の代わりに Ki と書き表すこともあります．
+つまり，$1kB =1KiB = 2^{10}B = 1,024B$，
 $1MB =1MiB = 2^{20}B = 1,048,576B$となります．(「B」はバイトを表す．)
 
 「H.D.D.の容量は500GB」のように表示されている場合は，
 記憶容量を表しているので$G = 2^{30}$で表示されています．
 同じことを「H.D.D.の容量は500GiB」のように表示することもあります．
 
-\vspace{0.2cm}
-\fbox{\parbox{7cm}{\small
-{\bf 補助単位まとめ}\\
-\begin{tabular}{r l l | r l l}
+\begin{mytable}{tb}{補助単位まとめ}{chap2:hojyo}
+{\small\begin{tabular}{r l l | r l l}\hline\hline
 \multicolumn{3}{c|}{一般的に} &
 \multicolumn{3}{c}{記憶容量} \\
+\hline
 \multicolumn{1}{c}{値} &
 \multicolumn{1}{c}{記号} &
 \multicolumn{1}{c|}{読み方} &
 \multicolumn{1}{c}{値} &
 \multicolumn{1}{c}{記号} &
 \multicolumn{1}{c}{読み方} \\
-$10^3$   & $k$ & キロ   & $2^{10}$ & $ki$ & キビ \\
+\hline
+$10^3$   & $k$ & キロ   & $2^{10}$ & $Ki$ & キビ \\
 $10^6$   & $M$ & メガ   & $2^{20}$ & $Mi$ & メビ \\
 $10^9$   & $G$ & ギガ   & $2^{30}$ & $Gi$ & ギビ \\
 $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
-\end{tabular}
-}}
+\end{tabular}}
+\end{mytable}
 
+%\pagebreak
 \section{コンピュータの基本回路}
 
 前の節までで，コンピュータ内部での情報の表現方法を勉強しました．
@@ -1090,14 +1003,15 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 計算や記憶をする回路を勉強します．
 
 \subsection{論理演算と論理回路}
+\label{logical}
 
 論理(Yes/No，真/偽，True/False)を対象とする演算(計算)のことを
-\underline{論理演算}と呼びます．
+{\bf 論理演算}と呼びます．
 論理の「真/偽」をビットの「1/0」に対応させることにより，
 論理も電気の「ON/OFF」で表現することができます．
 
 ここでは，論理演算と，論理演算をする回路を紹介します．
-論理演算をする回路のことを\underline{論理回路}と呼びます．
+論理演算をする回路のことを{\bf 論理回路}と呼びます．
 ここで紹介する論理回路が，
 コンピュータを構成する基本回路になります．
 
@@ -1110,49 +1024,37 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 \item 論理積(AND) \\
 二つのビットを入力し，両方が1のときだけ出力が1になるような論理演算です．
 \begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{and.pdf}
+\myincludegraphics{and.pdf}{scale=1.5}
 \end{center}
 
 \item 論理和(OR) \\
 二つのビットを入力し，どちらかが1のとき出力が1になるような論理演算です．
 \begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{or.pdf}
+\myincludegraphics{or.pdf}{scale=1.5}
 \end{center}
 
 \item 否定(NOT) \\
 一つのビットを入力し，入力と逆の論理を出力する論理演算です．
 \begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{not.pdf}
+\myincludegraphics{not.pdf}{scale=1.5}
 \end{center}
 
 \item 排他的論理和(XOR) \\
 二つのビットを入力し，二つが異なるとき出力が1になるような論理演算です．
 \begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{xor.pdf}
+\myincludegraphics{xor.pdf}{scale=1.5}
 \end{center}
 
 \item NAND \\
 否定(NOT)と論理積(AND)を組み合わせた演算です．
 \begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{nand.pdf}
+\myincludegraphics{nand.pdf}{scale=1.5}
 \end{center}
 
 \item NOR \\
 否定(NOT)と論理和(OR)を組み合わせた演算です．
 \begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{nor.pdf}
+\myincludegraphics{nor.pdf}{scale=1.5}
 \end{center}
 
 \end{enumerate}
@@ -1164,96 +1066,78 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 
 \begin{enumerate}
 \item 半加算器 \\
-例えば，1ビットの足し算回路は次の例のように実現できます．
+例えば，1ビットの足し算回路は\figref{chap2:ha}ように実現できます．
 この例では A，Bの2ビットを入力し，和(S)と上の桁への桁上がり(C)を
 出力する回路を示しています．
 このような回路のことを「半加算器」と呼びます．
 
-\vspace{0.2cm}
-\fbox{\parbox{6.6cm}{
-{\bf 例 1ビット半加算器}
-\begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{ha.pdf}
-\end{center}
-}}
+\myfigureN{tb}{scale=1.5}{ha.pdf}{1ビット半加算器}{chap2:ha}
 
 \item 全加算器 \\
 半加算器は桁上がりを出力しますが，
 自分自身は下の桁からの桁上がりを入力することができません．
-桁上がりの入力を備えた1ビット足し算器を「全加算器」と呼びます．
+桁上がりの入力を備えた1ビット足し算器を「全加算器」と呼び，
+\figref{chap2:fa}のように実現することができます．
 
-次の例のように，
-全加算器は半加算器を組み合わせて実現することができます．
-
-\vspace{0.2cm}
-\fbox{\parbox{6.6cm}{
-{\bf 例 1ビット全加算器}
-\begin{center}
-\epsfxsize=5.5cm
-%\epsfysize=22.5cm
-\myepsfbox{fa.pdf}
-\end{center}
-}}
+\myfigureN{tbp}{scale=1.5}{fa.pdf}{1ビット全加算器}{chap2:fa}
 
 \item nビット加算器 \\
+\figref{chap2:adder}のように
 半加算器と全加算器を組み合わせることで，
 任意ビットの加算器を実現することができます．
-次に4ビット加算器の例を示します．
 
-\vspace{0.2cm}
-\fbox{\parbox{6.6cm}{
-{\bf 例 4ビット加算器}
-\begin{center}
-\epsfxsize=4.7cm
-%\epsfysize=22.5cm
-\myepsfbox{adder.pdf}
-\end{center}
-}}
+\myfigureN{tbp}{scale=1.5}{adder.pdf}{４ビット加算器}{chap2:adder}
 
-\pagebreak
+%\pagebreak
 \item nビット1の補数器 \\
 1の補数を作る回路です．
 1の補数はビット反転によってできるので，NOTでできます．
-次に，4ビットの例を示します．
+\figref{chap2:onesc}に4ビットの例を示します．
 簡単ですね．
 
-\vspace{0.2cm}
-\fbox{\parbox{6.6cm}{
-{\bf 例 4ビット1の補数器}
-\begin{center}
-\epsfxsize=4.7cm
-%\epsfysize=22.5cm
-\myepsfbox{onesc.pdf}
-\end{center}
-}}
+\myfigureN{tbp}{scale=1.5}{onesc.pdf}{4ビット1の補数器}{chap2:onesc}
 
 \item nビット2の補数器 \\
 2の補数を作る回路です．
 2の補数は，1の補数に1足すとできるので，
 1の補数器の出力に半加算器を組み合わせるとできます．
+\figref{chap2:towsc}に4ビットの例を示します．
 
-\vspace{0.2cm}
-\fbox{\parbox{6.6cm}{
-{\bf 例 4ビット2の補数器}
-\begin{center}
-\epsfxsize=6cm
-%\epsfysize=22.5cm
-\myepsfbox{towsc.pdf}
-\end{center}
-}}
+\myfigureN{tb}{scale=1.5}{towsc.pdf}{4ビット2の補数器}{chap2:towsc}
 
 \end{enumerate}
 
 演算回路を数種類紹介しました．
-ここに紹介しませんでしたが，引き算回路等も同様に製作可能です．
+ここでは紹介しませんでしたが，引き算回路等も同様に製作可能です．
+
+\begin{figure}[bt]
+\vfill
+\fbox{\parbox{0.9\columnwidth}{\parindent=1zw
+\hspace{-1zw}{\bf 論理回路素子}
+
+{\small
+回路を製作するには，基本的な論理回路を内蔵した集積回路(論理IC)を用いる
+ことができます．
+
+様々な論理ICが販売されていますが，ここでは，74シリーズのものを紹介します．
+下の例に示したのは，NANDゲートを四つ内蔵した7400と呼ばれるICです．
+同様なICで，AND，OR，XOR，NOT等の回路を内蔵したものがあります．
+
+このようなIC同士を配線して組み合わせることにより，
+本文で紹介した演算回路や記憶回路を実現することができます．
+
+\vspace{0.2cm}
+\hspace{-1zw}{\bf 論理IC}\\
+\centerline{\myincludegraphics{lic.pdf}{scale=0.95}}
+}}}
+\end{figure}
 
 \subsection{記憶回路}
 「基本的な論理回路」を組み合わせることにより，
 記憶機能を実現することもできます．
 ここでは，最も簡単なRS-FF(RSフリップフロップ)を紹介します．
 
+\figref{chap2:rsff}にRSフリップフロップの真理値表と回路図を示します．
 RS-FFはS(Set)とR(Reset)の二つの入力と，状態$(Q,\bar Q)$の出力を
 持つ回路です．
 S=0,R=1を入力することにより，回路はリセットされ出力Qは0になります．
@@ -1262,41 +1146,16 @@ S=1,R=0を入力することにより，回路はセットされ出力Qは1に�
 
 S=0,R=0を入力すると，回路は直前の値を「記憶」します．
 S=1,R=1は入力してはいけない組合せです．
-
 RS-FFは，回路をリセット／セットした後で「記憶」状態にすることにより，
 「値を記憶する回路(＝記憶回路)」として働きます．
 
-\vspace{0.2cm}
-\fbox{\parbox{6.6cm}{
-{\bf RS-FF}
-\begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{rsff.pdf}
-\end{center}
-}}
+\myfigureN{tb}{scale=1.5}{rsff.pdf}{RSフリップフロップ}{chap2:rsff}
 
-\vspace{0.3cm}
+\section{まとめ}
 
-\fbox{\parbox{7.0cm}{
-{\bf 論理回路素子}
-
-{\small
-　回路を製作するには，基本的な論理回路を内蔵した集積回路(論理IC)を用いる
-ことができます．
-
-　様々な論理ICが販売されていますが，ここでは，74シリーズのものを紹介します．
-下の例に示したのは，NANDゲートを四つ内蔵した7400と呼ばれるICです．
-同様なICで，AND，OR，XOR，NOT等の回路を内蔵したものがあります．
-
-　このようなIC同士を配線して組み合わせることにより，
-本文で紹介した演算回路や記憶回路を実現することができます．
-
-\vspace{0.2cm}
-{\bf 論理IC} \\
-%\begin{center}
-\epsfxsize=6.5cm
-%\epsfysize=22.5cm
-\myepsfbox{lic.pdf}
-%\end{center}
-}}}
+この章では，
+まず，ノイマン型コンピュータの内部では，情報が電気（電子）回路で扱い
+扱いやすい2進数で表現されていること学びました．
+次に，数値が2進数で表現できることや計算方法，
+文字データの表現法を学びました．
+最後に，コンピュータの基本回路である論理回路について学びました．
