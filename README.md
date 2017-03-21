@@ -19,9 +19,7 @@ TeC Textbook
 
 付録
 
-<div style="text-align: center;">
 ![ライセンス](https://i.creativecommons.org/l/by-sa/4.0/88x31.png "クリエイティブ・コモンズ・ライセンス")
-</div>
 
 本ドキュメントは CC-BY-SA ライセンスによって許諾されています。
 ライセンスの内容を知りたい方は
