@@ -1,6 +1,6 @@
 all :
 	platex tec.tex
-	platex tec.tex
+#	platex tec.tex
 	dvipdfmx tec.dvi
 
 clean:

@@ -1,218 +1,219 @@
-\renewcommand{\myepsfbox}[1]{\epsfbox{appB/#1}}
+\renewcommand{\myincludegraphics}[2]{\includegraphics[#2]{appB/#1}}
 
 \newpage
-\onecolumn
+%\onecolumn
 \chapter{TeCクロス開発環境}
 \label{cross}
 \section{始めに}
 TeCクロス開発環境は，
-教育用コンピュータTeC(Tokuyama kousen Educational Computer)の
-機械語プログラムを開発するためのパソコン上で動作するプログラム群である．
-クロス開発環境は，
-クロスアセンブラtasm(tasm7:TeC7用，tasm6:TeC6用)，
-ダウンロードプログラムtsend(tsend7:TeC7用，tsend6:TeC6用)よりなる．
+教育用コンピュータTeC（Tokuyama kousen Educational Computer）の
+機械語プログラムを開発するためのパソコン上で動作するプログラム群です．
+クロス開発環境は，クロスアセンブラtasm7，
+ダウンロードプログラムtsend7からなります．
+これらを用いてTeCのプログラムをパソコン上でクロス開発する
+様子を\figref{appB:cross}に示します．
 
-tasmは，ニーモニックで記述されたソースプログラムを解釈し，
-アセンブルリストと機械語をファイルに出力する.出力された機械語はtsend
-プログラムにより，シリアル通信を用いてTeCにダウンロードする．
-tasmとtsendを使用することにより，
-TeCのプログラムをパソコン上でクロス開発することができる．
-その様子を図に示す．
+これらの入手とパソコンへのインストール方法は，
+\url{https://github.com/tctsigemura/Tasm}を参照して下さい．
+以下では，
+UNIXまたはmacOSにインストールされた「TeCクロス開発環境」を
+使用する前提で說明しています．
 
-\begin{figure}[bthp]
-\begin{center}
-\epsfxsize=10cm
-\myepsfbox{syori.pdf} \\
-処理の流れ
-\end{center}
-\end{figure}
+\myfigureNA{btp}{scale=1.0}{syori.pdf}{処理の流れ}{appB:cross}
 
 \section{アセンブルコマンド}
-tasmは次の形式のコマンド行から起動され，
-アセンブラソースプログラムを
-アセンブルリスト(拡張子 .lst のファイルに出力)と
-機械語(拡張子 .bin のファイルに出力)に変換(アセンブル)する．
-なお，アセンブラソースプログラムは，TeC7では拡張子``.t7''のファイルに，
-TeC6では拡張子``.t6''のファイルに格納する．
-\begin{center}
-{\tt tasm7 [-l nn] [-w nn] {\it source\_file} } \\
-({\tt tasm6 [-l nn] [-w nn] {\it source\_file} })
-\end{center}
-{\it source\_file}は\ref{syn}章で説明する文法で記述されたアセンブラソース
-ファイルの名前である．ソースファイル名の拡張子は``.t7''(``.t6'')
-である必要がある．
-オプションの意味は次の通りである．
-\vspace{0.2cm}
-\begin{center}
-\begin{tabular}{ll} \hline
-\multicolumn{1}{c}{\it オプション} & \multicolumn{1}{c}{\it 意味} \\ \hline
-{\tt -l nn}  &  アセンブルリストの1ページをnn行にする． \\
-{\tt -w nn}  &  アセンブルリストの1ページをnn桁にする． \\ \hline
-\end{tabular}
-\end{center}
-\vspace{0.2cm}
-
-\section{転送コマンド}
-tsendはtasmが出力した機械語プログラムを
-シリアル通信を用いてTeCに転送するコマンドである．
-次の形式のコマンド行から起動する．
+クロスアセンブラは次の形式のコマンド行から起動され，
+ソースプログラムを入力し，アセンブルリストと機械語を出力します．
+アセンブルリストは拡張子 .lst のファイルに，
+機械語は拡張子 .bin のファイルに格納されます．
 
 \begin{center}
-{\tt tsend7  {\it bin\_file}　{\it [com\_port]}} \\
-({\tt tsend6  {\it bin\_file}　{\it [com\_port]}})
+{\small\tt tasm7 [-l nn] [-w nn] {\it source\_file} }
 \end{center}
-{\it bin\_file}はtasmが出力した機械語プログラムファイルの名前である．
-{\it [com\_port]}は，
-TeCと接続されたシリアルポートを表すデバイスファイルの名前である．
-tsendを起動すると画面に「TeCを受信状態にする」ように指示が表示される
-ので，TeCのE0H番地に格納されているIPLプログラム
-(\ref{iplsrc} IPLプログラム 参照)を起動する．
-\vspace{0.2cm}
+
+{\it source\_file}は\ref{syn}章で説明する文法で記述された
+ソースファイルの名前です．
+ソースファイル名は，拡張子 .t7 でなければなりません．
+アセンブルリストの整形に関するコマンド行オプションが使用できます．
+意味は\tabref{appB:option}の通りです．
+
+\begin{mytable}{tbp}{コマンド行オプション}{appB:option}
+{\small\begin{tabular}{l | l} \hline\hline
+\multicolumn{1}{c|}{\it オプション} & \multicolumn{1}{c}{\it 意味} \\ \hline
+{\tt -l nn}  &  リストの1ページをnn行にする． \\
+{\tt -w nn}  &  リストの1ページをnn桁にする．
+\end{tabular}}
+\end{mytable}
+
+\section{ダウンロードプログラム}
+ダウンロードプログラムはtasm7が出力した機械語プログラムを
+シリアル通信を用いてTeCに転送します．
+次の形式のコマンド行から起動します．
+
+\begin{center}
+{\small\tt tsend7  {\it bin\_file}　{\it [com\_port]}} \\
+\end{center}
+
+{\it bin\_file}はtasm7が出力した機械語プログラムファイルの名前です．
+{\it com\_port}は，
+TeCと接続されたシリアルポートを表すデバイスファイルの名前です．
+{\it com\_port}は省略できます．
+tsend7を起動すると画面に「TeCを受信状態にする」ように指示が表示されるので，
+TeCのE0H番地に格納されているIPLプログラム
+（「\ref{iplsrc} IPLプログラム」参照）を起動します．
 
 \section{アセンブラの文法}
 \label{syn}
-以下ではtasmの入力となるソースプログラムの文法について説明する．
+以下ではtasm7の入力となるソースプログラムの文法について説明します．
 
 \subsection{行フォーマット}
-ソースファイルは，行の連なりからなるテキストファ
-イルである．なお，tasmのソースファイルでは文字定数・文字列中を
-除き英字大文字と小文字は区別されない．
-空白はトークンの前後にいくつでも挿入することができる．
-空白は，スペース(文字コード20H)とタブ(文字コード09H)の2種類である．
-但し，\underline{行頭に空白を置いた場合は「ラベルが存在しない」ことを表す}．
+ソースプログラムは「行」の連なりからなるテキストです．
+ソースプログラムはソースファイルと呼ばれるテキストファイルに格納されます．
 
-\[ 行 ＝ [ラベル] [命令とオペランド] [;コメント] \]
+tasm7のソースプログラムでは，文字定数と文字列中を除き，
+英字大文字と小文字は区別されません．
+空白はトークンの前後にいくつでも挿入できます．
+但し，行頭の空白だけは「ラベルが存在しない」ことを表す特別なものになります．
+空白にはスペース（文字コード20H）とタブ（文字コード09H）の2種類があります．
+以下に「行」の書式を示します．
+
+{\small\[ [ラベル]~~[命令とオペランド]~~[ ; コメント] \]}
 
 \subsection{ラベル}
-行の最初の文字が英字の場合はその行にラベルがあるものとみなされる．
-ラベルは英字で始まりその後に任意の長さの英数字が続く文字列である．
-ラベルが無い行の場合は行を空白文字で始める．ラベルの長さに制限
-はないが，アセンブルリストの見栄えから7文字以内を推奨する．
-EQU命令のラベルを除き，その行のアドレスがラベルの値になる．
+行が英字で始まる場合，その行にラベルがあるとみなされます．
+ラベルは英字で始まり，その後に任意長の英数字が続く文字列です．
+ラベルが無い行は空白文字で始めます．
+ラベルの長さに制限はありませんが，
+アセンブルリストの見栄えから7文字以内を推奨します．
+
+行にラベルを書くとラベルが定義されます．
+EQU命令を除き，その行のアドレスがラベルの値になります．
 
 \subsection{疑似命令}
-以下では，tasmが処理できる4種類の疑似命令について説明する．
+以下の4種類の疑似命令が使用できます．
 
 \subsubsection{EQU命令}
-EQU命令はラベルを定義するために使用する疑似命令である．
-この命令にはラベルが必ず必要である．
-命令行のラベルが式値で定義される．
-式では，ラベルの前方参照はできない．
-EQU命令の書式は次の通りである．
+任意の値を持つラベルを定義する疑似命令です．
+この命令にはラベルが必ず必要です．
+命令行のラベルがオペランド式の値で定義されます．
+式ではラベルの前方参照はできません．
+EQU命令の書式を以下に，使用例を\figref{appB:equ}に示します．
 
-\[ EQU命令 = EQU　式 \]
+{\small\[ ラベル~~EQU~~式 \]}
 
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it EQU 命令の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
 START & EQU & 03H \\
 SIZE  & EQU & 100 \\
-END   & EQU & START+SIZE \\
-\hline
-\end{tabular}
+END   & EQU & START+SIZE \\\hline
+\end{tabular}}
+\caption{EQU 命令の使用例}
+\label{fig:appB:equ}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{ORG命令}
-ORG命令は機械語を生成するアドレスを変更する疑似命令である．
-機械語(データも含む)が生成される全ての行より前で使用された
-場合は，単に次の命令のアドレスを変更する．
-機械語が生成される行の途中で使用された場合は，
-指定アドレスに達するまで，
-ゼロで初期化された領域を生成する．
-現在のアドレスより前のアドレスを指定することはできない．
-ORG命令の式では，ラベルの前方参照はできない．
-ORG命令の書式は次の通りである．
-\[ ORG命令 = ORG　式 \]
+機械語を生成するアドレスを変更する疑似命令です．
+機械語（データも含む）が生成される全ての行より前で使用された場合は，
+単に次の命令のアドレスを変更します．
+機械語の生成が開始された後に使用された場合は，
+指定アドレスに達するまでゼロで初期化された領域を生成します．
+
+現在のアドレスより若いアドレス（逆戻りするアドレス）を
+指定することはできません．
+ORG命令の式ではラベルの前方参照は禁止です．
+ORG命令の書式を以下に，使用例を\figref{appB:org}に示します．
+
+{\small\[ [ラベル]~~ORG~~式\]}
+
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it ORG 命令の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
-START & ORG & 03H \\
-\hline
-\end{tabular}
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
+START & ORG & 03H \\\hline
+\end{tabular}}
+\caption{ORG 命令の使用例}
+\label{fig:appB:org}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{DS命令}
-DS命令は領域を定義するために使用する疑似命令である．
-領域の値はゼロで初期化される．
-DS命令の式では，ラベルの前方参照はできない．
-DS命令の書式は次の通りである．
-\[ DS命令 = DS　式 \]
+領域を定義するために使用する疑似命令です．
+式の値は領域のバイト数を表します．
+領域の値はゼロで初期化されます．
+DS命令の式では，ラベルの前方参照はできません．
+DS命令の書式を以下に，使用例を\figref{appB:ds}に示します．
+
+{\small\[ [ラベル]~~DS~~式 \]}
+
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it DS 命令の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
-WORK  & DS & 10 \\
-\hline
-\end{tabular}
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
+WORK & DS & 10 \\\hline
+\end{tabular}}
+\caption{DS 命令の使用例}
+\label{fig:appB:ds}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{DC命令}
-DC命令はメモリ上に任意の定数を出力するために使用する
-疑似命令である．DC命令の書式は次の通りである．
-\[ DC命令 =
- DC　\left\{
+メモリ上に任意の定数を出力するために使用する疑似命令です．
+オペランドに任意個の式または文字列を書くことができます．
+DC命令の書式を以下に，使用例を\figref{appB:dc}に示します．
+
+{\small\[ %DC命令 =
+[ラベル]~~DC~~\left\{
   \begin{array}{c}
    式 \\
    文字列
-  \end{array}  
+  \end{array}
  \right\}
 [,\left\{
   \begin{array}{c}
    式 \\
    文字列
   \end{array}  
- \right\},~ ...~ ,
-\left\{
-  \begin{array}{c}
-   式 \\
-   文字列
-  \end{array}  
- \right\}]
-\]
-\vspace{0.2cm}
+ \right\} ~ ... ~
+]
+\]}
+
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it DC 命令の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
 DATA & DC & 1,2,3,4 \\
      & DC & 1+1 \\
 CHA  & DC & 'a' \\
-STR  & DC & "abc" \\
-\hline
-\end{tabular}
+STR  & DC & "abc" \\\hline
+\end{tabular}}
+\caption{DC 命令の使用例}
+\label{fig:appB:dc}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsection{機械語命令}
-以下では，tasmが処理できる6グループの機械語命令について説明する．
+機械語命令は6つのグループに分類できます．
+以下では6つのグループの命令について，書き方を説明します．
 
 \subsubsection{機械語命令1}
-オペランドの無い1バイトの機械語命令である．
-下表の命令がこのグループに属する．
-\[ 機械語命令1 = 命令 \]
-\begin{center}
-\begin{tabular}{lll}
-\hline
-\multicolumn{2}{c}{\it 機械語命令1に属す命令} \\
-\hline
-\multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
+オペランドの無い1バイトの機械語命令です．
+\tabref{appB:m1}の命令がこのグループに属します．
+このグループの命令の書式を以下に，使用例を\figref{appB:m1ex}に示します．
+
+{\small\[ %機械語命令1 =
+[ラベル]~~命令 \]}
+
+\begin{mytable}{btp}{機械語命令1に属す命令}{appB:m1}
+{\small\begin{tabular}{l|l}
+\hline\hline
+\multicolumn{1}{c|}{命令} & \multicolumn{1}{c}{意味} \\\hline
 NO & 何もしない \\
 PUSHF & フラグをスタックに退避 \\
 POPF & フラグをスタックから復旧 \\
@@ -220,185 +221,201 @@ EI & 割り込み許可 \\
 DI & 割り込み禁止 \\
 RET & サブルーチンから復帰 \\
 RETI & 割り込みから復帰 \\
-HALT & プログラム終了 \\
-\hline
-\end{tabular}
-\end{center}
-\vspace{0.2cm}
+HALT & プログラム終了
+\end{tabular}}
+\end{mytable}
 
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
+{\tt\small\begin{tabular}{|l|l|l|}
 \hline
-\multicolumn{3}{c}{\it 機械語命令1の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
-END  & HALT &  \\
-\hline
-\end{tabular}
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
+START & NO   &  \\
+      & NO   &  \\
+END   & HALT &  \\\hline
+\end{tabular}}
+\caption{機械語命令1の使用例}
+\label{fig:appB:m1ex}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{機械語命令2}
-レジスタ指定付きの1バイトの機械語命令である．
-レジスタとして．G0，G1，G2，SPが使用可能である．
-下表の命令がこのグループに属する．
-\[ 機械語命令2 = 命令　レジスタ \]
-\begin{center}
-\begin{tabular}{lll}
-\hline
-\multicolumn{2}{c}{\it 機械語命令2に属す命令} \\
-\hline
-\multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
+レジスタ指定付きの1バイトの機械語命令です．
+レジスタとしてG0，G1，G2，SPが使用できます．
+\tabref{appB:m2}の命令がこのグループに属します．
+このグループの命令の書式を以下に，使用例を\figref{appB:m2ex}に示します．
+
+{\small\[ % 機械語命令2 =
+[ラベル]~~命令~~レジスタ \]}
+
+\begin{mytable}{btp}{機械語命令2に属す命令}{appB:m2}
+{\small\begin{tabular}{l|l}
+\hline\hline
+\multicolumn{1}{c|}{命令} & \multicolumn{1}{c}{意味} \\\hline
 SHLA & 左算術シフト \\
 SHLL & 左論理シフト \\
 SHRA & 右算術シフト \\
 SHRL & 右論理シフト \\
 PUSH & スタックにレジスタを退避 \\
-POP  & スタックからレジスタを復旧 \\
-\hline
-\end{tabular}
-\end{center}
-\vspace{0.2cm}
+POP  & スタックからレジスタを復旧
+\end{tabular}}
+\end{mytable}
 
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it 機械語命令2の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
 L1  & SHRA &  SP \\
     & PUSH &  G0 \\
-    & POP  &  G1 \\
-\hline
-\end{tabular}
+    & POP  &  G1 \\\hline
+\end{tabular}}
+\caption{機械語命令2の使用例}
+\label{fig:appB:m2ex}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{機械語命令3}
-オペランドにレジスタと式を書く2バイトの機械語命令である．
-レジスタとして．G0，G1，G2，SPが使用可能である．
-下表の命令がこのグループに属する．
-\[ 機械語命令3 = 命令　レジスタ，式 \]
-\begin{center}
-\begin{tabular}{lll}
-\hline
-\multicolumn{2}{c}{\it 機械語命令3に属す命令} \\
-\hline
-\multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
-IN & 入出力ポートから読み込む \\
-OUT & 入出力ポートに書き込む \\
-\hline
-\end{tabular}
-\end{center}
-\vspace{0.2cm}
+オペランドにレジスタと式を書く2バイトの機械語命令です．
+レジスタとしてG0，G1，G2，SPが使用できます．
+\tabref{appB:m3}の命令がこのグループに属します．
+このグループの命令の書式を以下に，使用例を\figref{appB:m3ex}に示します．
 
+{\small\[ % 機械語命令3 =
+[ラベル]~~命令~~レジスタ，式 \]}
+
+\begin{mytable}{btp}{機械語命令3に属す命令}{appB:m3}
+{\small\begin{tabular}{l|l}
+\hline\hline
+\multicolumn{1}{c|}{命令} & \multicolumn{1}{c}{意味} \\\hline
+IN & 入出力ポートから読み込む \\
+OUT & 入出力ポートに書き込む
+\end{tabular}}
+\end{mytable}
+
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it 機械語命令3の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
 SIO  & EQU &  03H \\
-     & IN  &  G0,SIO \\
-\hline
-\end{tabular}
+     & IN  &  G0,SIO \\\hline
+\end{tabular}}
+\caption{機械語命令3の使用例}
+\label{fig:appB:m3ex}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{機械語命令4}
-レジスタとメモリをオペランドに指定できる命令で，メモリ指定に
-イミディエイトモードが使用できるグループである．
-レジスタとして．G0，G1，G2，SPが使用可能である．
-インデクスレジスタとして．G1，G2が使用可能である．
-下表の命令がこのグループに属する．
-\[ 機械語命令4 = 命令　\left\{
+レジスタとメモリをオペランドに指定できる命令で，
+全てのアドレッシング・モードが使用できるグループです．
+レジスタとしてG0，G1，G2，SPが，
+インデクスレジスタとしてG1，G2が使用できます．
+\tabref{appB:m4}の命令がこのグループに属します．
+このグループの命令の書式を以下に，使用例を\figref{appB:m4ex}に示します．
+
+オペランドの書式はアドレッシング・モードにより変化します．
+１行目がダイレクトモード，２行目がインデクスモード，
+３行目がイミディエイトモードです．
+
+{\small\[ %機械語命令4 = 
+[ラベル]~~命令~~\left\{
   \begin{array}{c}
-   レジスタ，式　[，インデクスレジスタ] \\
+   レジスタ，式 \\
+   レジスタ，式，インデクスレジスタ \\
    レジスタ，＃式 \\
   \end{array}  
  \right\}
- \]
-\begin{center}
-\begin{tabular}{lll}
-\hline
-\multicolumn{2}{c}{\it 機械語命令4に属す命令} \\
-\hline
-\multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
-LD & レジスタにメモリオペランド値をロード \\
-ADD & レジスタとメモリオペランド値の和 \\
-SUB & レジスタとメモリオペランド値の差 \\
-CMP & レジスタとメモリオペランド値を比較 \\
-AND & レジスタとメモリオペランド値の論理積 \\
-OR & レジスタとメモリオペランド値の論理和 \\
-XOR & レジスタとメモリオペランド値の排他的論理和 \\
-\hline
-\end{tabular}
-\end{center}
-\vspace{0.2cm}
+ \]}
 
+\begin{mytable}{btp}{機械語命令4に属す命令}{appB:m4}
+{\small\begin{tabular}{l|l}
+\hline\hline
+\multicolumn{1}{c|}{命令} & \multicolumn{1}{c}{意味} \\\hline
+LD & レジスタにメモリの値をロード \\
+ADD & レジスタとメモリの値の和 \\
+SUB & レジスタとメモリの値の差 \\
+CMP & レジスタとメモリの値を比較 \\
+AND & レジスタとメモリの値の論理積 \\
+OR & レジスタとメモリの値の論理和 \\
+XOR & レジスタとメモリの値の排他的論理和
+\end{tabular}}
+\end{mytable}
+
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it 機械語命令4の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
 L1  & LD  & G0,DATA \\
     & LD  & G1,\#0 \\
     & SUB & G0,DATA,G1 \\
-    & ADD & G1,\#1 \\
-\hline
-\end{tabular}
+    & ADD & G1,\#1 \\\hline
+\end{tabular}}
+\caption{機械語命令4の使用例}
+\label{fig:appB:m4ex}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{機械語命令5}
-機械語命令4と，ほぼ，同様であるが，イミディエイトモードが
-使用できない機械語命令のグループである．
-レジスタとして．G0，G1，G2，SPが使用可能である．
-インデクスレジスタとして．G1，G2が使用可能である．
-下表のようにST命令だけがこのグループに属する．
-\[ 機械語命令5 = 命令　レジスタ，式　[，インデクスレジスタ]\]
-\begin{center}
-\begin{tabular}{lll}
-\hline
-\multicolumn{2}{c}{\it 機械語命令5に属す命令} \\
-\hline
-\multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
-ST & レジスタの値をメモリオペランドに格納 \\
-\hline
-\end{tabular}
-\end{center}
-\vspace{0.2cm}
+機械語命令4と，ほぼ，同様ですが，
+イミディエイトモードが使用できない機械語命令のグループです．
+レジスタとしてG0，G1，G2，SPが，
+インデクスレジスタとしてG1，G2が使用できます．
+\tabref{appB:m5}のようにST命令だけがこのグループに属します．
+このグループの命令の書式を以下に，使用例を\figref{appB:m5ex}に示します．
 
+{\small\[ %機械語命令5 = 
+[ラベル]~~命令~~\left\{
+  \begin{array}{c}
+   レジスタ，式 \\
+   レジスタ，式，インデクスレジスタ \\
+  \end{array}  
+ \right\}
+ \]}
+
+\begin{mytable}{btp}{機械語命令5に属す命令}{appB:m5}
+{\small\begin{tabular}{l|l}
+\hline\hline
+\multicolumn{1}{c|}{命令} & \multicolumn{1}{c}{意味} \\\hline
+ST & レジスタの値をメモリオペランドに格納
+\end{tabular}}
+\end{mytable}
+
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
-\hline
-\multicolumn{3}{c}{\it 機械語命令5の使用例} \\
-\hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+{\tt\small\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\\hline
   & ST & G0,WORK \\
-  & ST & G0,WORK,G1 \\
-\hline
-\end{tabular}
+  & ST & G0,WORK,G1 \\\hline
+\end{tabular}}
+\caption{機械語命令5の使用例}
+\label{fig:appB:m5ex}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
 \subsubsection{機械語命令6}
-メモリオペランドだけの機械語命令グループである．
-下表のようにジャンプ・コール命令がこのグループに属する．
-インデクスレジスタとして．G1，G2が使用可能である．
-\[ 機械語命令6 = 命令　式　[，インデクスレジスタ]\]
-\begin{center}
-\begin{tabular}{lll}
+メモリオペランドだけの機械語命令のグループです．
+\tabref{appB:m6}に示すジャンプ・コール命令が，このグループに属します．
+インデクスレジスタとしてG1，G2が使用できます．
+このグループの命令の書式を以下に，使用例を\figref{appB:m6ex}に示す．
+
+{\small\[ %機械語命令6 =
+[ラベル]~~命令~~\left\{
+  \begin{array}{c}
+   式 \\
+   式，インデクスレジスタ \\
+  \end{array}  
+ \right\}
+ \]}
+
+\begin{mytable}{btp}{機械語命令6に属す命令}{appB:m6}
+{\small\begin{tabular}{l|l}
+\hline\hline
+\multicolumn{1}{c|}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
 \hline
-\multicolumn{2}{c}{\it 機械語命令6に属す命令} \\
-\hline
-\multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it 意味} \\
 JMP & 必ずジャンプ \\
 JZ  & Zフラグが'1'ならジャンプ \\
 JC  & Cフラグに'1'ならジャンプ \\
@@ -406,45 +423,44 @@ JM  & Sフラグに'1'ならジャンプ \\
 JNZ & Zフラグが'0'ならジャンプ \\
 JNC & Cフラグに'0'ならジャンプ \\
 JNM & Sフラグに'0'ならジャンプ \\
-CALL & サブルーチン呼び出し \\
-\hline
-\end{tabular}
+CALL & サブルーチン呼び出し
+\end{tabular}}
+\end{mytable}
 
-\vspace{0.2cm}
-{\bf (JNZ,JNC,JNM命令はTeC6では使用できない．)}
-\end{center}
-\vspace{0.2cm}
-
+\begin{figure}[btp]
 \begin{center}
-\tt\begin{tabular}{lll}
+{\tt\small\begin{tabular}{|l|l|l|}
 \hline
-\multicolumn{3}{c}{\it 機械語命令6の使用例} \\
 \hline
-\multicolumn{1}{c}{\it ラベル} & 
-        \multicolumn{1}{c}{\it 命令} & \multicolumn{1}{c}{\it オペランド} \\
+\multicolumn{1}{|c|}{ラベル} & 
+        \multicolumn{1}{c|}{命令} & \multicolumn{1}{c|}{オペランド} \\
   & JMP & LOOP \\
   & CALL & SUB1 \\
 \hline
-\end{tabular}
+\end{tabular}}
+\caption{機械語命令6の使用例}
+\label{fig:appB:m6ex}
 \end{center}
-\vspace{0.2cm}
+\end{figure}
 
-\newpage
 \section{アセンブラの文法まとめ}
-以下に文法を BNF 風にまとめる．\\
-\vspace{0.3cm}
+次のページにアセンブラの文法を BNF 風にまとめます．
 
-\begin{quote}
-\small\tt\begin{tabular}{lll}
+\onecolumn
+
+%\begin{figure*}[btp]
+\begin{center}
+{\small\tt\begin{tabular}{lll}
 ＜プログラム＞& ::= &｛ ＜行＞ ｝ EOF \\
 ＜行＞        & ::= &＜命令行＞ ｜ ＜空行＞ ｜ ＜コメント行＞ \\
 ＜命令行＞    & ::= &＜ラベル欄＞ ［＜命令欄＞］ ［＜コメント＞］ ＜改行＞ \\
 ＜空行＞      & ::= &＜改行＞ \\
 ＜コメント行＞& ::= &＜コメント＞ ＜改行＞ \\
 ＜ラベル欄＞  & ::= &＜ラベル＞ ｜ ＜空白＞ \\
-＜命令欄＞    & ::= &＜命令記述１＞ ｜ ＜命令記述２＞ ｜ ＜命令記述３＞ \\
-              &     &  ｜ ＜命令記述４＞ ｜ ＜命令記述５＞ ｜ ＜命令記述６＞ \\
-              &     &  ｜ ＜命令記述７＞ ｜ ＜命令記述８＞ \\
+＜命令欄＞    & ::= &＜命令記述１＞ ｜ ＜命令記述２＞ ｜ ＜命令記述３＞
+                       ｜ ＜命令記述４＞ \\
+              &     &  ｜ ＜命令記述５＞ ｜ ＜命令記述６＞ 
+                       ｜ ＜命令記述７＞ ｜ ＜命令記述８＞ \\
 ＜命令記述１＞& ::= &＜命令１＞ \\
 ＜命令記述２＞& ::= &＜命令２＞ ＜レジスタ＞ \\
 ＜命令記述３＞& ::= &＜命令３＞ ＜レジスタ＞ ， ＜式＞ \\
@@ -472,11 +488,12 @@ CALL & サブルーチン呼び出し \\
 ＜文字１＞    & ::= &＜改行＞以外の文字 \\
 ＜文字２＞    & ::= &＜改行＞，' 以外の文字 \\
 ＜文字３＞    & ::= &＜改行＞，” 以外の文字 \\
-＜１６進数字＞& ::= &0 ｜ 1 ｜ 2 ｜ 3 ｜ 4 ｜ 5 ｜ 6 ｜ 7 ｜ 8 ｜ 9 \\
-              &     & ｜ A ｜ B ｜ C ｜ D ｜ E ｜ F \\
-＜英字＞      & ::= &A ｜ B ｜ C ｜ D ｜ E ｜ F ｜ G ｜ H ｜ I ｜ J \\
-              &     & ｜ K ｜ L ｜ M ｜ N ｜ O ｜ P ｜ Q ｜ R ｜ S ｜ T \\
-              &     & ｜ U ｜ V ｜ W ｜ X ｜ Y ｜ Z ｜ \_ \\
+＜１６進数字＞& ::= &0 ｜ 1 ｜ 2 ｜ 3 ｜ 4 ｜ 5 ｜ 6 ｜ 7 ｜ 8 ｜ 9 
+                       ｜ A ｜ B ｜ C ｜ D ｜ E ｜ F \\
+＜英字＞      & ::= &A ｜ B ｜ C ｜ D ｜ E ｜ F ｜ G ｜ H ｜ I ｜ J 
+                       ｜ K ｜ L ｜ M ｜ N ｜ O \\
+              &     &  ｜ P ｜ Q ｜ R ｜ S ｜ T ｜ U ｜ V ｜ W ｜ X
+                       ｜ Y ｜ Z ｜ \_ \\
 ＜数字＞      & ::= &0 ｜ 1 ｜ 2 ｜ 3 ｜ 4 ｜ 5 ｜ 6 ｜ 7 ｜ 8 ｜ 9 \\
 ＜命令１＞    & ::= &NO ｜ PUSHF ｜ POPF ｜ EI ｜ DI ｜ RET ｜RETI ｜ HALT \\
 ＜命令２＞    & ::= &SHLA ｜ SHLL ｜ SHRA ｜ SHRL ｜ PUSH ｜ POP \\
@@ -490,13 +507,19 @@ CALL & サブルーチン呼び出し \\
 ＜レジスタ＞  & ::= &G0 ｜ G1 ｜ G2 ｜ SP \\
 ＜改行＞      & ::= &'$\backslash$n' \\
 ＜空白＞      & ::= &'~' ｜'$\backslash$t' \\
-\end{tabular}
-\end{quote}
-
+\end{tabular}}
+%\caption{アセンブラの文法}
+%\label{fig:appB:syntax}
+\end{center}
+%\end{figure*}
 
 \newpage
-\section{ローマ字で名前をSIOに出力するプログラムの例}
-\begin{quote}
+\section{プログラム例}
+%\figref{appB:exp1}にローマ字で名前をSIOに出力するプログラムの例を示します．
+以下にローマ字で名前をSIOに出力するプログラムの例を示します．
+
+%\begin{figure*}[btp]
+\begin{center}
 \begin{verbatim}
 ADR  CODE          Label   Instruction             Comment              Page(1)
 
@@ -520,17 +543,21 @@ ADR  CODE          Label   Instruction             Comment              Page(1)
 1D  0D 0A                  DC      0DH,0AH        
 1F  00                     DC      0              ; 終わりの印
 \end{verbatim}
-\end{quote}
+%\caption{ローマ字で名前をSIOに出力するプログラム}
+%\label{fig:appB:exp1}
+\end{center}
+%\end{figure*}
 
-\section{アセンブル実行例}
-TeC7を用い，
-ローマ字で名前をSIOに出力するプログラムをアセンブル・実行した例を示す．
-\begin{quote}
+\section{アセンブラの実行例}
+TeC7を用い
+ローマ字で名前をSIOに出力するプログラムをアセンブル・実行した例を示します．
+
+%\begin{figure*}[btp]
+\begin{center}
 \begin{verbatim}
 $ tasm7 sigemura.t7                            <--- アセンブル
 アセンブル成功
 結果は [sigemura.lst] と [sigemura.bin] に格納しました。
-
 ．．．省略．．．
 
 $ tsend7 sigemura.bin                          <--- ダウンロード
@@ -542,18 +569,20 @@ sigemura                                       <--- 実行結果
 ^A^\                                           <--- 通信ソフトの終了
 [EOT]
 \end{verbatim}
-\end{quote}
+\end{center}
+%\end{figure*}
 
 \newpage
 \section{IPLプログラム}\label{iplsrc}
 TeCのROM に格納されているIPLプログラムのアセンブルリストを
-参考のため以下に示す．
+参考のため以下に示します．
 TeCのメモリ空間はE0H〜FFH番地がROMになっており，
-以下のIPLプログラムが予め格納されている．
-このIPLプログラムは，パソコン上でtasmを使用してクロス開発さ
-れた機械語プログラムをシリアル入出力から受信してメモリに格納する．
+以下のIPLプログラムが予め格納されています．
+IPLプログラムは，パソコン上でtasm7を使用してクロス開発さ
+れた機械語プログラムをシリアル入出力から受信してメモリに格納します．
 
-\begin{quote}
+%\begin{figure*}[btp]
+\begin{center}
 \begin{verbatim}
 ADR  CODE          Label   Instruction             Comment              Page(1)
 
@@ -582,28 +611,36 @@ FE  EC                     RET
 FF                 ;
 FF  FF             STOP    HALT                   ; PC がゼロになって止まる
 \end{verbatim}
-{\bf(TeC6ではCALLの機械語がBCになる．)}
+\end{center}
+%\end{figure*}
+
+\newpage
+\section{機械語プログラムファイル形式}
+\label{appB:fileformat}
+tasm7 が出力する機械語プログラムの形式は次の通りです．
+
+\begin{quote}
+{\small\bf\begin{tabular}{|c|}
+\multicolumn{1}{c}{}\\
+\hline
+ロードアドレス（1バイト） \\
+\hline
+プログラム長（1バイト） \\
+\hline
+\\
+...\\
+機械語（1バイト以上） \\
+...\\
+\\
+\hline
+\end{tabular}}
 \end{quote}
 
-\section{機械語プログラムファイル形式}
-tasmが出力する機械語プログラムの形式は次の通りである．
+ファイルの1バイト目は，
+機械語プログラムのTeC主記憶上の配置アドレスです．
+機械語は，このバイトで表される番地を先頭にして主記憶に書き込まれます．
+ロードアドレスは，アセンブラのORG命令で指示することができます．
+ORG命令を使用しない場合のロードアドレスは，0番地になります．
+ファイルの2バイト目は，機械語プログラムの長さです．
+3バイト目以降の機械語の長さをバイト単位で表します．
 
-\vspace{0.3cm}
-
-%\begin{center}
-{\small\bf
-\begin{tabular}{|c|}
-\hline
-ロードアドレス(1バイト) \\
-\hline
-プログラム長(1バイト) \\
-\hline
-\\
-...\\
-機械語(1バイト以上) \\
-...\\
-\\
-\hline
-\end{tabular}
-}
-%\end{center}
