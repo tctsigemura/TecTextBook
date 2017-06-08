@@ -1,4 +1,4 @@
-%TGIF 4.1.45-QPL
+%TGIF 4.2.5
 state(0,37,100.000,68,0,0,8,1,9,1,1,0,0,1,0,1,0,'Ryumin-Light-EUC-H',0,103680,0,0,0,10,0,0,1,1,0,16,0,0,1,1,1,1,1050,1485,1,0,2880,0).
 %
 % @(#)$Header$
@@ -22,18 +22,20 @@ script_frac("0.6").
 fg_bg_colors('black','White').
 dont_reencode("FFDingbests:ZapfDingbats").
 objshadow_info('#c0c0c0',2,2).
+rotate_pivot(0,0,0,0).
+spline_tightness(1).
 page(1,"",1,'').
-text('black',232,133,1,1,1,87,23,4,19,4,0,0,0,0,2,87,23,-1,1,"",0,0,0,0,152,'',[
-minilines(87,23,-1,1,1,0,0,[
-mini_line(87,19,4,-1,1,0,[
-str_block(0,34,19,4,0,-5,0,0,0,[
-str_seg('black','Times-Roman',0,115200,34,19,4,0,-5,0,0,0,0,0,
-	"[A] ")]),
-str_block(0,20,18,4,-1,1,0,0,0,[
-str_seg('black','Ryumin-Light-EUC-H',0,115200,20,18,4,-1,1,0,1,1,0,0,
+text('black',232,132,1,1,1,95,25,4,18,4,0,0,0,0,2,95,25,0,0,"",0,0,0,0,152,'',[
+minilines(95,25,0,0,1,0,0,[
+mini_line(95,20,5,0,0,0,[
+str_block(0,43,18,4,0,-4,0,0,0,[
+str_seg('black','Times-Roman',0,115200,43,18,4,0,-4,0,0,0,0,0,
+	"[EA] ")]),
+str_block(0,20,20,5,0,0,0,0,0,[
+str_seg('black','Ryumin-Light-EUC-H',0,115200,20,20,5,0,0,0,1,1,0,0,
 	"\242\253")]),
-str_block(0,33,19,4,0,0,0,0,0,[
-str_seg('black','Times-Roman',0,115200,33,19,4,0,0,0,0,0,0,0,
+str_block(0,32,18,4,0,-1,0,0,0,[
+str_seg('black','Times-Roman',0,115200,32,18,4,0,-1,0,0,0,0,0,
 	" GR")])
 ])
 ])]).
