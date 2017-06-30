@@ -1018,37 +1018,37 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 \subsubsection{論理積（AND）}
 二つのビットを入力し，両方が1のときだけ出力が1になるような論理演算です．
 \begin{center}
-\myincludegraphics{and.pdf}{scale=1.5}
+\myincludegraphics{and.pdf}{scale=1.0}
 \end{center}
 
 \subsubsection{論理和（OR）}
 二つのビットを入力し，どちらかが1のとき出力が1になるような論理演算です．
 \begin{center}
-\myincludegraphics{or.pdf}{scale=1.5}
+\myincludegraphics{or.pdf}{scale=1.0}
 \end{center}
 
 \subsubsection{否定（NOT）}
 一つのビットを入力し，入力と逆の論理を出力する論理演算です．
 \begin{center}
-\myincludegraphics{not.pdf}{scale=1.5}
+\myincludegraphics{not.pdf}{scale=1.0}
 \end{center}
 
 \subsubsection{排他的論理和（XOR）}
 二つのビットを入力し，二つが異なるとき出力が1になるような論理演算です．
 \begin{center}
-\myincludegraphics{xor.pdf}{scale=1.5}
+\myincludegraphics{xor.pdf}{scale=1.0}
 \end{center}
 
 \subsubsection{NAND}
 否定（NOT）と論理積（AND）を組み合わせた演算です．
 \begin{center}
-\myincludegraphics{nand.pdf}{scale=1.5}
+\myincludegraphics{nand.pdf}{scale=1.0}
 \end{center}
 
 \subsubsection{NOR}
 否定（NOT）と論理和（OR）を組み合わせた演算です．
 \begin{center}
-\myincludegraphics{nor.pdf}{scale=1.5}
+\myincludegraphics{nor.pdf}{scale=1.0}
 \end{center}
 
 \subsection{演算回路}
@@ -1061,7 +1061,7 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 和（S）と上の桁への桁上がり（C）を出力する回路を示しています．
 この回路を「半加算器」と呼びます．
 
-\myfigureN{b}{scale=1.5}{ha.pdf}{1ビット半加算器}{chap2:ha}
+\myfigureN{b}{scale=1.0}{ha.pdf}{1ビット半加算器}{chap2:ha}
 
 \subsubsection{全加算器}
 半加算器は桁上がりを出力しますが，
@@ -1069,14 +1069,14 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 桁上がりの入力を備えた1ビット足し算器を「全加算器」と呼び，
 \figref{chap2:fa}のように実現することができます．
 
-\myfigureN{tb}{scale=1.5}{fa.pdf}{1ビット全加算器}{chap2:fa}
+\myfigureN{tb}{scale=.8}{fa.pdf}{1ビット全加算器}{chap2:fa}
 
 \subsubsection{nビット加算器}
 \figref{chap2:adder}のように
 半加算器と全加算器を組み合わせることで，
 任意ビットの加算器を実現することができます．
 
-\myfigureN{tb}{scale=1.5}{adder.pdf}{４ビット加算器}{chap2:adder}
+\myfigureN{tb}{scale=.8}{adder.pdf}{４ビット加算器}{chap2:adder}
 
 \subsubsection{nビット1の補数器}
 1の補数を作る回路です．
@@ -1084,15 +1084,15 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 \figref{chap2:onesc}に4ビットの例を示します．
 簡単ですね．
 
-\myfigureN{tb}{scale=1.5}{onesc.pdf}{4ビット1の補数器}{chap2:onesc}
+\myfigureN{tb}{scale=.8}{onesc.pdf}{4ビット1の補数器}{chap2:onesc}
 
 \subsubsection{nビット2の補数器}
 2の補数を作る回路です．
 2の補数は，1の補数に1足すとできるので，
 1の補数器の出力に半加算器を組み合わせるとできます．
-\figref{chap2:towsc}に4ビットの例を示します．
+\figref{chap2:twosc}に4ビットの例を示します．
 
-\myfigureN{tb}{scale=1.5}{towsc.pdf}{4ビット2の補数器}{chap2:towsc}
+\myfigureN{tb}{scale=.8}{twosc.pdf}{4ビット2の補数器}{chap2:twosc}
 
 演算回路を数種類紹介しました．
 ここでは紹介しませんでしたが，引き算回路等も同様に製作可能です．
@@ -1114,7 +1114,7 @@ S=1，R=1は入力してはいけない組合せです．
 RS-FFは，回路をリセット／セットした後で「記憶」状態にすることにより，
 「値を記憶する回路（＝記憶回路）」として働きます．
 
-\myfigureN{tb}{scale=1.5}{rsff.pdf}{RSフリップフロップ}{chap2:rsff}
+\myfigureN{tb}{scale=1.0}{rsff.pdf}{RSフリップフロップ}{chap2:rsff}
 
 \section{まとめ}
 
