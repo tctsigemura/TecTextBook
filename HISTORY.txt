@@ -1,5 +1,6 @@
 変更履歴
 
+2017.08 Ver.4.0.1 github.com/tctsigemura/TeC7 の URL を表紙等に追記
 2017.06 Ver.4.0.0 jsbookに変更、例題環境定義、例題にもハイパーリンク、
 		  大幅書換え、TeC6削除、付録A削除、ライセンスをCC-BY-SAに変更
 2016.03           GitHubに公開
