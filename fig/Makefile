@@ -2,7 +2,8 @@
 .SUFFIXES: .tex .pdf
 
 PDFS = and.pdf adder.pdf ascii.pdf fa.pdf ookami.pdf ookami2.pdf onesc.pdf \
-       ha.pdf nand.pdf nor.pdf not.pdf or.pdf rsff.pdf twosc.pdf xor.pdf
+       ha.pdf nand.pdf nor.pdf not.pdf or.pdf rsff.pdf twosc.pdf xor.pdf \
+       lic.pdf
 
 %.pdf : %.tex tecfig.sty
 	platex $*.tex
