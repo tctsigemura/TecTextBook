@@ -1,0 +1,13 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\usepackage{myFlowChart}
+\begin{document}
+	\begin{tikzpicture}[node distance=12mm]
+		\node (proc1) [process] {$G0 \leftarrow [A + G1]$};
+		\node (proc2) [process, below of=proc1] {$[B+G2] \leftarrow G0$};
+
+		\draw[arrow] (proc1.north) ++(0, 0.5) -- (proc1.north);
+		\draw[arrow] (proc1) -- (proc2);
+		\draw[arrow] (proc2.south) -- ++(0, -0.5);
+	\end{tikzpicture}
+\end{document}
