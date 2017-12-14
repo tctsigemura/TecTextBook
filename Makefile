@@ -4,4 +4,4 @@ all :
 	dvipdfmx tec.dvi
 
 clean:
-	rm -f tec.aux tec.dvi tec.log tec.out tec.toc */*~ *~
+	rm -f *.aux */*.aux tec.dvi tec.log tec.out tec.toc */*~ *~
