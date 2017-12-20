@@ -8,7 +8,7 @@
 		\node (deci1) [decision, below of=proc1, node distance=25mm] {Tビット};
 		\node [anchor=south east] at (deci1.west) {$=0$};
 		\node [anchor=north west] at (deci1.south) {$=1$};
-		\node (proc2) [process, below of=deci1] {$G0$をSIOへ出力};
+		\node (proc2) [io, below of=deci1] {$G0$をSIOへ出力};
 		\node (proc3) [process, below of=proc2] {$G0-\mbox{'Z'}$};
 		\node (deci2) [decision, below of=proc3] {Zフラグ};
 		\node (proc4) [process, below of=deci2] {$G0 \leftarrow G0 + 1$};
