@@ -1,0 +1,26 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\usepackage{myFlowChart}
+\begin{document}
+	\begin{tikzpicture}[node distance=15mm]
+		\node (start) [startstop] {START};
+		\node (deci1) [decision, below of=start, node distance=25mm] {Rビット};
+		\node [anchor=south east] at (deci1.west) {$=0$};
+		\node [anchor=north west] at (deci1.south) {$=1$};
+		\node (io1) [io, below of=deci1] {$G0$をSIOへ出力};
+		\node (deci2) [decision, below of=io1] {Tビット};
+		\node [anchor=south east] at (deci2.west) {$=0$};
+		\node [anchor=north west] at (deci2.south) {$=1$};
+		\node (io2) [io, below of=deci2] {$G0$をSIOへ出力};
+		
+		\draw [arrow] (start) -- (deci1);
+		\draw [arrow] (deci1) -- (io1);
+		\draw [arrow] (io1) -- (deci2);
+		\draw [arrow] (deci2) -- (io2);
+
+		\draw [arrow] (deci1) -- ++(-2.5, 0) |- ($(start)!0.6!(deci1)$);
+		\draw [arrow] (deci2) -- ++(-2.5, 0) |- ($(io1)!0.5!(deci2)$);
+		\draw [arrow] (io2) |- ++(-3.0, -1.0) |- ($(start)!0.3!(deci1)$);
+		
+	\end{tikzpicture}
+\end{document}
