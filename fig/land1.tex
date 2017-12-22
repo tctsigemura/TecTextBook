@@ -2,13 +2,14 @@
 \usepackage{tecfig}
 \begin{document}
 \begin{tikzpicture}[x=5mm, y=5mm]
+	\tikzstyle{fixed}=[anchor=north, minimum width=5mm, minimum height=5mm]
 		\foreach \x in {0,1,...,7}{
 			\node (b\x) at (7-\x, 0) {b\x};
-			\node[anchor=north, draw, minimum width=5mm, minimum height=5mm] (c\x) at (b\x.south) {};
-			\node[anchor=north] (d\x) at (c\x.south) {$\ast$};
-			\node[anchor=north, draw, minimum width=5mm, minimum height=5mm] (e\x) at (d\x.south) {};
-			\node[anchor=north] (f\x) at (e\x.south) {\tikz \draw[-latex] (0, 0) -- (0, -3mm);};
-			\node[anchor=north, draw, minimum width=5mm, minimum height=5mm] (g\x) at (f\x.south) {};
+			\node[fixed, draw] (c\x) at (b\x.south) {};
+			\node[fixed] (d\x) at (c\x.south) {$\ast$};
+			\node[fixed, draw] (e\x) at (d\x.south) {};
+			\node[fixed] (f\x) at (e\x.south) {\tikz \draw[-latex] (0, 0) -- (0, -3mm);};
+			\node[fixed, draw] (g\x) at (f\x.south) {};
 		}
 		\foreach \y [count=\x from 0] in {1,1,0,0,0,1,1,0}
 			\node at (c\x) {\y};
