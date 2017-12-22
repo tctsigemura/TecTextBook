@@ -7,7 +7,7 @@
 	\foreach \x in {0,1,...,7}{
 		\node (b\x) at (7-\x, 0) {b\x};
 		\node[fixed, draw] (c\x) at (b\x.south) {};
-		\node[fixed] (d\x) at (c\x.south) {$\ast$};
+		\node[fixed] (d\x) at (c\x.south) {$+$};
 		\node[fixed, draw] (e\x) at (d\x.south) {};
 		\node[fixed, baseline=-0.75em] (f\x) at (e\x.south)
 			{\tikz[overlay] \draw[-latex] (0, 0) -- (0, -3mm);};
