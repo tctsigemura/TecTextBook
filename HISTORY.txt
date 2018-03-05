@@ -1,5 +1,7 @@
 変更履歴
 
+2018.03 Ver.4.0.5 Youtube の操作方法ビデオのURL変更，バグ修正など
+2017.12 Ver.4.0.4 基板回路図のバグ修正
 2017.09 Ver.4.0.3 Youtube の操作方法ビデオとリンク
 2017.08 Ver.4.0.2 Youtube の組み立てビデオとリンク
 2017.08 Ver.4.0.1 github.com/tctsigemura/TeC7 の URL を表紙等に追記
