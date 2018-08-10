@@ -1,0 +1,128 @@
+% TeC教科書用スタイルファイル
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{framed}
+\usepackage{listings,jlisting}
+%\usepackage[usenames]{color}
+
+%------------------------------------------------------------------------------
+% 図表のキャプションを太字に
+%\usepackage{caption}
+%\captionsetup[figure]{labelsep=space,font=bf}
+%\captionsetup[table]{labelsep=space,font=bf}
+
+%------------------------------------------------------------------------------
+% ハイパーリンク設定（印刷用では色使いに注意）
+\usepackage[colorlinks,linkcolor=blue,urlcolor=blue]{hyperref}     % PDF用
+%\usepackage{hyperref}                                              % 印刷用
+\usepackage{pxjahyper}
+
+%------------------------------------------------------------------------------
+% 図環境（新バージョン）
+\newcommand{\myincludegraphics}[2]{\includegraphics[#2]{fig/#1}}
+\newcommand{\myfigureN}[5]{
+\begin{figure}[#1]
+\begin{center}
+\myincludegraphics{#3}{#2}
+\caption{#4}
+\label{fig:#5}
+\end{center}
+\end{figure}
+}
+
+%------------------------------------------------------------------------------
+% 図環境（段組み解除、新バージョン）
+\newcommand{\myfigureNA}[5]{
+\begin{figure*}[#1]
+\begin{center}
+\myincludegraphics{#3}{#2}
+\caption{#4}
+\label{fig:#5}
+\end{center}
+\end{figure*}
+}
+
+%------------------------------------------------------------------------------
+% 表環境
+\newenvironment{mytable}[3]
+{\begin{table}[#1]\begin{center}
+\caption{#2}\vspace{0.2cm}\label{tab:#3}}
+{\end{center}\end{table}}
+
+%------------------------------------------------------------------------------
+% 便利マクロ
+\newcommand{\lw}[1]{\smash{\lower2.0ex\hbox{#1}}}
+\newcommand{\figref}[1]{図~\ref{fig:#1}}
+\newcommand{\tabref}[1]{表~\ref{tab:#1}}
+\def\|{\verb|} %|
+
+%------------------------------------------------------------------------------
+% リスト環境
+%\lstloadlanguages{Assembler}
+\def\lstlistingname{リスト}
+\lstset{language=,
+  numbers=left,
+%  numbers=none,
+  basicstyle={\ttfamily},
+  columns=[l]{fullflexible},
+  keepspaces=true,
+%  frame=shadowbox,
+  frame=single,
+  commentstyle=\slshape
+}
+
+%------------------------------------------------------------------------------
+% 例環境
+\makeatletter
+\newcounter{reicnt}[chapter]
+\newenvironment{rei}[2]
+{\stepcounter{reicnt}%
+ \begin{framed}
+ \subsection*{例\thechapter-\arabic{reicnt}\hskip1zw{\rm #1}}
+ \protected@edef\@currentlabel{\thechapter-\arabic{reicnt}}\label{rei:#2}
+ \par}%
+{\end{framed}}
+\makeatother
+\newcommand{\reiref}[1]{例~\ref{rei:#1}}
+
+%------------------------------------------------------------------------------
+% 例題環境
+\makeatletter
+\newcounter{reidaicnt}[chapter]
+\newenvironment{reidai}[2]
+{\stepcounter{reidaicnt}%
+ \begin{framed}
+ \subsection*{例題\thechapter-\arabic{reidaicnt}\hskip1zw{\rm #1}}
+ \protected@edef\@currentlabel{\thechapter-\arabic{reidaicnt}}\label{reidai:#2}
+ \par}%
+{\end{framed}}
+\makeatother
+\newcommand{\reidairef}[1]{例題~\ref{reidai:#1}}
+
+%------------------------------------------------------------------------------
+% 1バイト機械語命令のフォーマット表示
+\newcommand{\oneByte}[2]{
+\begin{center}\tt\small
+\begin{tabular}{|c|c|} \hline
+\multicolumn{2}{|c|}{第１バイト} \\\hline
+OP & GR~XR \\\hline
+#1 & #2    \\\hline
+\end{tabular}
+\end{center}}
+
+%------------------------------------------------------------------------------
+% 2バイト機械語命令のフォーマット表示
+\newcommand{\twoByte}[3]{
+\begin{center}\tt\small
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{2}{|c|}{第１バイト} & \lw{第２バイト} \\\cline{1-2}
+OP & GR~XR &    \\\hline
+#1 & #2    & #3 \\\hline
+\end{tabular}
+\end{center}}
+
+\newcommand{\OP}{{\it OP}}
+\newcommand{\GR}{{\it GR}}
+\newcommand{\XR}{{\it XR}}
+\newcommand{\A}{{\it aaaa~aaaa}}
+\newcommand{\PP}{$0000_2$~{\it pppp}}

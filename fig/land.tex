@@ -1,0 +1,18 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\begin{document}
+\begin{tikzpicture}[x=5mm, y=5mm]
+	\tikzstyle{fixed}=[anchor=north, minimum width=5mm, minimum height=5mm]
+		\foreach \x in {0,1,...,7}{
+			\node (b\x) at (7-\x, 0) {b\x};
+			\node[fixed, draw] (c\x) at (b\x.south) {};
+			\node[fixed] (d\x) at (c\x.south) {$\ast$};
+			\node[fixed, draw] (e\x) at (d\x.south) {};
+			\node[fixed] (f\x) at (e\x.south) {\tikz \draw[-latex] (0, 0) -- (0, -3mm);};
+			\node[fixed, draw] (g\x) at (f\x.south) {};
+		}
+		\node[anchor=east] at (c7.west) {レジスタ};
+		\node[anchor=east] at (e7.west) {メモリ};
+		\node[anchor=east] at (g7.west) {レジスタ};
+	\end{tikzpicture}
+\end{document}

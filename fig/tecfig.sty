@@ -1,0 +1,15 @@
+% TeC 教科書の図用のパッケージ
+\ProvidesPackage{tecfig}
+\def\|{\verb|} %|
+\renewcommand\kanjifamilydefault{\gtdefault}
+\renewcommand\familydefault{\sfdefault}
+\mathversion{bold}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usetikzlibrary{calc}
+\usetikzlibrary{circuits.logic.US, circuits.logic.IEC}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+\tikzstyle{branch}=[fill, shape=circle, minimum size=3pt,
+  inner sep=0pt, anchor=center]
+

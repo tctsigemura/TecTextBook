@@ -1,0 +1,10 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\usepackage{myFlowChart}
+\begin{document}
+	\begin{tikzpicture}[node distance=9mm]
+		\node (proc1) [process] {$\mathit{GR} - [\mathit{EA}]$};
+		\draw[arrow] (proc1.north) ++(0, 0.5) -- (proc1.north);
+		\draw[arrow] (proc1.south) -- ++(0, -0.5);
+	\end{tikzpicture}
+\end{document}
