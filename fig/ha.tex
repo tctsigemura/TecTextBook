@@ -1,0 +1,69 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\begin{document}
+	\begin{tikzpicture}
+		\node (circuit) at (3.5, 0) {\textbf{半加算器の回路図}};
+		\node (truth) at (0, 0) {\textbf{半加算器の真理値表}};
+		\node (eq) at (2, 3) {};
+		\node[anchor=south] at (eq.north) {%
+			\makebox[6cm][s]{\tabcolsep=1mm
+				\begin{tabular}{cc}
+					   &$A$\\
+					$+$&$B$\\ \hline
+					$C$&$S$\\
+				\end{tabular}
+				\begin{tabular}{cc}
+					   &$0$\\
+					$+$&$0$\\ \hline
+					$0$&$0$\\
+				\end{tabular}
+				\begin{tabular}{cc}
+					   &$0$\\
+					$+$&$1$\\ \hline
+					$0$&$1$\\
+				\end{tabular}
+				\begin{tabular}{cc}
+					   &$1$\\
+					$+$&$0$\\ \hline
+					$0$&$1$\\
+				\end{tabular}
+				\begin{tabular}{cc}
+					   &$1$\\
+					$+$&$1$\\ \hline
+					$1$&$0$\\
+				\end{tabular}
+			}
+		};
+		
+		\node[anchor=south] at (circuit.north) {%
+			\begin{tikzpicture}[circuit logic US]
+				\node[anchor=east] (a) at (0,  0.25) {$A$};
+				\node[anchor=east] (b) at (0, -0.25) {$B$};
+				\coordinate (ab) at ($(a)!0.5!(b)$);
+				\node[xor gate, right=1.75cm of ab] (xor) {};
+				\node[and gate, above=0.5cm of xor] (and) {};
+				\node[anchor=east, right=0.5cm of and] (c) {$C$};
+				\node[anchor=center] (s) at (xor.output -| c){$S$};
+
+				\draw (a) -| ([xshift=-0.25cm]xor.input 1) -- (xor.input 1);
+				\draw (b) -| ([xshift=-0.25cm]xor.input 2) -- (xor.input 2);
+				\draw (a) ++(0.75, 0) node[branch]{} |- (and.input 1);
+				\draw (b) ++(1.25, 0) node[branch]{} |- (and.input 2);
+				\draw (and.output) -- (c);
+				\draw (xor.output) -- (s);
+			\end{tikzpicture}
+		};
+	
+		\node[anchor=south] at (truth.north) {
+			\begin{tabular}{|cc|cc|}\hline
+				\multicolumn{2}{|c|}{入力}	&	\multicolumn{2}{|c|}{出力}	\\ \hline
+				$A$&$B$&$C$&$S$\\ \hline
+				0&0&0&0 \\
+				0&1&0&1 \\
+				1&0&0&1 \\
+				1&1&1&0 \\ \hline
+			\end{tabular}
+		};
+
+	\end{tikzpicture}
+\end{document}

@@ -1,0 +1,14 @@
+\ProvidesPackage{myFlowChart.sty}
+\usepackage{tikz}
+\usetikzlibrary{shapes.misc,shapes.geometric,arrows,calc}
+\tikzstyle{startstop}=[thick,rounded rectangle,
+          rounded rectangle arc length=180,
+          minimum width=24mm,minimum height=6mm,text centered,draw=black]
+\tikzstyle{io}=[thick,trapezium,trapezium left angle=70,
+          trapezium right angle=110,
+          minimum width=24mm,minimum height=6mm,text centered,draw=black]
+\tikzstyle{process}=[thick,rectangle,minimum width=24mm,minimum height=6mm,
+          text centered,draw=black]
+\tikzstyle{decision} = [thick,diamond,shape aspect=3,
+          minimum width=24mm,minimum height=6mm,text centered,draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]

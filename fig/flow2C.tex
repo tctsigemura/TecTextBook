@@ -1,0 +1,49 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\usepackage{myFlowChart}
+\begin{document}
+	\begin{tikzpicture}
+		\node (a) {\begin{tikzpicture}[node distance=14mm]
+			\node (start) [startstop] {START};
+			\node (proc1) [process, below of=start] {$G0 \leftarrow [N]$};
+			\node (proc2) [process, below of=proc1] {$G0 \leftarrow G0 - 0$};
+			\node (deci1) [decision, below of=proc2] {Zフラグ};
+			\node [anchor=south west] at (deci1.east) {$=1$(ゼロ)};
+			\node [anchor=north west] at (deci1.south) {$=0$};
+			\node (proc3) [process, below of=deci1] {処理};
+			\node (proc4) [process, below of=proc3] {$G0 \leftarrow G0 - 1$};
+			\node (end) [startstop, below of=proc4, node distance=20mm] {END};
+			
+			\draw [arrow] (start) -- (proc1);
+			\draw [arrow] (proc1) to[midway] coordinate(a) (proc2);
+			\draw [arrow] (proc2) -- (deci1);
+			\draw [arrow] (deci1) -- (proc3);
+			\draw [arrow] (proc3) -- (proc4);
+			\draw [arrow] (proc4) |- ++(-2, -0.75) |- (a);
+			\draw [arrow] (deci1) -- ++(2, 0) |- ($(proc4)!0.5!(end)$) -- (end);
+		\end{tikzpicture}};
+		\node[anchor=west] (b) at (a.east) {
+			{\ttfamily\begin{tabular}{|l|l|l|}
+					&LD			&G0, N		\\
+					&			&			\\
+				LOOP&SUB		&G0, ZERO	\\
+					&JZ			&STOP		\\
+					&			&			\\
+					&			&		\\
+					&\begin{tikzpicture}
+						\node (p) {処理};
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0, 1);
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0,-1);
+					\end{tikzpicture}		&		\\
+					&			&		\\
+					&			&		\\
+					&JMP		&LOOP	\\
+				STOP&HALT		&		\\
+					&			&		\\
+				N	&DS			&1		\\
+				ZERO&SC			&0		\\
+			\end{tabular}}
+		};
+		
+	\end{tikzpicture}
+\end{document}

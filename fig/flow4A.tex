@@ -1,0 +1,15 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\usepackage{myFlowChart}
+\begin{document}
+	\begin{tikzpicture}[node distance=15mm]
+		\node (start) [startstop] {START};
+		\node (proc1) [process, below of=start] {$G0 \leftarrow G0 << 1$};
+		\node (end) [startstop, below of=proc1] {STOP};
+		
+		\draw [arrow] (start) to[midway] coordinate(L1) (proc1);
+		\draw [arrow] (proc1) -- (end);
+		\draw [arrow] (end) -- ++(0, -0.75) -| ([xshift=-20mm]L1) -- (L1);
+		
+	\end{tikzpicture}
+\end{document}

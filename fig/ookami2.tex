@@ -1,0 +1,91 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\begin{document}
+\begin{tikzpicture}
+  \node[text width=2cm] (wolf) at (0, 3){おおかみが\\住んでいる山};
+  \draw (wolf.south) -- ++(-1.5, 0) 
+  -- ++(0.75, 2) -- ++(0.25, -0.75) -- ++(0.5, 2)
+  -- ++(0.5, -2) -- ++(0.25, 0.5) -- ++(0.5, -1.75) -- cycle;
+  
+  \node (obse) at (2, 1){見張り台};
+  \draw (obse.north) -- ++(-0.75, 0)
+  -- ++(1.25, 2) -- ++(-1, 0) -- ++(1.25, -2)
+  -- cycle;
+  
+  \coordinate (human) at ([yshift=2cm]obse.north);
+  \draw (human) ++(0, 0.25) -- ++(0, 1) coordinate (head);
+  \draw (head) ++(0, 0.2) circle[radius=0.2cm];
+  \draw (human) ++(0, 0.25) -- ++(-0.25, -0.25);
+  \draw (human) ++(0, 0.25) -- ++(0.25, -0.25);
+  \draw (human) ++(0, 1) -- ++(-0.25, -0.25);
+  \draw (human) ++(0, 1) -- ++(0.25, -0.25);
+  
+  \coordinate (sw) at (4, 4);
+  \node[anchor=south] at ($(sw) + (0.5, 0.5)$) {スイッチ};
+  \node[draw, circle, xscale=0.5] (termA) at ($(sw)+(0.2, 0)$) {};
+  \node[draw, circle, xscale=0.5] (termB) at ($(sw)-(0.2, 0)$) {};
+  \draw ($(sw)+(-0.2, 0.25)$) -- ($(sw)+(0.2, 0.25)$);
+  \draw[line width=1pt] ($(sw)+(0, 0.25)$) -- ++(0, 0.25);
+  
+  \coordinate (battery) at (5, 2);
+  \coordinate (batterytail) at ($(battery)+(0.2, 0)$);
+  \node[anchor=north] at ($(battery) + (0.1, -0.25)$) {電池};
+  \draw ($(battery)+(0, -0.25)$) -- ($(battery)+(0, 0.25)$);
+  \draw[line width=1pt] 
+  ($(batterytail)+(0, -0.15)$) -- ($(batterytail)+(0, 0.15)$);
+  
+  \coordinate (lamp) at (8, 4);
+  \node[anchor=south] at ($(lamp) + (-0.5, 0.5)$) {ランプ};
+  \draw (lamp) circle[radius=0.3cm];
+  \draw ($(lamp)+(-0.15, 0)$) coordinate (lampAs) 
+  -- ++(0, -0.5) coordinate (lampAe);
+  \draw ($(lamp)+(+0.15, 0)$) coordinate (lampBs) 
+  -- ++(0, -0.5) coordinate (lampBe);
+  \draw (lampAs) -- ++(0.1, 0.1) -- ++(0, -0.2)
+  -- ++(0.1, 0.2) -- ++(0, -0.2) -- (lampBs);
+  
+  \draw(termA.east) -- ++(0.1, 0)
+  |-  ($(battery)+(0.5, 0.5)$) coordinate (tmp);
+  \draw[dashed] (tmp) -- ++(1, 0) coordinate (tmp) ;
+  \draw (tmp) -| (lampAe);
+  
+  \draw(termB.west) -- ++(-0.1, 0) |-  (battery.east);
+  \draw(batterytail.west) -- ++(0.3, 0) coordinate (tmp);
+  \draw[dashed] (tmp) -- ++(1, 0) coordinate (tmp) ;
+  \draw (tmp) -| (lampBe);
+  
+  \coordinate (ranch) at (8.5, 2.75);
+  \node at ($(ranch)+(0, -1.0)$) {牧場};
+  \draw (ranch) circle[x radius=1.2cm, y radius=0.6cm];
+  \node at ($(ranch)+(0.2, 0.3)$) {羊};
+  \node at ($(ranch)+(0.1, -0.25)$) {羊};
+  
+  \coordinate (sw2) at (5, 4);
+  \node[draw, circle, xscale=0.5] (term2A) at ($(sw2)+(0.2, 0)$) {};
+  \node[draw, circle, xscale=0.5] (term2B) at ($(sw2)-(0.2, 0)$) {};
+  \draw ($(sw2)+(-0.2, 0.25)$) -- ($(sw2)+(0.2, 0.25)$);
+  \draw[line width=1pt] ($(sw2)+(0, 0.25)$) -- ++(0, 0.25);
+  
+  \coordinate (lamp2) at (7, 4);
+  \draw (lamp2) circle[radius=0.3cm];
+  \draw ($(lamp2)+(-0.15, 0)$) coordinate (lamp2As) 
+  -- ++(0, -0.5) coordinate (lamp2Ae);
+  \draw ($(lamp2)+(+0.15, 0)$) coordinate (lamp2Bs) 
+  -- ++(0, -0.5) coordinate (lamp2Be);
+  \draw (lamp2As) -- ++(0.1, 0.1) -- ++(0, -0.2)
+  -- ++(0.1, 0.2) -- ++(0, -0.2) -- (lamp2Bs);
+  
+  \draw(term2A.east) -- ++(0.1, 0)
+  |-  ($(battery)+(0.5, 1.0)$) coordinate (tmp);
+  \draw[dashed] (tmp) -- ++(1, 0) coordinate (tmp) ;
+  \draw (tmp) -| (lamp2Ae);
+  
+  \draw(term2B.west) -- ++(-0.1, 0)
+  |- ($(termB.west)+(0, -1)$) -- ++(-0.1, 0) coordinate(tmp);
+  \draw[fill] (tmp) circle[radius=0.05cm];
+  
+  \draw(lamp2Be) -- (lampBe) coordinate (tmp);
+  \draw[fill] (tmp) circle[radius=0.05cm];
+  
+\end{tikzpicture}
+\end{document}

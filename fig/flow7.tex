@@ -1,0 +1,34 @@
+\documentclass[dvipdfmx]{standalone}
+\usepackage{tecfig}
+\usepackage{myFlowChart}
+\begin{document}
+	\begin{tikzpicture}
+		\node (a) {\begin{tikzpicture}[node distance=14mm]
+			\node (start) [startstop] {START};
+			\node (deci1) [decision, below of=start] {Rビット};
+			\node [anchor=south east] at (deci1.west) {$=0$};
+			\node [anchor=north west] at (deci1.south) {$=1$};
+			\node (io1) [io, below of=deci1] {SIOから$G0$へ入力};
+			\node (end) [startstop, below of=io1] {END};
+			
+			\draw [arrow] (start) to[midway] coordinate (a) (deci1);
+			\draw [arrow] (deci1) -- (io1);
+			\draw [arrow] (io1) -- (end);
+			\draw [arrow] (deci1.west) -- ++(-1, 0) |- (a);
+		\end{tikzpicture}};
+		\node[anchor=west] (b) at (a.east) {
+			{\ttfamily\begin{tabular}{|l|l|l|}
+				SIOS&EQU		&03H		\\
+				SIOD&EQU		&02H		\\
+				RBIT&EQU		&40H		\\
+					&			&			\\
+				WAIT&IN			&G1, SIOS	\\
+					&AND		&G1, \#RBIT	\\
+					&JZ			&WAIT		\\
+					&IN		&G0, SIOD	\\
+					&HALT		&			\\
+			\end{tabular}}
+		};
+		
+	\end{tikzpicture}
+\end{document}
