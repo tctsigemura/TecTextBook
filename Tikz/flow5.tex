@@ -1,0 +1,57 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\node (a) {\begin{tikzpicture}[node distance=15mm]
+			\node (start) [startstop] {START};
+			\node (proc1) [process, below of=start, align=center] {$G0 \leftarrow [M]$\\$G1 \leftarrow 0$};
+			\node (proc2) [process, below of=proc1] {$G0 - [N]$};
+			\node (deci1) [decision, below of=proc2] {Sフラグ};
+			\node [anchor=south west] at (deci1.east) {$=1$(負)};
+			\node [anchor=north west] at (deci1.south) {$=0$(正)};
+			\node (proc3) [process, below of=deci1] {$G0 \leftarrow G0 - [N]$};
+			
+			\node (proc4) [process, below of=proc3] {$G1 \leftarrow G1 + 1$};
+			\node (proc5) [process, below of=proc4, node distance=20mm] {$[K] \leftarrow G1$};
+			\coordinate (b) at ($(proc4)!0.5!(proc5)$);
+			\node (proc6) [process, below of=proc5] {$[L] \leftarrow G0$};
+			\node (end) [startstop, below of=proc6] {END};
+			
+			\draw [arrow] (start) -- (proc1);
+			\draw [arrow] (proc1) to[midway] coordinate (a) (proc2);
+			\draw [arrow] (proc2) -- (deci1);
+			\draw [arrow] (deci1) -- (proc3);
+			\draw [arrow] (proc3) -- (proc4);
+			\draw [arrow] (proc4) |- ++(-2, -0.75) |- (a);
+			\draw [arrow] (proc5) -- (proc6);
+			\draw [arrow] (proc6) -- (end);
+
+			\draw [arrow] (deci1.east) -- ++(1, 0) |- (b) -- (proc5);
+		\end{tikzpicture}};
+		\node[anchor=west] (b) at (a.east) {
+			{\ttfamily\begin{tabular}{|l|l|l|}
+					&LD		&G0, M		\\
+					&LD		&G1, ZERO	\\
+					&		&			\\
+				LOOP&CMP	&G0, N		\\
+					&JM		&STOP		\\
+					&SUB	&G0, N		\\
+					&ADD	&G1, ONE	\\
+					&JMP	&LOOP		\\
+					&		&			\\
+				STOP&ST		&G1, K		\\
+					&ST		&G0, L		\\
+					&HALT	&			\\
+					&		&			\\
+				M	&DC		&100		\\
+				N	&DC		&10			\\
+				ONE	&DC		&1			\\
+				ZERO&DC		&0			\\
+				K	&DS		&1			\\
+				L	&DS		&1			\\
+			\end{tabular}}
+		};
+		
+	\end{tikzpicture}
+\end{document}

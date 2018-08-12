@@ -1,0 +1,47 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\node (a) {\begin{tikzpicture}[node distance=14mm]
+			\node (start) [startstop] {START};
+			\node (proc1) [process, below of=start] {$G0 \leftarrow 10$};
+			\node (proc2) [process, below of=proc1, node distance=22mm, minimum height=2cm] {処理};
+			\node (proc3) [process, below of=proc2, node distance=22mm] {$G0 \leftarrow G0 - 1$};
+			\node (deci1) [decision, below of=proc3] {Zフラグ};
+			\node [anchor=south east] at (deci1.west) {$=0$};
+			\node [anchor=north west] at (deci1.south) {$=1$(ゼロ)};
+			\node (end) [startstop, below of=deci1] {END};
+			
+			\draw [arrow] (start) -- (proc1);
+			\draw [arrow] (proc1) to[midway] coordinate (a) (proc2);
+			\draw [arrow] (proc2) -- (proc3);
+			\draw [arrow] (proc3) -- (deci1);
+			\draw [arrow] (deci1) -- (end);
+			\draw [arrow] (deci1.west) -- ++(-1, 0) |- (a);
+		\end{tikzpicture}};
+		\node[anchor=west] (b) at (a.east) {
+			{\ttfamily\begin{tabular}{|l|l|l|}
+					&LD  		&G0, N	\\
+				LOOP&			&		\\
+					&			&		\\
+					&			&		\\
+					&\begin{tikzpicture}
+						\node (p) {処理};
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0, 1.25);
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0,-1.25);
+					\end{tikzpicture}		&		\\
+					&			&		\\
+					&			&		\\
+					&SUB		&G0, ONE		\\
+					&JZ			&STOP		\\
+					&JMP		&LOOP		\\
+				STOP&HALT		&		\\
+					&			&		\\
+				N	&DC			&10		\\
+				ONE	&DC			&1		\\
+			\end{tabular}}
+		};
+		
+	\end{tikzpicture}
+\end{document}

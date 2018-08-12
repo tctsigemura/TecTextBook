@@ -1,0 +1,26 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}[node distance=15mm]
+		\node (start) [startstop] {START};
+		\node (proc1) [process, below of=start, align=center] {$G0 \leftarrow [A]$\\$G1 \leftarrow 10$\\$G2 \leftarrow 0$};
+		\node (proc2) [process, below of=proc1] {$[B+G2] \leftarrow G0$};
+		\node (proc3) [process, below of=proc2] {$G2 \leftarrow G2 + 1$};
+		\node (proc4) [process, below of=proc3] {$G1 \leftarrow G1 - 1$};
+		\node (deci1) [decision, below of=proc4] {Zフラグ};
+		\node [anchor=south east] at (deci1.west) {$=0$};
+		\node [anchor=north west] at (deci1.south) {$=1$};
+		\node (end) [startstop, below of=deci1] {END};
+		
+		\draw [arrow] (start) -- (proc1);
+		\draw [arrow] (proc1) to[midway] coordinate (a) (proc2);
+		\draw [arrow] (proc2) -- (proc3);
+		\draw [arrow] (proc3) -- (proc4);
+		\draw [arrow] (proc4) -- (deci1);
+		\draw [arrow] (deci1) -- (end);
+
+		\draw [arrow] (deci1) -- ++(-2.5, 0) |- (a);
+		
+	\end{tikzpicture}
+\end{document}

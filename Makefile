@@ -1,7 +1,6 @@
 all :
-	platex tec.tex
-#	platex tec.tex
-	dvipdfmx tec.dvi
+	lualatex tec.tex
+	open tec.pdf
 
 clean:
 	rm -f *.aux */*.aux *.dvi *.log *.out *.toc *.nav *.snm */*~ *~

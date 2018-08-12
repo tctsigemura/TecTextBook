@@ -1,0 +1,32 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[node distance=12mm]
+  \node (start) [startstop] {START};
+  \node (proc1) [process, below of=start, align=center]
+        {$G0 \leftarrow \mbox{'A'}$\\('A'の文字コード)};
+  \node (deci1) [decision, below of=proc1, node distance=20mm]{Tビット};
+  \node [anchor=south east] at (deci1.west) {$=0$};
+  \node [anchor=north west] at (deci1.south) {$=1$};
+  \node (proc2) [io, below of=deci1, node distance=15mm] {$G0$をSIOへ出力};
+  \node (proc3) [process, below of=proc2, node distance=10mm]
+        {$G0-\mbox{'Z'}$};
+  \node (deci2) [decision, below of=proc3] {Zフラグ};
+  \node (proc4) [process, below of=deci2, node distance=15mm]
+        {$G0 \leftarrow G0 + 1$};
+  \node [anchor=north west] at (deci2.south) {$=0$};
+  \node [anchor=south west] at (deci2.east) {$=1$};
+  \node (end) [startstop, below of=proc4, node distance=15mm] {END};
+  \draw [arrow] (start) -- (proc1);
+  \draw [arrow] (proc1) -- (deci1);
+  \draw [arrow] (deci1) -- (proc2);
+  \draw [arrow] (proc2) -- (proc3);
+  \draw [arrow] (proc3) -- (deci2);
+  \draw [arrow] (deci2) -- (proc4);
+  \draw [arrow] (deci1) -- ++(-2.5, 0) |- ($(proc1)!0.55!(deci1)$);
+  \draw [arrow] (proc4) -- ++(0, -0.6) 
+        -- ++(-3.0, 0) |- ($(proc1)!0.4!(deci1)$);
+  \draw [arrow] (deci2) -- ++(2, 0) |- ($(proc4)!0.6!(end)$) -- (end);
+\end{tikzpicture}
+\end{document}

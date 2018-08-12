@@ -1,0 +1,61 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\tikzstyle{led}=[draw, circle, inner sep=0.5mm]
+		\tikzstyle{sw}=[draw, inner xsep=0.5mm, scale=0.95]
+		\node at (4.5, 0.75){%
+			\begin{tikzpicture}
+				\foreach \x in {0,1,2,3} {
+					\node[sw] at (\x*0.5, 0.75) {T};
+					\ifnum\x<2
+						\node[sw] at (\x*0.5, 0.0) {T};
+					\else
+						\node[sw] at (\x*0.5, 0.0) {P};
+					\fi
+				}
+				\foreach \x in {4,5,6,7} {
+					\node[sw] at (0.25+\x*0.5, 0.75) {T};
+					\node[sw] at (0.25+\x*0.5, 0.0) {P};
+				}
+			\end{tikzpicture}%
+		};
+		\node at (4.5, 2.5){%
+			\begin{tikzpicture}
+				\foreach \x in {0,1,...,7} {
+					\ifnum\x<4
+						\node[led] at (\x*0.4, 1.0) {};
+						\node[led] at (\x*0.4, 0.5) {};
+					\else
+						\node[led] at (\x*0.4+0.5, 1.0) {};
+						\node[led] at (\x*0.4+0.5, 0.5) {};
+					\fi
+				}
+				
+				\node[led] at (4.0, 0.75) {};
+				
+				\foreach \x in {0,1,...,8} {
+					\ifnum\x<6
+						\node[led] at (\x*0.4+0.5, 0) {};
+					\else
+						\node[led] at (\x*0.4+1.25, 0) {};
+					\fi
+				}
+				
+				\node[sw] at (0.0, 0.0) {P};
+				\node[sw] at (3.0, 0.0) {P};
+			\end{tikzpicture}%
+		};
+		
+		\node[sw] at (0.75, 0.75) {P};
+		
+		\node at (1.0, 3.0) {TeC基板};
+		\draw (0, 0) rectangle ++(7, 3.5);
+		
+		\node[sw] (P) at (0.25, -0.5) {P};
+		\node[sw] (T) at (4.25, -0.5) {T};
+		\node[anchor=west] at (P.east){プッシュスイッチ};
+		\node[anchor=west] at (T.east){トグルスイッチ};
+	\end{tikzpicture}
+\end{document}

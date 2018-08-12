@@ -1,0 +1,37 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[x=5mm, y=5mm]
+	\tikzstyle{fixed}=[anchor=north, minimum width=5mm, minimum height=5mm]
+	\def\ignorezero#1{\ifnum\x=0\else#1\fi}
+	\foreach \x in {0,1,...,7}{
+		\node (b\x) at (7-\x, 0) {b\x};
+		\node[fixed, draw] (c\x) at (b\x.south) {};
+		\node[fixed] (d\x) at (c\x.south) {$\ast$};
+		\node[fixed, draw] (e\x) at (d\x.south) {};
+		\node[fixed, baseline=-0.75em] (f\x) at (e\x.south)
+			{\tikz[overlay] \draw[-latex] (0, 0) -- (0, -3mm);};
+		\node[fixed, draw] (g\x) at (f\x.south) {};
+		\node[fixed, baseline=-0.75em] (h\x) at (g\x.south)
+			{\ignorezero{\tikz[overlay] \draw[-latex] (0, 0) -- (5mm, -3mm);}};
+		\node[fixed, draw] (i\x) at (h\x.south) {};
+		\node[fixed, baseline=-0.75em] (j\x) at (i\x.south)
+			{\ignorezero{\tikz[overlay] \draw[-latex] (0, 0) -- (5mm, -3mm);}};
+		\node[fixed, draw] (k\x) at (j\x.south) {};
+	}
+	\foreach \y [count=\x from 0] in {X,X,X,X,X,X,X,X}
+		\node at (c\x) {\y};
+	\foreach \y [count=\x from 0] in {0,0,1,1,0,0,0,0}
+		\node at (e\x) {\y};
+	\foreach \y [count=\x from 0] in {0,0,X,X,0,0,0,0}
+		\node at (g\x) {\y};
+	\foreach \y [count=\x from 0] in {0,X,X,0,0,0,0,0}
+		\node at (i\x) {\y};
+	\foreach \y [count=\x from 0] in {X,X,0,0,0,0,0,0}
+		\node at (k\x) {\y};
+	\node[anchor=east, align=left] at (g7.west) {ANDの結果};
+	\node[anchor=east, align=left] at (i7.west) {SHRLの結果};
+	\node[anchor=east, align=left] at (k7.west) {SHRLの結果};
+\end{tikzpicture}
+\end{document}

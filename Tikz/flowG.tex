@@ -1,0 +1,12 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}[node distance=10mm]
+		\node (proc1) [process] {$G0 \leftarrow 1$};
+		\node (proc2) [process, below of=proc1] {$G1 \leftarrow A$};
+		\draw[arrow] (proc1.north) ++(0, 0.4) -- (proc1.north);
+		\draw[arrow] (proc1) -- (proc2);
+		\draw[arrow] (proc2.south) -- ++(0, -0.4);
+	\end{tikzpicture}
+\end{document}

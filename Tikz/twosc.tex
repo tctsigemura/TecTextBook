@@ -1,0 +1,40 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[circuit logic US]
+  \def\boxwidth{2.5cm}
+  \def\boxheight{1.5cm}
+  \foreach \i in {3,2,1,0}{
+    \node (a\i) at ($(0, \i*\boxheight*1.5)$){$A_\i$};
+    \node[not gate] (n\i) at ($(a\i)+(1, 0)$){};
+    \draw ($(a\i)+(2, \boxheight/4)$) rectangle ++(\boxwidth, -\boxheight);
+    \node[anchor=west]
+    (haA\i) at ($(a\i)+(2, 0.0)$){$A$};
+    \node[anchor=west]
+    (haB\i) at ($(a\i)+(2, -\boxheight/4*2)$){$B$};
+    \node[anchor=north] 
+    (haC\i) at ($(a\i)+(2cm+\boxwidth/2, \boxheight/4)$){$C$};
+    \node[anchor=east] 
+    (haS\i) at ($(a\i)+(2cm+\boxwidth, -\boxheight/4)$){$S$};
+    \node at ($(a\i)+(2cm+\boxwidth/2, -\boxheight/4)$){半加算器};
+    \node (s\i) at ($(a\i)+(2cm+\boxwidth+1cm, -\boxheight/4)$){$S_\i$};
+  }
+  \foreach \i in {3,2,1,0}{
+    \draw[-latex] (a\i) -- (n\i) -- (haA\i);
+    \draw[-latex] (haS\i) -- (s\i);
+  }
+  \foreach \i/\j in {0/1,1/2,2/3}{
+    \draw[-latex] (haC\i) 
+    |- ++($(-\boxwidth/2-0.5cm, \boxheight/3)$) 
+    |- (haB\j);
+  }
+  
+  \node (a-1) at (a0 |- haB0){`$1$'};
+  \node (haC4) at ($(s3)+(0, \boxheight*1.0)$){$C$};
+  
+  \draw[-latex] (a-1) -- (haB0);
+  \draw[-latex] (haC3) |- (haC4);
+  
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,25 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[x=5mm, y=5mm]
+	\tikzstyle{fixed}=[anchor=north, minimum width=5mm, minimum height=5mm]
+	\def\ignorezero#1{\ifnum\x=0\else#1\fi}
+	\foreach \x in {0,1,...,7}{
+		\node (b\x) at (7-\x, 0) {b\x};
+		\node[fixed, draw] (c\x) at (b\x.south) {};
+		\node[fixed] (d\x) at (c\x.south) {$\textcircled{\scriptsize +}$};
+		\node[fixed, draw] (e\x) at (d\x.south) {};
+		\node[fixed, baseline=-0.75em] (f\x) at (e\x.south)
+			{\tikz[overlay] \draw[-latex] (0, 0) -- (0, -3mm);};
+		\node[fixed, draw] (g\x) at (f\x.south) {};
+	}
+	\foreach \y [count=\x from 0] in {0,1,0,1,0,1,0,1}
+		\node at (c\x) {\y};
+	\foreach \y [count=\x from 0] in {0,0,0,0,1,1,1,1}
+		\node at (e\x) {\y};
+	\foreach \y [count=\x from 0] in {0,1,0,1,1,0,1,0}
+		\node at (g\x) {\y};
+	\node[anchor=east, align=left] at (g7.west) {XORの結果};
+\end{tikzpicture}
+\end{document}

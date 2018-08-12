@@ -1,0 +1,414 @@
+\chapter{組み立て\label{kumitate}}
+この章では，TeC7の組み立て方を説明します．
+何年間も使用するマイコンなので，
+慎重に組み立てて下さい．
+作業を始める前に組み立て手順を解説したビデオ\footnote{
+  \begin{minipage}[t]{0.9\columnwidth}
+    \begin{minipage}{0.75\columnwidth}
+      TeCの組み立て手順全体を説明するビデオが
+      \url{https://youtu.be/wOlOSzEqm0M}に公開してあります．
+    \end{minipage}\hfill
+    \begin{minipage}{0.2\columnwidth}
+      \myincludegraphics{Img/QR1.png}{scale=0.4}
+    \end{minipage}
+  \end{minipage}
+}で手順や要領を確認して下さい．
+
+%=============================================================================
+\section{ハンダ付け}
+マイコン本体は基板に部品をハンダ付けして組み立てます．
+ハンダ付けの要領を\figref{chap3:handa}に示します．
+上手なハンダ付けができると，ハンダが富士山型になります．
+%ハンダ付けの経験がある人にコツを習って，
+%少し練習して下さい．
+次のような部品から順にハンダ付けします．
+
+\myfigureN{btp}{scale=0.45}{chap3/handa.pdf}
+          {ハンダ付け手順}{chap3:handa}
+
+\begin{enumerate}
+\item 背の低い部品
+\item 基板中心の部品
+\item 壊れにくい部品
+\end{enumerate}
+
+%=============================================================================
+\section{部品の取り付け}
+組み立ては，部品をハンダ付けして基板に取り付ける作業です．
+以下の説明では，取り付ける部品が表になっています．
+表の部品の「記号」と同じ「記号」が，
+基板の上に白い文字で書いてあるので，
+その場所に部品をハンダ付けします．
+
+\subsection{抵抗器}
+抵抗器は\figref{chap3:teikou}のような外観をした部品です．
+抵抗値は，部品のカラーコードで見分けます．
+正しい抵抗値の抵抗器を選んで，\figref{chap3:teikou2}のように
+足を曲げて基板に差し込みます．
+このとき，部品と基板の間に隙間ができないように気を付けて下さい．
+
+抵抗器の一覧を\tabref{chap3:tbl2}に示します．
+カラーコードを良く確認して，間違えないように部品を選択して下さい．
+抵抗器に向きはありませんが，
+カラーコードの読みやすさを考えて方向を統一する方が良いでしょう．
+
+\myfigureN{btp}{scale=0.7}{chap3/teikou.pdf}{抵抗器}{chap3:teikou}
+\myfigureN{btp}{scale=0.6}{chap3/teikou2.pdf}{抵抗器の実装}{chap3:teikou2}
+
+\begin{mytable}{btp}{抵抗器}{chap3:tbl2}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{カラーコード} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    R1,15 & 黄紫茶金   & 470Ω  1/4W カーボン \\
+    R2-6  & 赤紫茶金   & 270Ω  1/4W カーボン \\
+    R7    & 茶緑黒茶茶 & 1.5kΩ 1/4W 金属皮膜 \\
+    R8    & 橙黒黒茶茶 & 3.0kΩ 1/4W 金属皮膜 \\
+    R9-12 & 黄紫赤金   & 4.7kΩ 1/4W カーボン \\
+    R13   & 橙橙茶金   & 330Ω  1/4W カーボン \\
+    R14   & 茶緑茶金   & 150Ω  1/4W カーボン \\
+  \end{tabular}}
+\end{mytable}
+
+\subsection{積層セラミック・コンデンサ}
+積層セラミックコンデンサは4種類，合計31個あります．
+そのうち，24個は同じ部品です．
+一覧を\tabref{chap3:tbl5}に示します．
+向きはありませんが，
+完成したとき表面の文字が読みやすい方向に取り付けると良いでしょう．
+\figref{chap3:sekisou}を良く見て，ハンダ付けして下さい．
+
+\begin{mytable}{tbp}{積層セラミック・コンデンサ}{chap3:tbl5}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    C1,2             &  47 & $  47 pF $    \\
+    C3,4,12-15,17-34 & 104 & $ 0.1 \mu F $ \\
+    C35              & 101 & $ 100 pF $    \\
+    C6,8,10,11       & 475 & $ 4.7 \mu F $ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{Tikz/sekisou.pdf}
+          {積層セラミック・コンデンサ}{chap3:sekisou}
+
+\subsection{IC}
+\tabref{chap3:tbl3}の部品を基板にハンダ付けします．
+ICには向きがありますので，間違えないように注意して下さい．
+\figref{chap3:ic}の説明を良く読んで，
+方向を間違えないように取り付けて下さい．
+この時，\figref{chap3:icnoasi}のように
+「ICの足を修正して」基板の穴に差し込んで下さい．
+
+部品が傾いたり，浮き上がったりしないようにするには，
+ICの足2ヵ所程度を「仮にハンダ付けし，問題が無いか確認して」
+から他の足をハンダ付けすると良いでしょう．
+足の多い部品を間違ってハンダ付けしてしまうと，
+取り外すのが\emph{絶望的に大変です}ので，
+くれぐれも間違えないように注意して下さい．
+
+\begin{mytable}{tbp}{IC}{chap3:tbl3}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    U3 & K516       & 水晶発振 IC \\
+    U6 & LM339      & 電圧比較 IC \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{chap3/ic.pdf}{IC取付の説明図}{chap3:ic}
+
+\myfigureN{tbp}{scale=0.6}{chap3/icnoasi.pdf}{IC足の調整方法}{chap3:icnoasi}
+
+%\newpage
+\subsection{集合抵抗器とラダー抵抗器}
+集合抵抗器とラダー抵抗器は\figref{chap3:syuugou}のような部品です．
+一覧を\tabref{chap3:tbl4}に示します．
+この部品にも向きがありますので，注意して下さい．
+ICと同じ要領で，
+傾きや浮き上がりが無いよう注意深くハンダ付けしましょう．
+
+\begin{mytable}{tbp}{集合抵抗器}{chap3:tbl4}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    RA1,2 & M9-1-471   & 470Ω（8素子） \\
+    &（L91S 471）&               \\
+    RA3   & M9-1-391   & 390Ω（8素子） \\
+    &（L91S 391）&               \\
+    RA4   & M5-1-391   & 390Ω（4素子） \\
+    &（L51S 391）&               \\
+    RA5   & 8L103      & ラダー抵抗器  \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{chap3/syuugou.pdf}
+          {集合抵抗器とラダー抵抗器}{chap3:syuugou}
+
+\subsection{フェライトビーズ}
+フェライトビーズは電源のノイズを弱くする働きのある部品です．
+\figref{chap3:bead}の部品をハンダ付けします．
+この部品は向きはありません．
+リード線の先を基板に差し込んでハンダ付けします．
+
+\begin{mytable}{tbp}{フェライトビーズ}{chap3:tbl7}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    FB1,2,3 & なし & なし \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{Tikz/bead.pdf}{フェライトビーズ}{chap3:bead}
+
+\subsection{ジャンパ}
+\tabref{chap3:tbl8}の部品をハンダ付けします（1個だけです）．
+熱に弱い部品なので手早くハンダ付けしてください．
+ハンダ付けができたら，\figref{chap3:jp}のように上半分の部品を差し込みます．
+図をよく見て上下を間違えないように注意してください．
+
+\begin{mytable}{btp}{ジャンパ}{chap3:tbl8}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    J1 & なし &  なし \\
+  \end{tabular}}
+\end{mytable}
+
+差し込む位置はTeCの位置です．
+\figref{chap3:jp}を確認して下さい．
+
+\myfigureN{tbp}{scale=0.6}{chap3/jp.pdf}{ジャンパ}{chap3:jp}
+
+\subsection{圧電スピーカ}
+圧電スピーカはTeCが音を出すためのスピーカの役割をします．
+\tabref{chap3:tbl10}，\figref{chap3:buz}の部品です．
+向きはありません．
+基板との隙間ができないように気を付けて下さい．
+
+\begin{mytable}{tbp}{圧電スピーカ}{chap3:tbl10}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    BZ1 & なし & 圧電スピーカ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{Tikz/buz.pdf}{圧電スピーカ}{chap3:buz}
+
+\subsection{電解コンデンサ}
+\tabref{chap3:tbl12}の部品をハンダ付けします．
+部品の形状は\figref{chap3:denkai}のようなものです．
+この部品も，向きがありますので取り付け方向に注意が必要です．
+長い足の方が「＋」になります．
+\figref{chap3:denkai}を良く見て，
+向きを間違えないようにしてください．
+
+\begin{mytable}{tbp}{電解コンデンサ}{chap3:tbl12}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    C0,C5,C7,C9,C16 & $ 47 \mu F  25V $ & $ 47 \mu F$ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{chap3/denkai.pdf}{電解コンデンサ}{chap3:denkai}
+
+%\newpage
+\subsection{LED（ランプ）}
+LED（ランプ）は，マイコンを使用するとき，いつも注視する部品です．
+傾いていたりすると，とても気になりますので綺麗に取り付けて下さい．
+アノード（＋），カソード（−）の見分け方は\figref{chap3:leds}の通りです．
+方向を間違えないように注意しましょう．
+LEDは，赤，緑，黄の3色があります．
+3色のLEDは\figref{chap3:leds2}のように配置します．
+LEDをハンダ付けする要領は次の通りです．
+
+\begin{enumerate}
+\item 同じ色を一斉に，アノード（＋）だけハンダ付けする．
+  （黄→緑→赤の順に中心から取り付ける．）
+\item LEDが垂直になっているか確認する．
+  （垂直になっていない場合は，再度温めて修正する．）
+\item LEDが奥までささっているか確認する．
+\item カソードをハンダ付けする．
+\item リード線を切る．
+\end{enumerate}
+
+\myfigureN{tbp}{scale=0.8}{Tikz/leds.pdf}{LEDの向きの見方}{chap3:leds}
+\myfigureN{tbp}{scale=0.8}{Tikz/leds2.pdf}{LEDの配置}{chap3:leds2}
+
+\subsection{スイッチ}
+
+%\subsubsection{スイッチの種類}
+
+スイッチには，「トグルスイッチ」と「プッシュスイッチ」の2種類があります．
+トグルスイッチは上下に倒すタイプのスイッチ，
+プッシュスイッチは押しボタンになったスイッチです（\figref{chap3:sw} 参照）．
+
+\myfigureN{tbp}{scale=0.8}{chap3/sw.pdf}{スイッチ}{chap3:sw}
+
+%\subsubsection{取り付け}
+
+スイッチは，マイコンを操作するときいつも触る部品です．
+スイッチが傾いていると操作性が悪くなりますので，
+まっすぐになるよう慎重にハンダ付けしてください．
+また，スイッチは温まりにくいので，
+ハンダ付けするときは少し余計に熱するようにしてください．
+%向きを間違えると，基板の穴に足が入りません．
+%間違える心配は無いので安心してください．
+
+スイッチの配置は\figref{chap3:sws}の通りです．
+間違えないように配置してください．
+スイッチをハンダ付けする手順は以下の通りです．
+
+\begin{enumerate}
+\item 足を穴にしっかり差し込み，
+  ハンダ面に7本の足が均等に出ていることを確認する．
+\item 足のうち1本をハンダ付けする．
+\item スイッチが傾いていないか確認する．\\
+  （傾いていた場合は，温め直して修正する．）
+\item 他の足をハンダ付けする．
+\end{enumerate}
+
+\myfigureN{tbp}{scale=0.9}{Tikz/sws.pdf}{スイッチの配置}{chap3:sws}
+
+\subsection{JTAG コネクタ}
+マイコン内部の回路を書き換えるときに使用するコネクタです．
+\tabref{chap3:tbl111}の部品を使用します．
+この部品にも向きがあります．
+\figref{chap3:cn}を良く見て，向きを間違えないように取り付けて下さい．
+
+\begin{mytable}{tbp}{JTAG コネクタ}{chap3:tbl111}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    CN4 & なし & 小さい14ピンのコネクタ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=1.2}{Tikz/cn.pdf}{JTAG コネクタ}{chap3:cn}
+
+\subsection{入出力ポートコネクタ}
+マイコンの外部に追加の回路を接続するときに使用するコネクタです．
+\tabref{chap3:tbl112}の部品を使用します．
+この部品にも向きがあります．
+\figref{chap3:cnn}を良く見て，向きを間違えないように取り付けて下さい．
+
+\begin{mytable}{tbp}{入出力ポートコネクタ}{chap3:tbl112}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    CN5 & なし & 大きい20ピンのコネクタ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{chap3/cnn.pdf}{入出力ポートコネクタ}{chap3:cnn}
+
+\subsection{電源コネクタ}
+
+\tabref{chap3:tbl13}の電源コネクタは，
+\figref{chap3:cn1}~（1）のような形状の部品です．
+このコネクタからマイコンに電源を供給します．
+パソコンの USB ポートと接続してパソコンとの通信に使用することもあります．
+\figref{chap3:cn1}~（2）に示す基板上の取り付け穴にハンダ付けします．
+付属のコネクタ部品によっては手前の二つの穴を使用しないこともあります．
+このコネクタの取り付けでは，失敗するとひどい火傷をする恐れがあります．
+以下の手順を良く読んで慎重に作業してください．
+
+\begin{mytable}{tbp}{電源コネクタ}{chap3:tbl13}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    CN1 & なし & USB-B コネクタ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.7}{chap3/cn1.pdf}{電源コネクタ}{chap3:cn1}
+
+\begin{enumerate}
+\item 穴にしっかり差し込む．
+\item 大きな穴とコネクタの端子を十分熱する．
+\item 大きな穴が塞がるまで，ハンダをどんどん融かし込む．
+\item \emph{十分に冷めるのを待つ．}
+\item 部品が傾いていないか確認する．
+\item 小さな穴に部品の足をハンダ付けする．
+\end{enumerate}
+
+\subsection{ゴム足の取り付け}
+基板の裏側に足をつけます．
+足は，両面テープの付いた黒い円盤状の部品です．
+足を取り付ける場所は，\figref{chap3:asi}の通りです．
+取り付け場所の裏側（基板の表側）に○印が付いています．
+
+まず，アルコールで周辺をきれいに拭いてから，
+鉄板とシールを剥がして，両面テープで指定の場所に貼り付けて下さい．
+
+\myfigureN{tbp}{scale=0.7}{Tikz/asi.pdf}
+          {ゴム足の取り付け位置}{chap3:asi}
+
+\subsection{プッシュスイッチの頭の取り付け}
+最後に，プッシュスイッチに頭を取り付けます．
+\figref{chap3:atama}を良く見て取り付けて下さい．
+
+\myfigureN{tbp}{scale=0.7}{Tikz/atama.pdf}
+          {プッシュスイッチの頭の取り付け方}{chap3:atama}
+
+%=============================================================================
+\section{完成}
+\subsection{命令表の貼り付け}
+ケースのフタの裏に，命令表を貼り付けて下さい．
+
+\subsection{目視確認}
+ご苦労さまでした．
+これでマイコンが完成しました．
+でも，もう一度，部品の種類，向きが間違っていないか目視確認して下さい．
+
+
+\subsection{設計データの書き込み}
+間違えがなかったら，
+教員に頼んでマイコンの設計データを書き込んでもらって下さい．
+（設計データの書き込みに JTAG コネクタが使用されます．）
+これで，マイコンとして動作するようになったはずです．

@@ -1,0 +1,23 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+
+	\begin{tikzpicture}
+		\draw[fill=black] (0, 0) circle[radius=1.5mm];
+		\draw[fill=black] (4, 0) circle[radius=1.5mm];
+		\draw[fill=black] (8, 0) circle[radius=1.5mm];
+		\draw[fill=black] (0, 4) circle[radius=1.5mm];
+		\draw[fill=black] (4, 4) circle[radius=1.5mm];
+		\draw[fill=black] (8, 4) circle[radius=1.5mm];
+
+		\draw ($(0, 0)-(0.4, 0.4)$) 
+			rectangle ($(8, 4)+(0.4, 0.4)$);
+
+		\node[anchor=south] at (2.0, -0.4){基板ハンダ面};
+		
+		\draw[fill=black] (0.5, -1) circle[radius=1.5mm];
+		\node[anchor=west] at (0.7, -1){ゴム足取り付け位置};
+
+	\end{tikzpicture}
+\end{document}

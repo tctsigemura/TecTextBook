@@ -1,0 +1,24 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[x=7.5mm, y=7.5mm]
+	\tikzstyle{fixed}=[anchor=north, minimum width=4mm, minimum height=4mm]
+	\foreach \x in {0,1,...,7}{
+		\node (b\x) at (7-\x, 0) {b\x};
+		\node[fixed, draw, above=5mm] (box\x) at (b\x) {};
+	}
+	\node[right=1.0cm] (C) at (b0) {C};
+	\node[fixed, draw, above=5mm] (boxC) at (C) {};
+
+	\draw ($(box7)+(-4mm, 4mm)$) rectangle ($(box0)+(4mm, -4mm)$);
+	
+	\draw[-latex] (box7) |- ++(-1.0, 0.7) |- (box7);
+	\foreach \x [count=\i from 1] in {0,1,...,6}{
+		\draw[latex-] (box\x) -- (box\i);
+	}
+	\draw[-latex] (box0) -- (boxC);
+	
+	\node[above=5.0mm] at ($(box4)!0.5!(box3)$) {レジスタ};
+\end{tikzpicture}
+\end{document}

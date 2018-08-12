@@ -1,10 +1,11 @@
 %------------------------------------------------------------------------------
 %
-% TeC 教科書
+% Tec 教科書
 %
 %------------------------------------------------------------------------------
 %\documentclass[a4paper,twocolumn,twoside,dvipdfmx]{jbook}
-\documentclass[a4paper,twocolumn,twoside,dvipdfmx]{jsbook}
+%\documentclass[a4paper,twocolumn,twoside,dvipdfmx]{jsbook} % platex の場合
+\documentclass[a4paper,twocolumn,twoside]{ltjsbook}   % lualatex の場合
 \usepackage{tec}
 %------------------------------------------------------------------------------
 % はじまり
@@ -12,7 +13,7 @@
 \frontmatter
 %------------------------------------------------------------------------------
 % 表紙
-\title{TeC 教科書\\Ver. 4.0.5}
+\title{TeC 教科書\\Ver. 4.1.0}
 \author{徳山工業高等専門学校\\情報電子工学科\\TeCプロジェクト\\
 \url{https://github.com/tctsigemura/TeC7/}}
 \date{}
@@ -45,16 +46,16 @@ Tokuyama College of Technology, JAPAN
 \mainmatter
 \include{chap1} % はじめに
 \include{chap2} % 情報の表現
-%\include{chap3/chap3} % マイコンの組立て
-%\include{chap4/chap4} % マイコンの操作
-%\include{chap5/chap5} % マイコンのプログラミング
-%\include{chap6/chap6} % マイコンの高度なプログラミング
+\include{chap3} % マイコンの組立て
+\include{chap4} % マイコンの操作
+\include{chap5} % マイコンのプログラミング
+\include{chap6/chap6} % マイコンの高度なプログラミング
 
 \appendix
 %%\include{appA/appA}  % 付録A
-%\include{appB/appB}  % 付録B
-%\include{appC/appC}  % 付録C
-%\include{appD/appD}  % 付録D
+\include{appB/appB}  % 付録B
+\include{appC/appC}  % 付録C
+\include{appD/appD}  % 付録D
 
 %------------------------------------------------------------------------------
 % 発行元
@@ -65,9 +66,9 @@ Tokuyama College of Technology, JAPAN
 \vfill\vfill\vfill
 \begin{center}
 \fbox{\parbox{10cm}{ \vspace{0.3cm}
-\large{\bf{TeC教科書 Ver. 4.0.5}} \\
+{\large\emph{TeC教科書 Ver. 4.1.0}} \\
 \\
-　発行年月　２０１８年３月 \\
+　発行年月　２０１８年８月 \\
 　発　　行　独立行政法人国立高等専門学校機構 \\
 　　　　　　徳山工業高等専門学校 \\
 　　　　　　情報電子工学科　重村哲至 \\

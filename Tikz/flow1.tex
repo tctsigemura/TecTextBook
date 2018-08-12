@@ -1,0 +1,48 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}[node distance=15mm]
+		\node (start) [startstop] {START};
+		\node (proc1) [process, below of=start] {$G0 \leftarrow [N\mbox{番地}]$};
+		\node (proc2) [process, below of=proc1] {$G0 \leftarrow G0 - 0$};
+		\node (deci1) [decision, below of=proc2] {Zフラグ};
+		\node [anchor=south west] at (deci1.east) {$=0$(正)};
+		\node [anchor=north west] at (deci1.south) {$=1$(負)};
+		\node (proc3) [process, below of=deci1] {$G0 \leftarrow 0$};
+		\node (proc4) [process, below of=proc3] {$G0 \leftarrow G0 - [N\mbox{番地}]$};
+		\node (proc5) [process, below of=proc4] {$[M\mbox{番地}] \leftarrow G0]$};
+		\node (end) [startstop, below of=proc5] {END};
+
+		\draw [arrow] (start) -- (proc1);
+		\draw [arrow] (proc1) -- (proc2);
+		\draw [arrow] (proc2) -- (deci1);
+		\draw [arrow] (deci1) -- (proc3);
+		\draw [arrow] (proc3) -- (proc4);
+		\draw [arrow] (proc4) to[midway] coordinate(L1) (proc5);
+		\draw [arrow] (proc5) -- (end);
+		\draw [arrow] (deci1) -| ([xshift=25mm]L1) -- (L1);
+
+		\node (n1) at ([xshift=-25mm]proc1) {(1)};
+		\node (n2) at ([xshift=-25mm]proc2) {(2)};
+		\node (n3) at ([xshift=-25mm]deci1) {(3)};
+		\node (n4) at ([xshift=-25mm]proc3) {(4)};
+		\node (n5) at ([xshift=-25mm]proc4) {(5)};
+		\node (n6) at ([xshift=-25mm]proc5) {(6)};
+		\node (n7) at ([xshift=-25mm]end)   {(7)};
+
+		\draw ($(n1)+(5.5, 0.5)$) -- ++(0.125, -0.125) -- ++(0, -1) -- ++(-0.125, -0.125);
+		\draw ($(n2)+(5.5, 0.5)$) -- ++(0.125, -0.125) -- ++(0, -2.5) -- ++(-0.125, -0.125);
+		\draw ($(n4)+(5.5, 0.5)$) -- ++(0.125, -0.125) -- ++(0, -2.5) -- ++(-0.125, -0.125);
+		\draw ($(n6)+(5.5, 0.5)$) -- ++(0.125, -0.125) -- ++(0, -1) -- ++(-0.125, -0.125);
+
+		\node[anchor=west, align=left] at ($(n1)+(5.75, 0)$) {$[N\mbox{番地}]$のデータを\\$G0$に取り出す};
+		\node[anchor=west, align=left] at ($(n2)!0.5!(n3)+(5.75, 0)$) {$G0$は正か負か};
+		\node[anchor=west, align=left] at ($(n4)!0.5!(n5)+(5.75, 0)$) {正の場合はそのまま\\負の場合${-[N\mbox{番地}]}$を求める};
+		\node[anchor=west, align=left] at ($(n6)+(5.75, 0)$) {結果を$[M\mbox{番地}]$格納};
+
+		\node[anchor=west] at ([xshift=-5mm, yshift=-5mm]n7.south)
+			{注意：$[N\mbox{番地}]$は、N番地に格納されているデータのこと};
+		
+	\end{tikzpicture}
+\end{document}
