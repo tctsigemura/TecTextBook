@@ -29,25 +29,25 @@
   \item 論理演算を計算する回路を\emph{論理回路}と言う。
   \end{itemize}
   \vfill
-  \centerline{論理IC => \includegraphics[scale=1.0]{../chap2/lic.pdf}}
+  \centerline{\includegraphics[scale=0.7]{../Tikz/lic.pdf}}
 \end{frame}
 
 %==============================================================================
 \begin{frame}
   \frametitle{論理ICで作った手作りコンピュータ}
-  \emph{徳山高専卒業研究}で約３０年前に製作された手作りコンピュータ
+  \emph{徳山高専卒業研究}で約４０年前に製作された手作りコンピュータ
   \vfill
   \begin{tabular}{c c}
-  \multirow{2}{*}{\includegraphics[scale=0.04]{../chap2/uCom16_1.jpg}}
-  &\includegraphics[scale=0.03]{../chap2/uCom16_2.jpg} \\
-  &\includegraphics[scale=0.03]{../chap2/uCom16_3.jpg}
+  \multirow{2}{*}{\includegraphics[scale=0.04]{../Img/uCom16_1.jpg}}
+  &\includegraphics[scale=0.03]{../Img/uCom16_2.jpg} \\
+  &\includegraphics[scale=0.03]{../Img/uCom16_3.jpg}
   \end{tabular}
 \end{frame}
 
 %==============================================================================
 \begin{frame}
   \frametitle{論理ICで回路を作る}
-  \centerline{\includegraphics[scale=0.6]{../chap2/majority-crop.pdf}}
+  \centerline{\includegraphics[scale=0.6]{../Keynote/majority-crop.pdf}}
 \end{frame}
 
 %==============================================================================
@@ -55,7 +55,7 @@
   \frametitle{現代の手作りコンピュータ}
   \emph{FPGA}の中に論理IC数万個に相当する回路が書き込める．
   \vfill
-  \centerline{\includegraphics[scale=0.3]{../chap4/TeC7.jpg}}
+  \centerline{\includegraphics[scale=0.3]{../Img/TeC7.jpg}}
 \end{frame}
 
 %==============================================================================
@@ -64,13 +64,12 @@
   \emph{論理積（AND）} --- 「かつ」\\
   \vfill
   ２ビット入力し，両方が１のときだけ１を出力する．
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/and.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.4]{../Tikz/and.pdf}}
   \begin{quote}
     A \emph{かつ} B が１ なら 1\\
     A \emph{AND} B が１ なら 1
   \end{quote}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -79,13 +78,12 @@
   \emph{論理和（OR）} --- 「または」\\
   \vfill
   ２ビット入力し，どちらかが１のとき１を出力する．
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/or.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.4]{../Tikz/or.pdf}}
   \begin{quote}
     A \emph{または} B が１ なら 1\\
     A \emph{OR} B が１ なら 1
   \end{quote}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -94,12 +92,11 @@
   \emph{否定（NOT）} --- 「ではない」\\
   \vfill
   １ビット入力し，入力とは逆の論理値をを出力する．
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/not.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.4]{../Tikz/not.pdf}}
   \begin{quote}
     A が 1 \emph{ではない} なら 1\\
   \end{quote}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -108,12 +105,11 @@
   \emph{排他的論理和（XOR）} --- 「異なる」\\
   \vfill
   ２ビット入力し，二つが異なるなら１を出力する．
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/xor.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.4]{../Tikz/xor.pdf}}
   \begin{quote}
     A と B が異なるなら 1\\
   \end{quote}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -121,9 +117,8 @@
   \frametitle{基本的な論理回路（５）}
   \emph{NOTとANDの組合せ（NAND）} \\
   \vfill
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/nand.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.3]{../Tikz/nand.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -131,9 +126,8 @@
   \frametitle{基本的な論理回路（６）}
   \emph{NOTとORの組合せ（NOR）} \\
   \vfill
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/nor.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.3]{../Tikz/nor.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -142,9 +136,8 @@
   \emph{半加算器} \\
   １桁の２進数を二つ入力し，０，１，２のどれかを出力する．
   \vfill
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/ha.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.3]{../Tikz/ha.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -153,9 +146,8 @@
   \emph{全加算器} \\
   １桁の２進数を三つ入力し，０，１，２，３のどれかを出力する．
   \vfill
-  \begin{center}
-    \includegraphics[scale=1.3]{../chap2/fa.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.3]{../Tikz/fa.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -164,9 +156,8 @@
   \emph{４ビット加算器} \\
   ４桁の２進数を二つ入力し，和を計算する
   \vfill
-  \begin{center}
-    \includegraphics[scale=1.3]{../chap2/adder.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=0.8]{../Tikz/adder.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -175,9 +166,8 @@
   \emph{４ビット １の補数器} \\
   ４桁の２進数を入力し，１の補数を計算する
   \vfill
-  \begin{center}
-    \includegraphics[scale=1.3]{../chap2/onesc.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.0]{../Tikz/onesc.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -186,9 +176,8 @@
   \emph{４ビット ２の補数器} \\
   ４桁の２進数を入力し，２の補数を計算する
   \vfill
-  \begin{center}
-    \includegraphics[scale=1.3]{../chap2/towsc.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=0.7]{../Tikz/twosc.pdf}}
+  \vfill
 \end{frame}
 
 %==============================================================================
@@ -197,9 +186,8 @@
   \emph{RSフリップフロップ} \\
   直前の状態を記憶する回路
   \vfill
-  \begin{center}
-    \includegraphics[scale=2.0]{../chap2/rsff.pdf}
-  \end{center}
+  \centerline{\includegraphics[scale=1.3]{../Tikz/rsff.pdf}}
+  \vfill
 \end{frame}
 
 \end{document}
