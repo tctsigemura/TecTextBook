@@ -12,7 +12,7 @@ PDFS = add.pdf       flow2.pdf     flowF.pdf     lor.pdf       shft3.pdf     \
        buz.pdf       flow6.pdf     land1.pdf     or.pdf        twosc.pdf     \
        cmp.pdf       flow7.pdf     land2.pdf     or_chap5.pdf  xor.pdf       \
        cn.pdf        flow8.pdf     ld.pdf        rsff.pdf      xor_chap5.pdf \
-       denkai.pdf    flow9.pdf     lds.pdf       sekisou.pdf                 \
+       denkai.pdf    flow9.pdf     lds.pdf       sekisou.pdf   lic.pdf       \
        fa.pdf        flowD.pdf     leds.pdf      shft1.pdf                   \
        flow1.pdf     flowE.pdf     leds2.pdf     shft2.pdf
 
