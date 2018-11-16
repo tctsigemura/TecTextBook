@@ -14,7 +14,10 @@ PDFS = add.pdf       flow2.pdf     flowF.pdf     lor.pdf       shft3.pdf     \
        cn.pdf        flow8.pdf     ld.pdf        rsff.pdf      xor_chap5.pdf \
        denkai.pdf    flow9.pdf     lds.pdf       sekisou.pdf   lic.pdf       \
        fa.pdf        flowD.pdf     leds.pdf      shft1.pdf                   \
-       flow1.pdf     flowE.pdf     leds2.pdf     shft2.pdf
+       flow1.pdf     flowE.pdf     leds2.pdf     shft2.pdf     jz.pdf        \
+       jc.pdf        jm.pdf \
+       adds.pdf      subs.pdf      flow0.pdf     flow0A.pdf    flow0B.pdf    \
+       flow2AB.pdf
 
 %.pdf : %.tex *.sty
 	lualatex $*.tex

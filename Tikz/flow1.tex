@@ -6,12 +6,12 @@
 		\node (start) [startstop] {START};
 		\node (proc1) [process, below of=start] {$G0 \leftarrow [N\mbox{番地}]$};
 		\node (proc2) [process, below of=proc1] {$G0 \leftarrow G0 - 0$};
-		\node (deci1) [decision, below of=proc2] {Zフラグ};
+		\node (deci1) [decision, below of=proc2] {Sフラグ};
 		\node [anchor=south west] at (deci1.east) {$=0$(正)};
 		\node [anchor=north west] at (deci1.south) {$=1$(負)};
 		\node (proc3) [process, below of=deci1] {$G0 \leftarrow 0$};
 		\node (proc4) [process, below of=proc3] {$G0 \leftarrow G0 - [N\mbox{番地}]$};
-		\node (proc5) [process, below of=proc4] {$[M\mbox{番地}] \leftarrow G0]$};
+		\node (proc5) [process, below of=proc4] {$[M\mbox{番地}] \leftarrow G0$};
 		\node (end) [startstop, below of=proc5] {END};
 
 		\draw [arrow] (start) -- (proc1);

@@ -1,0 +1,11 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}
+  \node (start) [startstop] {START};
+  \node (proc) [process, below of=start, node distance=15mm]{$G0 \leftarrow G0 + [04H]$};
+  \draw [arrow] (start) to[midway] coordinate (a) (proc);
+  \draw [arrow] (proc) |- ++(-2, -0.75) |- (a);
+\end{tikzpicture}
+\end{document}
