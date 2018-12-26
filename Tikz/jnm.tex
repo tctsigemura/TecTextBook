@@ -1,0 +1,20 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[node distance=15mm]
+  \node (deci1) [decision] {Sフラグ};
+  \node [anchor=north east] at (deci1.west) {$=0$};
+  \node [anchor=north west] at (deci1.south) {$=1$};
+  \draw[arrow] (deci1.north) ++(0.0, 0.5) -- (deci1.north);
+  \draw[arrow] (deci1.south) -- ++(0.0, -0.5);
+  \draw[arrow] (deci1.west) -- ++(-0.5, -0.0) -- ++(0.0, 0.5);
+  
+  \node (deci2) [decision, right of=deci1, node distance=40mm]{Sフラグ};
+  \node [anchor=south west] at (deci2.east) {$=0$};
+  \node [anchor=north west] at (deci2.south) {$=1$};
+  \draw[arrow] (deci2.north) ++(0.0, 0.5) -- (deci2.north);
+  \draw[arrow] (deci2.south) -- ++(0.0, -0.5);
+  \draw[arrow] (deci2.east) -- ++(0.5, -0.0) -- ++(0.0, -0.5);
+\end{tikzpicture}
+\end{document}
