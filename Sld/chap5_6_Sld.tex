@@ -1,0 +1,53 @@
+%\documentclass[dvipdfmx]{beamer}      % platex の場合
+\documentclass{beamer}                 % lualatex の場合
+\usepackage{mySld}
+\usepackage{multicol}
+
+\begin{document}
+\title{基礎コンピュータ工学\\第５章 機械語プログラミング\\（パート６）}
+\date{}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%==============================================================================
+%\begin{frame}
+%  \frametitle
+%  \tableofcontents
+%\end{frame}
+
+\section{条件判断の演習}
+%==============================================================================
+\begin{frame}
+  \frametitle{条件判断の演習}
+  \begin{enumerate}
+  \item[1.] プログラムの作成手順を再度確認
+    \begin{enumerate}
+    \item[(1)] フローチャートを描く．
+    \item[(2)] フローチャートを基にニーモニックを書く．
+    \item[(3)] アドレスを決める．
+    \item[(4)] 機械語を作る．
+    \end{enumerate}
+    \vfill
+  \item[2.] 演習
+    \begin{enumerate}
+    \item[(1)] N番地の値がゼロならM番地にゼロを，
+      そうでなければM番地に1を格納するプログラム
+      \begin{itemize}
+      \item LD命令はフラグを変化させないので．．．
+      \item 前回の「条件判断２」のパターンを利用
+      \end{itemize}
+      \vfill
+    \item[(2)] N番地の値とM番地の値で，
+      大きい方をL番地に格納するプログラム
+      \begin{itemize}
+      \item 値は符号付きの数値とする．
+      \item 比較は引き算でできる．
+      \end{itemize}
+    \end{enumerate}
+  \end{enumerate}
+  \vfill
+\end{frame}
+
+\end{document}

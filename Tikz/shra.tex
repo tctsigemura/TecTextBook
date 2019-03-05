@@ -1,0 +1,10 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}[node distance=9mm]
+		\node (proc1) [process] {$\mathit{GR} \leftarrow \mathit{GR} >\!> 1$};
+		\draw[arrow] (proc1.north) ++(0, 0.5) -- (proc1.north);
+		\draw[arrow] (proc1.south) -- ++(0, -0.5);
+	\end{tikzpicture}
+\end{document}

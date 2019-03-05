@@ -1,0 +1,37 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\node (a) {\begin{tikzpicture}[node distance=14mm]
+			\node (start) [startstop] {START};
+			\node (proc1) [process, below of=start] {$G0 \leftarrow \mathrm{'A'}$};
+			\node (deci1) [decision, below of=proc1] {Tビット};
+			\node [anchor=south east] at (deci1.west) {$=0$};
+			\node [anchor=north west] at (deci1.south) {$=1$};
+			\node (io1) [io, below of=deci1] {$G0$をSIOへ出力};
+			\node (end) [startstop, below of=io1] {END};
+			
+			\draw [arrow] (start) -- (proc1);
+			\draw [arrow] (proc1) to[midway] coordinate (a) (deci1);
+			\draw [arrow] (deci1) -- (io1);
+			\draw [arrow] (io1) -- (end);
+			\draw [arrow] (deci1.west) -- ++(-1, 0) |- (a);
+		\end{tikzpicture}};
+		\node[anchor=west] (b) at (a.east) {
+			{\ttfamily\begin{tabular}{|l|l|l|}
+				SIOS&EQU		&03H		\\
+				SIOD&EQU		&02H		\\
+				TBIT&EQU		&80H		\\
+					&			&			\\
+					&LD			&G0, \#'A'	\\
+				WAIT&IN			&G1, SIOS	\\
+					&AND		&G1, \#TBIT	\\
+					&JZ			&WAIT		\\
+					&OUT		&G0, SIOD	\\
+					&HALT		&			\\
+			\end{tabular}}
+		};
+		
+	\end{tikzpicture}
+\end{document}

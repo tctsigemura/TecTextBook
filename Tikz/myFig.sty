@@ -1,0 +1,32 @@
+% TeC 教科書の図用のパッケージ
+\ProvidesPackage{tecfig}
+\usepackage{luatexja}                              % lualatex の場合
+\usepackage[hiragino-pron]{luatexja-preset}        % ヒラギノフォント
+\def\|{\verb|} %|
+\renewcommand\kanjifamilydefault{\gtdefault}
+\renewcommand\familydefault{\sfdefault}
+\mathversion{bold}
+\usepackage{tikz}
+\usepackage{ifthen}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+
+% 回路図
+\usetikzlibrary{circuits.logic.US, circuits.logic.IEC}
+\tikzstyle{branch}=[fill, shape=circle, minimum size=3pt,
+  inner sep=0pt, anchor=center]
+
+% フローチャート
+\usetikzlibrary{arrows}
+\tikzstyle{startstop}=[thick,rounded rectangle,
+          rounded rectangle arc length=180,
+          minimum width=24mm,minimum height=6mm,text centered,draw=black]
+\tikzstyle{io}=[thick,trapezium,trapezium left angle=70,
+          trapezium right angle=110,
+          minimum width=24mm,minimum height=6mm,text centered,draw=black]
+\tikzstyle{process}=[thick,rectangle,minimum width=24mm,minimum height=6mm,
+          text centered,draw=black]
+\tikzstyle{decision} = [thick,diamond,shape aspect=3,
+          minimum width=24mm,minimum height=6mm,text centered,draw=black]
+\tikzstyle{arrow} = [thick,->,>=stealth]

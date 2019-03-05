@@ -1,0 +1,24 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\node[text width=4.0cm, anchor=west](node1) at (-2, 0.5)
+			{足の長さが違います．\\ A (長い線がアノード (+))};
+		\node[text width=2.0cm, anchor=west](node2) at (-2, -1.0)
+			{基板上には，\\ Aがプリント\\ されている．};
+		\draw (3 - 0.25, 0.5) -- ++(0, -1.0);
+		\draw (3 + 0.25, 0.5) -- ++(0, -0.5);
+		\coordinate (a) at (0.375, 0.375);
+		\draw[fill] ($(3, 0.75) - (a)$) rectangle ($(3, 0.75) + (a)$);
+		\draw[fill] ($(3, 0.75) + (0, 0.375)$) circle[radius=0.375cm];
+		\draw[black, line width=1.5pt] (3, -1) ellipse (0.7cm and 0.30cm);
+		\node[draw, yscale=0.5, line width=1pt] at (3-0.25, -1){};
+		\node[draw, yscale=0.5, line width=1pt] at (3+0.25, -1){};
+		\draw[-latex] (node2.east) -- ++(2, -0.125);
+
+		\node[scale=0.5] at (3-0.25, -1-0.15){A};
+		\draw[line width=1pt](3.50, -1.20) -- ++(0, 0.40);
+		
+	\end{tikzpicture}
+\end{document}

@@ -38,6 +38,35 @@
   commentstyle=\slshape
 }
 
-\newcommand{\fig}[2]{\begin{center}\includegraphics[#1]{Fig/#2}\end{center}}
-\newcommand{\tbl}[2]{\begin{center}\includegraphics[#1]{Tbl/#2}\end{center}}
-\newcommand{\gant}[2]{\begin{center}\includegraphics[#1]{GanntChart/#2}\end{center}}
+%------------------------------------------------------------------------------
+% 便利マクロ
+\newcommand{\lw}[1]{\smash{\lower2.0ex\hbox{#1}}}
+\newcommand{\fig}[2]{\begin{center}\includegraphics[#1]{#2}\end{center}}
+
+%------------------------------------------------------------------------------
+% 1バイト機械語命令のフォーマット表示
+\newcommand{\oneByte}[2]{
+\begin{center}\texttt{\small
+\begin{tabular}{|c|c|} \hline
+\multicolumn{2}{|c|}{第１バイト} \\\hline
+OP & GR~XR \\\hline
+#1 & #2    \\\hline
+\end{tabular}}
+\end{center}}
+
+%------------------------------------------------------------------------------
+% 2バイト機械語命令のフォーマット表示
+\newcommand{\twoByte}[3]{
+\begin{center}\texttt{\small
+\begin{tabular}{|c|c|c|} \hline
+\multicolumn{2}{|c|}{第１バイト} & \lw{第２バイト} \\\cline{1-2}
+OP & GR~XR &    \\\hline
+#1 & #2    & #3 \\\hline
+\end{tabular}}
+\end{center}}
+
+\newcommand{\OP}{{\itshape OP}}
+\newcommand{\GR}{{\itshape GR}}
+\newcommand{\XR}{{\itshape XR}}
+\newcommand{\A}{{\itshape aaaa~aaaa}}
+\newcommand{\PP}{$0000_2$~{\itshape pppp}}

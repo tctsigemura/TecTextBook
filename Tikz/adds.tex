@@ -1,0 +1,18 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[node distance=10mm]
+  \node (start) [startstop] {START};
+  \node (proc1) [process, below of=start] {$G0 \leftarrow [07H]$};
+  \node (proc2) [process, below of=proc1] {$G0 \leftarrow G0 + [08H]$};
+  \node (proc3) [process, below of=proc2] {$[09H] \leftarrow G0$};
+  \node (end) [startstop, below of=proc3] {END};
+  
+  \draw [arrow] (start) -- (proc1);
+  \draw [arrow] (proc1) -- (proc2);
+  \draw [arrow] (proc2) -- (proc3);
+  \draw [arrow] (proc3) -- (end);
+  
+\end{tikzpicture}
+\end{document}

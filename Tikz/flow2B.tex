@@ -1,0 +1,56 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\node (a) {\begin{tikzpicture}[node distance=14mm]
+			\node (start) [startstop] {START};
+			\node (proc1) [process, below of=start] {計算};
+			\node (deci1) [decision, below of=proc1] {Zフラグ};
+			\node [anchor=south west] at (deci1.east) {$=0$};
+			\node [anchor=south east] at (deci1.west) {$=1$};
+			\node (proc2A) [process, below left  of=deci1, node distance=25mm, minimum height=2cm] {処理1};
+			\node (proc2B) [process, below right of=deci1, node distance=25mm, minimum height=2cm] {処理2};
+			\node (proc3) at ($(proc2A)!0.5!(proc2B) + (0, -2.5)$) [process, node distance=22mm] {次の処理};
+			\node (end) [startstop, below of=proc3] {END};
+
+			\coordinate (a) at ($(proc3) + (0, 1)$);
+			
+			\draw [arrow] (start) -- (proc1);
+			\draw [arrow] (proc1) -- (deci1);
+			\draw [arrow] (deci1) -| (proc2A);
+			\draw [arrow] (deci1) -| (proc2B);
+			\draw [arrow] (proc2A) |- (a);
+			\draw [arrow] (proc2B) |- (a);
+			\draw [arrow] (a) -- (proc3);
+			\draw [arrow] (proc3) -- (end);
+		\end{tikzpicture}};
+		\node[anchor=west] (b) at (a.east) {
+			{\ttfamily\begin{tabular}{|l|l|l|}
+					&計算	  	&		\\
+					&JZ			&L1		\\
+					&			&		\\
+					&			&		\\
+					&\begin{tikzpicture}
+						\node (p) {処理2};
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0, 1);
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0,-1);
+					\end{tikzpicture}		&		\\
+					&			&		\\
+					&			&		\\
+					&JMP		&L2		\\
+				L1	&			&		\\
+					&			&		\\
+					&\begin{tikzpicture}
+						\node (p) {処理1};
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0, 1);
+						\draw[overlay, dotted, line width=1.5pt] (p) -- ++(0,-1);
+					\end{tikzpicture}		&		\\
+					&			&		\\
+					&			&		\\
+				L2	&次の処理	&		\\
+			\end{tabular}}
+		};
+		
+	\end{tikzpicture}
+\end{document}

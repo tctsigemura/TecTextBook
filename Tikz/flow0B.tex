@@ -1,0 +1,20 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+\begin{tikzpicture}[node distance=10mm]
+  \node (start) [startstop] {START};
+  \node (proc1) [process, below of=start]{$G0 \leftarrow [THREE]$};
+  \node (proc2) [process, below of=proc1, node distance=13mm]{$G0 \leftarrow G0 - [ONE]$};
+  \node (deci1) [decision, below of=proc2, node distance=13mm]{Zフラグ};
+  \node [anchor=south west] at (deci1.east) {$=1$};
+  \node [anchor=north west] at (deci1.south) {$=0$};
+  \node (stop) [startstop, below of=deci1, node distance=20mm] {STOP};
+
+  \draw [arrow] (start) -- (proc1);
+  \draw [arrow] (proc1) to[midway] coordinate (a) (proc2);
+  \draw [arrow] (proc2) -- (deci1);
+  \draw [arrow] (deci1.south) |- ++(-0, -0.4) |- ++(-2.0, 0) |- (a);
+  \draw [arrow] (deci1.east) -- ++(0.5, 0) -- ++(0, -1.2) -| (stop.north);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,39 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+
+	\begin{tikzpicture}
+		\node (circuit) at (3.5, 0) {\textbf{NOTの回路記号}};
+		\node (truth) at (0, 0) {\textbf{NOTの真理値表}};
+		\node (eq) at (3.5, 2.5) {\textbf{NOTの論理式}};
+
+		\node[anchor=south] at (eq.north) {%
+			$X = \overline A$
+		};
+		
+		\node[anchor=south] at (circuit.north) {%
+			\begin{tikzpicture}[circuit logic US]
+				\node[anchor=east] (a1) at (0,  1.0) {$A$};
+				\node[anchor=east] (a2) at (0,  0.0) {$A$};
+				\node[not gate, right=0.5cm of a1] (not1) {};
+				\node[buffer gate, right=0.5cm of a2, logic gate inputs=i] (not2) {};
+				\node[anchor=west, right=0.5cm of not1] (q1) {$X$};
+				\node[anchor=west, right=0.5cm of not2] (q2) {$X$};
+
+				\draw (a1) -- (not1.input) (not1.output) -- (q1);
+				\draw (a2) -- (not2.input) (not2.output) -- (q2);
+			\end{tikzpicture}
+		};
+	
+		\node[anchor=south] at (truth.north) {
+			\begin{tabular}{|c|c|}\hline
+				入力	&	出力	\\ \hline
+				$A$&$X$\\ \hline
+				0&1 \\
+				1&0 \\ \hline
+			\end{tabular}
+		};
+
+	\end{tikzpicture}
+\end{document}

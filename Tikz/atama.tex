@@ -1,0 +1,43 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\begin{document}
+	\begin{tikzpicture}
+		\newcommand\atama[5]{
+			% (x, y, h, a, b)
+			\coordinate (a) at (#1, #2);
+			\coordinate (a1) at ($(a) + (-#4, 0)$);
+			\coordinate (a2) at ($(a) + (+#4, 0)$);
+			\coordinate (b1) at ($(a) + (-#4, #3)$);
+			\coordinate (b2) at ($(a) + (+#4, #3)$);
+			\path[fill=white] (a2) arc (0:-180:#4 and #5) -- ++(0, #3) arc (180:0:#4 and #5) -- cycle;
+			\draw (a1) -- (b1);
+			\draw (a2) -- (b2);
+			\draw (a2) arc (0:-180:#4 and #5);
+			\draw ($(a2) + (0, #3)$) arc (0:360:#4 and #5);
+		}
+		\node[anchor=west] at (1.0, 3){スイッチの頭};
+		\node[anchor=west] at (1.0, 2){しっかり押し込む};
+		\node[anchor=west] at (1.0, 0){プッシュスイッチ本体};
+		
+		% スイッチ本体を書く
+		\draw (-0.75, -0.75) rectangle ++(1.5, 1.5);
+		\draw (-0.75,  0.75) -- ++(0.25, 0.5) coordinate (c1);
+		\draw (+0.75,  0.75) -- ++(0.25, 0.5) coordinate (c2);
+		\draw (+0.75, -0.75) -- ++(0.25, 0.5) coordinate (c3);
+		\coordinate (c4) at (-0.75, -0.75);
+		\coordinate (c5) at (+0.75, -0.75);
+		\draw (c1) -- (c2) -- (c3);
+
+		\draw (c3) -- ++(0, -0.2);
+		\draw (c4) -- ++(0, -0.2);
+		\draw (c5) -- ++(0, -0.2);
+
+		\draw[-latex, dotted] (0.125, 3) -- ++(0, -0.9);
+		
+		\atama{0.125}{2.875}{0.25}{4.5mm}{2.5mm}
+		\atama{0.125}{1.125}{0.25}{5mm}{2.5mm}
+		\atama{0.125}{1.375}{0.5}{2.5mm}{1.25mm}
+		
+	\end{tikzpicture}
+\end{document}

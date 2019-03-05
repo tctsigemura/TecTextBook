@@ -1,0 +1,37 @@
+\RequirePackage{luatex85}
+\documentclass[border=1mm]{standalone}
+\usepackage{myFig}
+\def\-{\footnotesize\verb-} %-
+\def\!{\tiny\verb!} %!
+\usepackage{array}
+%\newcolumntype{C}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{2.5em}}
+\newcolumntype{C}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{1.3em}}
+
+\begin{document}
+\begin{tikzpicture}
+  \node (table) {
+    \tabcolsep = 1mm
+    \begin{tabular}{|C||C|C|C|C|C|C|C|C|}\hline
+       &0     &1     &2   &3   &4   &5   &6   &7     \\\hline\hline
+      0&\-NUL-&\-DLE-&\!(SP)!&\|0|&\|@|&\|P|&\|`|&\|p|  \\\hline
+      1&\-SOH-&\-DC1-&\|!|&\|1|&\|A|&\|Q|&\|a|&\|q|  \\\hline
+      2&\-STX-&\-DC2-&\|"|&\|2|&\|B|&\|R|&\|b|&\|r|  \\\hline
+      3&\-ETX-&\-DC3-&\|#|&\|3|&\|C|&\|S|&\|c|&\|s|  \\\hline
+      4&\-EOT-&\-DC4-&\|$|&\|4|&\|D|&\|T|&\|d|&\|t|  \\\hline
+      5&\-ENQ-&\-NAK-&\|%|&\|5|&\|E|&\|U|&\|e|&\|u|  \\\hline
+      6&\-ACK-&\-SYN-&\|&|&\|6|&\|F|&\|V|&\|f|&\|v|  \\\hline
+      7&\-BEL-&\-ETB-&\|'|&\|7|&\|G|&\|W|&\|g|&\|w|  \\\hline
+      8&\-BS- &\-CAN-&\|(|&\|8|&\|H|&\|X|&\|h|&\|x|  \\\hline
+      9&\-HT- &\-EM- &\|)|&\|9|&\|I|&\|Y|&\|i|&\|y|  \\\hline
+      A&\-LF- &\-SUB-&\|*|&\|:|&\|J|&\|Z|&\|j|&\|z|  \\\hline
+      B&\-VT- &\-ESC-&\|+|&\|;|&\|K|&\|[|&\|k|&\|{|  \\\hline
+      C&\-FF- &\-FS- &\|,|&\|<|&\|L|&\|\|&\|l|&\verb=|=  \\\hline
+      D&\-CR- &\-GS- &\|-|&\|=|&\|M|&\|]|&\|m|&\|}|  \\\hline
+      E&\-SO- &\-RS- &\|.|&\|>|&\|N|&\|^|&\|n|&\|~|  \\\hline
+      F&\-SI- &\-US- &\|/|&\|?|&\|O|&\|_|&\|o|&\-DEL-\\\hline
+    \end{tabular}
+  };
+  \node[anchor=south] at (table.north) {\footnotesize （上位3ビット）};
+  \node[anchor=south, rotate=90] at (table.west)  {\footnotesize （下位4ビット）};
+\end{tikzpicture}
+\end{document}
