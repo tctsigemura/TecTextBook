@@ -19,7 +19,7 @@ TeCクロス開発環境は，
 UNIXまたはmacOSにインストールされた「TeCクロス開発環境」を
 使用する前提で說明しています．
 
-\myfigureNA{btp}{scale=1.0}{syori.pdf}{処理の流れ}{appB:cross}
+\myfigureNA{btp}{scale=0.75}{develop-crop.pdf}{処理の流れ}{appB:cross}
 
 \section{アセンブルコマンド}
 クロスアセンブラは次の形式のコマンド行から起動され，
@@ -51,16 +51,12 @@ UNIXまたはmacOSにインストールされた「TeCクロス開発環境」�
 次の形式のコマンド行から起動します．
 
 \begin{center}
-{\small\tt tsend7  {\it bin\_file}　{\it [com\_port]}} \\
+{\small\tt twrite7  {\it bin\_file}} \\
 \end{center}
 
 {\it bin\_file}はtasm7が出力した機械語プログラムファイルの名前です．
-{\it com\_port}は，
-TeCと接続されたシリアルポートを表すデバイスファイルの名前です．
-{\it com\_port}は省略できます．
-tsend7を起動すると画面に「TeCを受信状態にする」ように指示が表示されるので，
-TeCのE0H番地に格納されているIPLプログラム
-（「\ref{iplsrc} IPLプログラム」参照）を起動します．
+twrite7を起動すると，
+{\tt .bin}ファイルがTeCの主記憶装置（メモリ）に自動的に書き込まれます．
 
 \section{アセンブラの文法}
 \label{syn}
@@ -469,21 +465,21 @@ CALL & サブルーチン呼び出し
 ＜命令記述６＞& ::= &＜命令６＞ ＜アドレス２＞ \\
 ＜命令記述７＞& ::= &＜命令７＞ ＜式＞ \\
 ＜命令記述８＞& ::= &＜命令８＞ ＜値列＞ \\
-＜アドレス１＞& ::= &＃ ＜式＞ ｜ ＜式＞ ［，＜インデクス＞］ \\
+＜アドレス１＞& ::= &\#＜式＞ ｜ ＜式＞ ［，＜インデクス＞］ \\
 ＜アドレス２＞& ::= &＜式＞ ［，＜インデクス＞］ \\
 ＜値列＞      & ::= &＜拡張式＞ ｛ ，＜拡張式＞ ｝ \\
 ＜拡張式＞    & ::= &＜式＞ ｜ ＜文字列＞ \\
-＜式＞        & ::= &＜項＞ ｜＜項＞ ＋ ＜式＞ ｜ ＜項＞ − ＜式＞ \\
-＜項＞     & ::= &＜因子１＞ ｜ ＜因子１＞ ＊ ＜項＞ ｜ ＜因子１＞ ／ ＜項＞ \\
-＜因子１＞    & ::= &＜因子＞ ｜ ＋＜因子＞ ｜ −＜因子＞ \\
-＜因子＞      & ::= &＜数値＞ ｜ ＜ラベル＞ ｜ （ ＜式＞ ） \\
-＜コメント＞  & ::= &； ｛ ＜文字１＞ ｝ \\
+＜式＞        & ::= &＜項＞ ｛ （ +｜- ） ＜項＞ ｝ \\
+＜項＞        & ::= &＜因子１＞ ｛ （ *｜/ ） ＜因子１＞ ｝ \\
+＜因子１＞    & ::= &＜因子＞ ｜ +＜因子＞ ｜ -＜因子＞ \\
+＜因子＞      & ::= &＜数値＞ ｜ ＜ラベル＞ ｜ ( ＜式＞ ) \\
+＜コメント＞  & ::= &; ｛ ＜文字１＞ ｝ \\
 ＜数値＞      & ::= &＜１０進数＞ ｜ ＜１６進数＞ ｜ ＜文字定数＞ \\
 ＜１０進数＞  & ::= &＜数字＞ ｛ ＜数字＞ ｝ \\
-＜１６進数＞  & ::= &＜数字＞ ｛ ＜１６進数字＞ ｝ Ｈ \\
+＜１６進数＞  & ::= &＜数字＞ ｛ ＜１６進数字＞ ｝ H \\
 ＜文字定数＞  & ::= &'＜文字２＞' \\
 ＜文字列＞    & ::= &"｛ ＜文字３＞ ｝" \\
-＜ラベル＞      & ::= &＜英字＞ ｛ ＜英数字＞ ｝ \\
+＜ラベル＞    & ::= &＜英字＞ ｛ ＜英数字＞ ｝ \\
 ＜英数字＞    & ::= &＜英字＞ ｜ ＜数字＞ \\
 ＜文字１＞    & ::= &＜改行＞以外の文字 \\
 ＜文字２＞    & ::= &＜改行＞，' 以外の文字 \\
@@ -516,7 +512,7 @@ CALL & サブルーチン呼び出し
 \newpage
 \section{プログラム例}
 %\figref{appB:exp1}にローマ字で名前をSIOに出力するプログラムの例を示します．
-以下にローマ字で名前をSIOに出力するプログラムの例を示します．
+以下にローマ字で名前（sigemura）をSIOに出力するプログラムの例を示します．
 
 %\begin{figure*}[btp]
 \begin{center}
@@ -560,59 +556,58 @@ $ tasm7 sigemura.t7                            <--- アセンブル
 結果は [sigemura.lst] と [sigemura.bin] に格納しました。
 ．．．省略．．．
 
-$ tsend7 sigemura.bin                          <--- ダウンロード
-TeC7を受信状態にして Enter キーを押して下さい。
+$ twrite7 sigemura.bin                         <--- ダウンロード
 [00][20][17][00][19][15][5b][00][a4][14][c0][03][63][80][a4][08][cb][02][37]
 [01][a0][02][ff][73][69][67][65][6d][75][72][61][0d][0a][00]
-$ screen /dev/tty.usbserial-xxxxxxxxx          <--- 通信ソフト起動
+$ screen /dev/cu.usbserial-xxxxxxxxx           <--- 通信ソフト起動
 sigemura                                       <--- 実行結果
 ^A^\                                           <--- 通信ソフトの終了
-[EOT]
+[screen is terminating]
 \end{verbatim}
 \end{center}
 %\end{figure*}
 
-\newpage
-\section{IPLプログラム}\label{iplsrc}
-TeCのROM に格納されているIPLプログラムのアセンブルリストを
-参考のため以下に示します．
-TeCのメモリ空間はE0H〜FFH番地がROMになっており，
-以下のIPLプログラムが予め格納されています．
-IPLプログラムは，パソコン上でtasm7を使用してクロス開発さ
-れた機械語プログラムをシリアル入出力から受信してメモリに格納します．
-
-%\begin{figure*}[btp]
-\begin{center}
-\begin{verbatim}
-ADR  CODE          Label   Instruction             Comment              Page(1)
-
-02                 SIOD    EQU     02H            
-03                 SIOS    EQU     03H            
-E0                         ORG     0E0H           
-E0  1F DC          IPL     LD      SP,#0DCH       ; 割込みベクタの直前がスタック
-E2  B0 F6                  CALL    READ           ; ロードアドレスを入力
-E4  D0                     PUSH    G0             
-E5  D6                     POP     G1             
-E6  B0 F6                  CALL    READ           ; 長さを入力
-E8  D0                     PUSH    G0             
-E9  DA                     POP     G2             
-EA  A4 FF          LOOP    JZ      STOP           
-EC  B0 F6                  CALL    READ           
-EE  21 00                  ST      G0,0,G1        
-F0  37 01                  ADD     G1,#1          
-F2  4B 01                  SUB     G2,#1          
-F4  A0 EA                  JMP     LOOP           
-F6                 ;
-F6  C0 03          READ    IN      G0,SIOS        
-F8  63 40                  AND     G0,#40H        
-FA  A4 F6                  JZ      READ           
-FC  C0 02                  IN      G0,SIOD        
-FE  EC                     RET                    
-FF                 ;
-FF  FF             STOP    HALT                   ; PC がゼロになって止まる
-\end{verbatim}
-\end{center}
-%\end{figure*}
+%\newpage
+%\section{IPLプログラム}\label{iplsrc}
+%TeCのROM に格納されているIPLプログラムのアセンブルリストを
+%参考のため以下に示します．
+%TeCのメモリ空間はE0H〜FFH番地がROMになっており，
+%以下のIPLプログラムが予め格納されています．
+%IPLプログラムは，パソコン上でtasm7を使用してクロス開発さ
+%れた機械語プログラムをシリアル入出力から受信してメモリに格納します．
+%
+%%\begin{figure*}[btp]
+%\begin{center}
+%\begin{verbatim}
+%ADR  CODE          Label   Instruction             Comment              Page(1)
+%
+%02                 SIOD    EQU     02H            
+%03                 SIOS    EQU     03H            
+%E0                         ORG     0E0H           
+%E0  1F DC          IPL     LD      SP,#0DCH       ; 割込みベクタの直前がスタック
+%E2  B0 F6                  CALL    READ           ; ロードアドレスを入力
+%E4  D0                     PUSH    G0             
+%E5  D6                     POP     G1             
+%E6  B0 F6                  CALL    READ           ; 長さを入力
+%E8  D0                     PUSH    G0             
+%E9  DA                     POP     G2             
+%EA  A4 FF          LOOP    JZ      STOP           
+%EC  B0 F6                  CALL    READ           
+%EE  21 00                  ST      G0,0,G1        
+%F0  37 01                  ADD     G1,#1          
+%F2  4B 01                  SUB     G2,#1          
+%F4  A0 EA                  JMP     LOOP           
+%F6                 ;
+%F6  C0 03          READ    IN      G0,SIOS        
+%F8  63 40                  AND     G0,#40H        
+%FA  A4 F6                  JZ      READ           
+%FC  C0 02                  IN      G0,SIOD        
+%FE  EC                     RET                    
+%FF                 ;
+%FF  FF             STOP    HALT                   ; PC がゼロになって止まる
+%\end{verbatim}
+%\end{center}
+%%\end{figure*}
 
 \newpage
 \section{機械語プログラムファイル形式}

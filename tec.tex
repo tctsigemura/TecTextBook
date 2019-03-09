@@ -3,19 +3,62 @@
 % Tec 教科書
 %
 %------------------------------------------------------------------------------
-%\documentclass[a4paper,twocolumn,twoside,dvipdfmx]{jbook}
-%\documentclass[a4paper,twocolumn,twoside,dvipdfmx]{jsbook} % platex の場合
 \documentclass[a4paper,twocolumn,twoside]{ltjsbook}   % lualatex の場合
+%----------- 印刷版とPDF版の区別 ----------------------------------------------
+\newif\ifPDF
+%\PDFfalse    %印刷版の場合
+\PDFtrue      %PDF版の場合
+%------------------------------------------------------------------------------
+\ifPDF
+\newcommand{\pdf}{（PDF版）}
+\else
+\newcommand{\pdf}{}
+\fi
+%------------------------------------------------------------------------------
 \usepackage{tec}
+\newcommand{\edition}{第４版}
+\newcommand{\ver}{Ver. 4.1.0}
 %------------------------------------------------------------------------------
 % はじまり
 \begin{document}
-\frontmatter
+%------------------------------------------------------------------------------
+% カバー
+\setcounter{page}{0}
+\thispagestyle{empty}
+\onecolumn
+~
+\vfill
+\vfill
+{\noindent
+\fontsize{34pt}{50pt}\selectfont\textbf{TeC教科書}
+}
+\vfill
+\vfill
+\centerline{
+  \includegraphics[scale=0.38]{Img/TeC7c.jpg}
+}
+\vfill
+\vfill
+\centerline{\Large 徳山工業高等専門学校 情報電子工学科}
+%\centerline{\Large 重村研究室}
+\centerline{\Large\ttfamily https://github.com/tctsigemura/TeC7}
+\vfill
+
+%------------------------------------------------------------------------------
+\ifPDF
+\newpage
+\setcounter{page}{0}
+\thispagestyle{empty}
+\onecolumn
+~
+\fi
+
 %------------------------------------------------------------------------------
 % 表紙
-\title{TeC 教科書\\Ver. 4.1.0}
+\frontmatter
+\title{TeC 教科書\\\ver}
 \author{徳山工業高等専門学校\\情報電子工学科\\TeCプロジェクト\\
-\url{https://github.com/tctsigemura/TeC7/}}
+\url{https://github.com/tctsigemura/TeC7}}
 \date{}
 \maketitle
 
@@ -26,15 +69,29 @@
 ~
 \vfill
 \begin{flushleft}
-Copyright \copyright ~~ 2017 - 2018 by \\
+Copyright \copyright ~~ 2017 - 2019 by \\
 Dept. of Computer Science and Electronic Engineering, \\
 Tokuyama College of Technology, JAPAN
 \end{flushleft}
-
-\vspace{0.8cm}
-本ドキュメントはCC-BY-SAライセンスによって許諾されています。
-ライセンスの内容を知りたい方は\\
-\url{http://creativecommons.org/licenses/by-sa/4.0/deed.ja}でご確認ください。
+\vspace{0.4cm}
+\begin{flushleft}
+本書の一部は，JSPS 科研費 22500833 および 16K0099 の
+助成を受けて作成しました．\\
+本書の最新版は，以下からダウンロード可能です．\\
+\url{https://github.com/tctsigemura/TecTextBook/blob/master/tec.pdf}\\
+本書の講義用スライドは，以下からダウンロード可能です．\\
+\url{https://github.com/tctsigemura/TecTextBook/tree/master/Sld}
+\end{flushleft}
+\vspace{0.4cm}
+\begin{flushleft}
+本書はCC-BY-SAライセンスによって許諾されています．
+ライセンスの全文は，以下で確認できます．\\
+\url{http://creativecommons.org/licenses/by-sa/4.0/deed.ja}
+\end{flushleft}
+\begin{flushleft}
+本書を授業などにご使用の節は，次のアドレスにご連絡いただければ幸いです．\\
+sigemura@tokuyama.ac.jp
+\end{flushleft}
 
 %------------------------------------------------------------------------------
 % 目次
@@ -63,18 +120,27 @@ Tokuyama College of Technology, JAPAN
 \pagestyle{empty}
 \onecolumn
 ~
+\newpage
+~
 \vfill\vfill\vfill
 \begin{center}
 \fbox{\parbox{10cm}{ \vspace{0.3cm}
-{\large\emph{TeC教科書 Ver. 4.1.0}} \\
+{\Large\emph{TeC教科書{\pdf}}} \\
 \\
-　発行年月　２０１８年８月 \\
-　発　　行　独立行政法人国立高等専門学校機構 \\
-　　　　　　徳山工業高等専門学校 \\
-　　　　　　情報電子工学科　重村哲至 \\
-　　　　　　〒745-8585 山口県周南市学園台 \\
-　　　　　　sigemura@tokuyama.ac.jp \\
-}}
+　発行日　２０１７年６月９日 {\edition}\\
+　　　　　２０１９年３月７日 {\ver}\\
+　著　者　重村　哲至 \\
+　発　行　徳山工業高等専門学校　情報電子工学科 \\
+　　　　　〒745-8585 山口県周南市学園台3538 \\
+　　　　　0834-29-6304 \\
+　　　　　sigemura@tokuyama.ac.jp \\
+\\
+\ifPDF
+　\texttt{ISBN978-4-9910528-3-5 C3055}
+\else
+　\texttt{ISBN978-4-9910528-2-8 C3055}
+\fi
+\vspace{0.3cm}}}
 \end{center}
 \vfill
 \end{document}

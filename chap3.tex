@@ -1,12 +1,13 @@
 \chapter{組み立て\label{kumitate}}
-この章では，TeC7の組み立て方を説明します．
+この章では，TeC7dの組み立て方を説明します．
 何年間も使用するマイコンなので，
 慎重に組み立てて下さい．
 作業を始める前に組み立て手順を解説したビデオ\footnote{
   \begin{minipage}[t]{0.9\columnwidth}
     \begin{minipage}{0.75\columnwidth}
-      TeCの組み立て手順全体を説明するビデオが
+      TeC7aの組み立て手順全体を説明するビデオが
       \url{https://youtu.be/wOlOSzEqm0M}に公開してあります．
+      TeC7dも概略は同じです．
     \end{minipage}\hfill
     \begin{minipage}{0.2\columnwidth}
       \myincludegraphics{Img/QR1.png}{scale=0.4}
@@ -23,7 +24,7 @@
 %少し練習して下さい．
 次のような部品から順にハンダ付けします．
 
-\myfigureN{btp}{scale=0.45}{chap3/handa.pdf}
+\myfigureN{bp}{scale=0.45}{chap3/handa.pdf}
           {ハンダ付け手順}{chap3:handa}
 
 \begin{enumerate}
@@ -64,18 +65,18 @@
     \multicolumn{1}{c}{説明} \\
     \hline
     R1,15 & 黄紫茶金   & 470Ω  1/4W カーボン \\
-    R2-6  & 赤紫茶金   & 270Ω  1/4W カーボン \\
     R7    & 茶緑黒茶茶 & 1.5kΩ 1/4W 金属皮膜 \\
     R8    & 橙黒黒茶茶 & 3.0kΩ 1/4W 金属皮膜 \\
     R9-12 & 黄紫赤金   & 4.7kΩ 1/4W カーボン \\
     R13   & 橙橙茶金   & 330Ω  1/4W カーボン \\
     R14   & 茶緑茶金   & 150Ω  1/4W カーボン \\
+    R16   & 茶黒橙金   & 10kΩ  1/4W カーボン \\
   \end{tabular}}
 \end{mytable}
 
 \subsection{積層セラミック・コンデンサ}
-積層セラミックコンデンサは4種類，合計31個あります．
-そのうち，24個は同じ部品です．
+積層セラミックコンデンサは4種類，合計32個あります．
+そのうち，25個は同じ部品です．
 一覧を\tabref{chap3:tbl5}に示します．
 向きはありませんが，
 完成したとき表面の文字が読みやすい方向に取り付けると良いでしょう．
@@ -89,10 +90,10 @@
     \multicolumn{1}{c|}{型番} &
     \multicolumn{1}{c}{説明} \\
     \hline
-    C1,2             &  47 & $  47 pF $    \\
-    C3,4,12-15,17-34 & 104 & $ 0.1 \mu F $ \\
-    C35              & 101 & $ 100 pF $    \\
-    C6,8,10,11       & 475 & $ 4.7 \mu F $ \\
+    C1,2                &  47 & $  47 pF $    \\
+    C3,4,12-15,17-34,37 & 104 & $ 0.1 \mu F $ \\
+    C35                 & 101 & $ 100 pF $    \\
+    C6,8,10,36          & 475 & $ 4.7 \mu F $ \\
   \end{tabular}}
 \end{mytable}
 
@@ -174,7 +175,7 @@ ICと同じ要領で，
     \multicolumn{1}{c|}{型番} &
     \multicolumn{1}{c}{説明} \\
     \hline
-    FB1,2,3 & なし & なし \\
+    FB1,2 & なし & なし \\
   \end{tabular}}
 \end{mytable}
 
@@ -239,7 +240,8 @@ ICと同じ要領で，
     \multicolumn{1}{c|}{型番} &
     \multicolumn{1}{c}{説明} \\
     \hline
-    C0,C5,C7,C9,C16 & $ 47 \mu F  25V $ & $ 47 \mu F$ \\
+    C0,C5,C7,C9,C16 & $ 25V 47  \mu F $ & $ 47  \mu F$ \\
+    C11             & $ 10V 220 \mu F $ & $ 220 \mu F$ \\
   \end{tabular}}
 \end{mytable}
 
@@ -266,7 +268,7 @@ LEDをハンダ付けする要領は次の通りです．
 \end{enumerate}
 
 \myfigureN{tbp}{scale=0.8}{Tikz/leds.pdf}{LEDの向きの見方}{chap3:leds}
-\myfigureN{tbp}{scale=0.8}{Tikz/leds2.pdf}{LEDの配置}{chap3:leds2}
+\myfigureN{tbp}{scale=0.9}{Tikz/leds2.pdf}{LEDの配置}{chap3:leds2}
 
 \subsection{スイッチ}
 
@@ -321,7 +323,7 @@ LEDをハンダ付けする要領は次の通りです．
   \end{tabular}}
 \end{mytable}
 
-\myfigureN{tbp}{scale=1.2}{Tikz/cn.pdf}{JTAG コネクタ}{chap3:cn}
+\myfigureN{tbp}{scale=1.3}{Tikz/cn.pdf}{JTAG コネクタ}{chap3:cn}
 
 \subsection{入出力ポートコネクタ}
 マイコンの外部に追加の回路を接続するときに使用するコネクタです．
@@ -341,7 +343,7 @@ LEDをハンダ付けする要領は次の通りです．
   \end{tabular}}
 \end{mytable}
 
-\myfigureN{tbp}{scale=0.6}{chap3/cnn.pdf}{入出力ポートコネクタ}{chap3:cnn}
+\myfigureN{tbp}{scale=0.7}{chap3/cnn.pdf}{入出力ポートコネクタ}{chap3:cnn}
 
 \subsection{電源コネクタ}
 
@@ -350,7 +352,6 @@ LEDをハンダ付けする要領は次の通りです．
 このコネクタからマイコンに電源を供給します．
 パソコンの USB ポートと接続してパソコンとの通信に使用することもあります．
 \figref{chap3:cn1}~（2）に示す基板上の取り付け穴にハンダ付けします．
-付属のコネクタ部品によっては手前の二つの穴を使用しないこともあります．
 このコネクタの取り付けでは，失敗するとひどい火傷をする恐れがあります．
 以下の手順を良く読んで慎重に作業してください．
 
@@ -366,12 +367,12 @@ LEDをハンダ付けする要領は次の通りです．
   \end{tabular}}
 \end{mytable}
 
-\myfigureN{tbp}{scale=0.7}{chap3/cn1.pdf}{電源コネクタ}{chap3:cn1}
+\myfigureN{tbp}{scale=0.7}{Keynote/cn1-crop.pdf}{電源コネクタ}{chap3:cn1}
 
 \begin{enumerate}
 \item 穴にしっかり差し込む．
 \item 大きな穴とコネクタの端子を十分熱する．
-\item 大きな穴が塞がるまで，ハンダをどんどん融かし込む．
+\item 大きな穴が塞がるまで，ハンダを融かし込む．
 \item \emph{十分に冷めるのを待つ．}
 \item 部品が傾いていないか確認する．
 \item 小さな穴に部品の足をハンダ付けする．
