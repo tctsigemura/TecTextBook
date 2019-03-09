@@ -73,7 +73,7 @@ UNIXやmacOS，またはWindows上で動作する「クロスアセンブラ」�
 ``{\tt xxx.t7}''ファイルに書込みます．
 
 \begin{figure}[bt]
-{\small\begin{lstlisting}
+{\small\begin{lstlisting}[xleftmargin=5mm]
 ; 入力例
    ld g0,a
    st g0,b
@@ -162,47 +162,47 @@ $
 アセンブラを実行することにより，
 拡張子``{\tt .bin}''のファイルに機械語が格納されました．
 次に，この機械語をTeCの主記憶にダウンロードします．
+ダウンロード方法は{\tt tsend7}コマンドを用いる方法\footnote{
+全てのTeC7で使用できます．
+tsend7を用いる方法は「TeC教科書 Ver. 4.0.5」
+（\url{https://github.com/tctsigemura/TecTextBook/blob/v4.0.5/tec.pdf}）
+に解説してあります
+}と，{\tt twrite7}コマンドを用いる方法\footnote{
+TeC7c以降の機種で使用できます．
+}の二種類があります．
+以下では{\tt twrite7}コマンドを用いる方法を説明します．
 
-転送にはパソコンとTeCをケーブルで接続し通信できる状態にした上で，
-パソコンで{\tt tsend7}コマンド，
-TeCでIPL（Initial Program Loader：付録\ref{iplsrc}参照）
-プログラムを実行します．
-{\tt tsend7}コマンドとIPLプログラムが通信して
-パソコンからTeCにプログラムが転送されます．
-
+プログラムをダウンロードするには，
+パソコンとTeCをUSBケーブルで接続し通信できる状態にした上で，
+パソコンで{\tt twrite7}コマンドを実行します．
 ケーブルの接続方法は「\ref{sio} TeCシリアル入出力」を参照してください．
 ダウンロード手順は次の通りです．
+
 \begin{enumerate}
-\item パソコンで{\tt tsend7}プログラムを起動します．
-下の実行例のように機械語が格納されたファイル（{\tt xxx.bin}）を指定します．
-TeCを受信状態にするように指示が表示されます.
-
-\item TeCでIPLプログラムを起動します．
-IPLはメモリのE0H番地からFFH番地のROM領域に予め格納されています
-（「\figref{appC:insttbl} TeC7命令表」のメモリマップ参照）．
-PCにE0HをセットしRUNボタンを押とIPLが起動します．
-
-\item パソコン側でEnterを入力します．
-実行例を\figref{chap6:tsend7}に示します．
+\item パソコンで{\tt tasm7}を用いて{\tt .bin}ファイルを作成します．
+\item パソコンで{\tt .bin}ファイルを指定して
+  {\tt twrite7}コマンドを実行します．
+  その様子を\figref{chap6:twrite7}に示します．
+\item 自動的にコンソールパネルが操作され，
+  {\tt .bin}ファイルのプログラムがTeCの主記憶装置（メモリ）に書き込まれます．
+\item {\tt twrite7}はプログラムの先頭アドレスをPCに自動的にセットします．
+\end{enumerate}
 
 \begin{figure}[bt]
 {\small\begin{lstlisting}[numbers=none]
-$ tsend7 xxx.bin
-TeC7を受信状態にして Enter キーを押して下さい．
+$ twrite7 xxx.bin
 [00][07][10][05][20][06][ff][0a][00]
 $
 \end{lstlisting}}
-\caption{tsend7の実行例}
-\label{fig:chap6:tsend7}
+\caption{twrite7の実行例}
+\label{fig:chap6:twrite7}
 \end{figure}
 
-\end{enumerate}
-
 以上の操作で，
-コンソールパネルから機械語を打ち込むこと無く，
-機械語がTeCの主記憶の00H番地から始まる領域に書き込まれました．
-主記憶に書き込まれたプログラムを実行する方法は，
-コンソールパネルから機械語を打ち込んだ場合と同様です．
+手動でコンソールパネルから機械語を打ち込むこと無く，
+機械語がTeCの記憶装置に書き込まれました．
+主記憶装置に書き込まれたプログラムを実行したりデバッグしたりする方法は，
+手動でコンソールパネルから機械語を打ち込んだ場合と同様です．
 
 %----------------------------------------------------------------------------
 \newpage

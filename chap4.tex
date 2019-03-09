@@ -22,7 +22,7 @@
 \figref{chap4:kakubu}に，マイコン各部の名称（または役割り）を示します．
 各部の役割りは次の通りです．
 
-\myfigureNA{tbp}{scale=0.8}{chap4/kakubu.pdf}{各部の名称}{chap4:kakubu}
+\myfigureNA{tbp}{scale=0.5}{Keynote/kakubu-crop.pdf}{各部の名称}{chap4:kakubu}
 
 \begin{enumerate}
 \item コンソールパネル \\
@@ -47,13 +47,15 @@
   マイコンに電力を供給するコネクタです．
   付属のアダプタに USB ケーブルを用いて接続します．
   USB ケーブルでパソコンと接続して通信させることも可能です．
-\item $\mu SD$ スロット \\
-  携帯電話などで使用する $\mu SD$ メモリカードを挿入します．
+\item マイクロ SD スロット \\
+  携帯電話などで使用するマイクロ SD カードを挿入します．
   この機能は，「TaC モード」で使用します．
 \item JTAGコネクタ \\
   マイコン本体の回路を変更するとき使用します．
 \item 入出力ポートコネクタ \\
   マイコンの外部に追加の回路を接続するために使用します．
+\item Bluetoothモジュール \\
+  スマホ，タブレットやPCと Bluetooth を用いた通信ができます．
 \end{enumerate}
 
 \section{コンソールパネル}
@@ -128,7 +130,7 @@ CPUが正しくない命令を実行した場合は点滅して異常を知ら�
 プログラムを実行させたり実行を途中で止めたりすることができます．
 また，\figref{chap4:naibu}に示すTeC内部の情報にアクセスすることができます．
 TeCの内部には3ビットのフラグ，8ビットのレジスタが5個，
-$8ビット \times 256$のメモリが内蔵されています．
+$8ビット \times 256$の主記憶（メモリ）が内蔵されています．
 以下では，コンソールパネルの操作方法を目的別に説明します．
 
 \myfigureN{tbp}{width=\columnwidth}{chap4/naibu.pdf}
@@ -251,7 +253,7 @@ $8ビット \times 256$のメモリが内蔵されています．
       \end{tabular}
     \end{center}}
 
-    \subsubsection{プログラム打ち込み手順}
+    \subsubsection{プログラムの打ち込み手順}
 
     \begin{enumerate}
     \item ロータリースイッチをMMに合わせる．
@@ -263,7 +265,7 @@ $8ビット \times 256$のメモリが内蔵されています．
     \item WRITEスイッチを押しメモリ$03_{16}$番地に$FF_{16}$を書き込む．
     \end{enumerate}
 
-    \subsubsection{プログラム実行手順}
+    \subsubsection{プログラムの実行手順}
 
     \begin{enumerate}
     \item ロータリースイッチをPCに合わせる．

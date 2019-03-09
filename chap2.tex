@@ -97,13 +97,13 @@ OFF & : & 0
 どんな情報だって表現できます．
 
 \begin{mytable}{tb}{ビットの組合せの数}{chap2:bits}
-{\small\begin{tabular}{c|l|c} \hline\hline
+{\small\begin{tabular}{c|l|l} \hline\hline
 ビット数 & \multicolumn{1}{c|}{ビットの組合せ} & 組合せ数\\
 \hline
-1 & 0 1   & 2 \\
-2 & 00 01 10 11 & 4 \\
+1 & 0 1   & $2^1$ ($=2$) \\
+2 & 00 01 10 11 & $2^2$ ($=4$) \\
 3 & 000 001 010 011 &   \\
-  & 100 101 110 111 & 8 \\
+  & 100 101 110 111 & $2^3$ ($=8$) \\
 ...& ... &\\
 n &  & $2^n$ \\
 \end{tabular}}
@@ -113,7 +113,15 @@ n &  & $2^n$ \\
 8ビットまとめたものにも名前があります．
 「4ビット」を「1ニブル」，「8ビット」を「1バイト」と呼びます．
 
-%\pagebreak
+\subsubsection{問題}
+\begin{enumerate}
+\item 32ビットは何バイトになりますか？
+\item 3バイトは何ビットになりますか？
+\item 4ビットで何種類の情報を表現できますか？
+\item 1バイトで何種類の情報を表現できますか？
+\end{enumerate}
+
+\newpage
 \section{数値の表現}
 
 ビットの組合せをどのように意味付けするかは，前節の例のように
@@ -126,18 +134,20 @@ n &  & $2^n$ \\
 コンピュータの内部では，数値を2進数で表すのが普通です．
 我々が普段使用している10進数と，2進数の特徴比較を次に示します．
 
-%{\small\begin{flushleft}
-\subsubsection{10進数の特徴}
-\begin{enumerate}
-\item[(1)] 0 〜 9の10種類の数字を使用する．
-\item[(2)] 1桁毎に10倍の重みをもつ．
-\end{enumerate}
-\subsubsection{2進数の特徴}
-\begin{enumerate}
-\item[(1)] 0と1の2種類の数字を使用する．
-\item[(2)] 1桁毎に2倍の重みをもつ．
-\end{enumerate}
-%\end{flushleft}}
+%{\small
+\begin{itemize}
+\item 10進数の特徴
+  \begin{enumerate}
+  \item[(1)] 0 〜 9の10種類の数字を使用する．
+  \item[(2)] 1桁毎に10倍の重みをもつ．
+  \end{enumerate}
+\item 2進数の特徴
+  \begin{enumerate}
+  \item[(1)] 0と1の2種類の数字を使用する．
+  \item[(2)] 1桁毎に2倍の重みをもつ．
+  \end{enumerate}
+\end{itemize}
+%}
 
 コンピュータの内部では，ビットが情報の表現に使用されています．
 そこで，ビット値の0/1をそのまま2進数の1桁と考えれば数値が表現できます．
@@ -148,8 +158,7 @@ n &  & $2^n$ \\
 \begin{mytable}{tb}{4ビットの２進数}{chap2:bin4}
 {\small\begin{tabular}{c|c|c|c|r}
 \hline\hline
-bit 3 & bit 2 & bit 1 & bit 0 & 意味\\
-($b_3$)&($b_2$)&($b_1$)&($b_0$)&\\
+$b_3$ & $b_2$ & $b_1$ & $b_0$ & 意味\\
 \hline
  0 &  0 &  0 &  0 &  0 \\
  0 &  0 &  0 &  1 &  1 \\
@@ -170,14 +179,12 @@ bit 3 & bit 2 & bit 1 & bit 0 & 意味\\
 \end{tabular}}
 \end{mytable}
 
-
 \subsection{2進数と10進数の相互変換}
 
 \tabref{chap2:bin4}に示した4ビットの範囲なら，
 2進数と10進数の対応を暗記することが可能です．
 しかし，8ビットの場合ならどうでしょう？
-
-組合せは256もあり，とても暗記できそうにありません．
+組合せは256（$=2^8$）もあり暗記でません．
 対応を計算で求める必要があります．
 
 \subsubsection{2進から10進への変換}
@@ -265,8 +272,13 @@ $~~            ~~~~0    {\cdots 1}$
 
 何進数で書いてあるのかをはっきりさせるために，
 \tabref{chap2:hex}のように数値の右に小さな字で何進数かを書き加えます．
-ときには，数字の代わりに「2進数='b'」，「16進数='H'」を加えることもあります．
-例えば，「$01100100_2$を$01100100_b$」，「$64_{16}$を64H」のように書きます．
+ときには，数字の代わりに
+%「2進数='b'」，
+%「16進数='H'」
+'H'を加えることもあります．
+例えば，
+%「$01100100_2$を$01100100_b$」，
+「$64_{16}$を64H」のように書きます．
 
 \begin{mytable}{tb}{2進数，16進数，10進数対応表}{chap2:hex}
 {\small\begin{tabular}{ c | c | c }
@@ -299,7 +311,8 @@ $1111_2$ & $F_{16}$ & $15_{10}$ \\
 \subsubsection{問題}
 \begin{enumerate}
 \item
-\tabref{chap2:hex}「2進数，16進数，10進数対応表」を暗記しなさい．
+%\tabref{chap2:hex}「2進数，16進数，10進数対応表」を暗記しなさい．
+\tabref{chap2:hex}の内容を暗記しなさい．
 \item
 10進数の16，50，100，127，130を，2進数（8桁），
 16進数（2桁）で書き表しなさい．
@@ -314,7 +327,7 @@ $1111_2$ & $F_{16}$ & $15_{10}$ \\
 %}
 \end{flushleft}
 
-%\pagebreak
+\newpage
 \section{負数の表現}
 \label{minus}
 拡張おおかみが来た情報表示装置では，
@@ -590,7 +603,21 @@ y &= 2^n - x             \\
 \fbox{\small\emph{ビット反転した後，1を加える．}}
 \end{center}
 
-%\pagebreak
+\subsubsection{問題}
+\begin{enumerate}
+\item
+次の数を「2の補数表現を用いた4ビット符号付き2進数」で書き表しなさい．\\
+$3_{10}$，$-3_{10}$，$5_{10}$，$-5_{10}$，$6_{10}$，$-6_{10}$
+\item
+次の数を「2の補数表現を用いた8ビット符号付き2進数」で書き表しなさい．\\
+$3_{10}$，$-3_{10}$，$8_{10}$，$-8_{10}$，\\
+$30_{10}$，$-30_{10}$，$100_{10}$，$-100_{10}$
+\item
+次の「2の補数表現を用いた4ビット符号付き2進数」を10進数で書き表しなさい．\\
+$1100_2$，$1011_2$，$0100_2$，$1101_2$
+\end{enumerate}
+
+\newpage
 \section{2進数の計算}
 
 ここでは，2進数の和と差の計算方法を学びます．
@@ -722,19 +749,22 @@ $1111_2 + 1101_2 = \fbox{1}1100_2 =  -4_{10}$ \\
 計算できます．ここでは省略しますが，引き算も同様に正負の区別をする
 ことなく計算できます．
 
+\begin{figure}[b]
+\begin{framed}{\parindent=1em
+\subsection*{MSBとLSB}
+「2の補数表現を用いると，最上位ビットが1なら負の数と分かります．」
+のように「最上位ビット」と言う言葉をよく使います．
+
+「最上位ビット」と言うのは長いので，これを英語にした「Most Significant
+Bit」の頭文字を取りMSBと略すことが良くあります．憶えておいて下さい．
+
+同様に「最下位ビット」のことは英語で「Least Significant Bit」なので，
+略してLSBと呼びます．これも，憶えておきましょう．
+}\end{framed}
+\end{figure}
+
+\newpage
 \subsubsection{問題}
-\begin{enumerate}
-\item
-次の数を「2の補数表現を用いた4ビット符号付き2進数」で書き表しなさい．\\
-$3_{10}$，$-3_{10}$，$5_{10}$，$-5_{10}$，$6_{10}$，$-6_{10}$
-\item
-次の数を「2の補数表現を用いた8ビット符号付き2進数」で書き表しなさい．\\
-$3_{10}$，$-3_{10}$，$8_{10}$，$-8_{10}$，\\
-$30_{10}$，$-30_{10}$，$100_{10}$，$-100_{10}$
-\item
-次の「2の補数表現を用いた4ビット符号付き2進数」を10進数で書き表しなさい．\\
-$1100_2$，$1011_2$，$0100_2$，$1101_2$
-\item
 次の2進数は「2の補数表現を用いた符号付き2進数」です．空欄を埋めなさい．
 
 {\small\begin{center}
@@ -773,16 +803,16 @@ $1100_2$，$1011_2$，$0100_2$，$1101_2$
 \end{tabular}
 \end{center}}
 
-%\tabcolsep=2mm\begin{tabular}{ l c r  c c r }
-%5) &     & $1110~0100_2$ &    &   & $\fbox{　　　}_{10}$ \\
-%   & $-$ & $1100~0001_2$ & → & $-$ & $\fbox{　　　}_{10}$ \\
-%\cline{2-3} \cline{5-6}
-%   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
-%\end{tabular}
+{\small\begin{center}
+\tabcolsep=2mm\begin{tabular}{ l c r  c c r }
+5) &     & $1110~0100_2$ &    &   & $\fbox{　　　}_{10}$ \\
+   & $-$ & $1100~0001_2$ & → & $-$ & $\fbox{　　　}_{10}$ \\
+\cline{2-3} \cline{5-6}
+   &   & $\fbox{　　　　}_2$ & ~ &  & $\fbox{　　　}_{10}$
+\end{tabular}
+\end{center}}
 
-\end{enumerate}
-
-%\pagebreak
+\newpage
 \section{小数の表現}
 
 この節では，小数を2進数で表現する方法を紹介します．
@@ -869,6 +899,7 @@ $1.000_2$      &                &           & $\underline{1}.000$ \\
 整数部分と小数部分を分離して，別々に計算します．
 \end{enumerate}
 
+\newpage
 \subsubsection{問題}
 \begin{enumerate}
 \item 次の2進数を10進数に変換しなさい．
@@ -892,21 +923,7 @@ $1.000_2$      &                &           & $\underline{1}.000$ \\
 \end{enumerate}
 \end{enumerate}
 
-\begin{figure}[tbp]
-\begin{framed}{\parindent=1em
-\subsection*{MSBとLSB}
-「2の補数表現を用いると，最上位ビットが1なら負の数と分かります．」
-のように「最上位ビット」と言う言葉をよく使います．
-
-「最上位ビット」と言うのは長いので，これを英語にした「Most Significant
-Bit」の頭文字を取りMSBと略すことが良くあります．憶えておいて下さい．
-
-同様に「最下位ビット」のことは英語で「Least Significant Bit」なので，
-略してLSBと呼びます．これも，憶えておきましょう．
-}\end{framed}
-\end{figure}
-
-%\pagebreak
+\newpage
 \section{文字の表現}
 \label{char}
 
@@ -949,7 +966,7 @@ ASCII文字コードは7ビットで表現されます．しかし，コンピ�
 JIS 8ビットコードは，ASCIIコードに半角カタカナを追加したものです．
 記号，数字，英字の部分は，\.ほ\.ぼ，同じ並びになっています．
 
-%\pagebreak
+%\newpage
 \section{補助単位}
 
 長さや重さを書くとき，1,000m を 1km， 1,000g を 1kg のように書きました．
@@ -990,7 +1007,7 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 \end{tabular}}
 \end{mytable}
 
-%\pagebreak
+\newpage
 \section{コンピュータの基本回路}
 
 前の節までで，コンピュータ内部での情報の表現方法を勉強しました．
@@ -1058,11 +1075,11 @@ $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
 
 \subsubsection{半加算器}
 例えば，1ビットの足し算回路は\figref{chap2:ha}ように実現できます．
-この例では A，Bの2ビットを入力し，
-和（S）と上の桁への桁上がり（C）を出力する回路を示しています．
+この例は A，Bの2ビットを入力し，
+和（S）と上の桁への桁上がり（C）を出力する回路です．
 この回路を「半加算器」と呼びます．
 
-\myfigureN{b}{scale=0.8}{Tikz/ha.pdf}{1ビット半加算器}{chap2:ha}
+\myfigureN{tb}{scale=0.8}{Tikz/ha.pdf}{1ビット半加算器}{chap2:ha}
 
 \subsubsection{全加算器}
 半加算器は桁上がりを出力しますが，
@@ -1118,6 +1135,7 @@ RS-FFは，回路をリセット／セットした後で「記憶」状態にす
 
 \myfigureN{tb}{scale=0.8}{Tikz/rsff.pdf}{RSフリップフロップ}{chap2:rsff}
 
+%\newpage
 \section{まとめ}
 この章では，
 まず，ノイマン型コンピュータの内部では，情報が電気（電子）回路で扱い
@@ -1143,3 +1161,24 @@ RS-FFは，回路をリセット／セットした後で「記憶」状態にす
 \centerline{\myincludegraphics{Tikz/lic.pdf}{scale=0.6}}
 }\end{framed}
 \end{figure}
+
+\begin{figure}[bt]
+\begin{framed}{\parindent=1em
+\subsection*{FPGA（field-programmable gate array）}
+大量の論理回路素子を内蔵したLSI（Large Scale Integrated Circuit）の一種です．
+半導体メーカが製造したFPGAは，
+FPGAを利用する装置の設計者によって内部の回路をプログラムされ，
+最終製品に組み込まれます．
+
+TeCもFPGAを利用した製品の一つです．
+\figref{chap4:kakubu}で「マイコン本体」と紹介されているLSIは，
+Xilinx社のSpartan-6という名前のFPGAです．
+これに，徳山高専で設計したTeCマイコンの回路をプログラムし
+TeCとして動作させています．
+
+TeC7が利用している Xilinx Spartan-6 FPGA （XC6LX9-2TQG144C）には，
+74シリーズの論理IC換算で数万個分程度（かなり幅がありますが）の
+回路をプログラムすることができます．
+}\end{framed}
+\end{figure}
+\vfill

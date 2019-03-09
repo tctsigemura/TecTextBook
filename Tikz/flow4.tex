@@ -2,12 +2,13 @@
 \documentclass[border=1mm]{standalone}
 \usepackage{myFig}
 \begin{document}
-\begin{tikzpicture}[node distance=15mm]
+\begin{tikzpicture}[node distance=13mm]
   \node (start) [startstop] {START};
-  \node (proc1) [process, below of=start] {$G0 \leftarrow G0 << 1$};
+  \node (proc1) [process, below of=start, node distance=10mm]
+        {$G0 \leftarrow G0 << 1$};
   \node (deci1) [decision, below of=proc1] {Cフラグ};
   \node [anchor=south west] at (deci1.east) {$=0$};
-  \node [anchor=north west] at (deci1.south) {$=1$};
+  \node [anchor=north west] at ([yshift=2mm]deci1.south) {$=1$};
   \node (proc2) [process, below of=deci1] {$G0 \leftarrow G0 + 1$};
   \node (end) [startstop, below of=proc2] {END};
   
