@@ -48,12 +48,15 @@
   データを転送（コピー）する．
 
   \begin{description}
-  \item[ニーモニック：] \texttt{LD GR,EA} ~~~~~~~~~ 例
-    \vspace{0.5cm}
+  \item[ニーモニック：] \texttt{LD GR,EA}
+    \vfill
 
   \item[命令フォーマット：] 2バイトの長さを持つ．\\
     \twoByte{$0001_2$}{\GR~\XR}{\A}
-  \item[フィールド：] \texttt{OP}，\texttt{GR}，\\ \texttt{XR}，\texttt{A}
+    \vfill
+
+  \item[フィールド：] \texttt{OP}，\texttt{GR}，\texttt{XR}，\texttt{A}
+    \vfill
 
   \item[GRフィールドの意味と値：]GRの2ビットでCPUレジスタを指定する．\\
     {\small\begin{center}
@@ -66,6 +69,7 @@
         $11_2$ & SP \\
       \end{tabular}
     \end{center}}
+    \vfill
 
   \end{description}
 \end{frame}
