@@ -21,38 +21,59 @@
 %  \tableofcontents
 %\end{frame}
 
-\section{シフト（桁ずらし）命令}
+\section{論理演算命令}
 %==============================================================================
 \begin{frame}
-  \frametitle{シフト（桁ずらし）命令}
+  \frametitle{論理演算}
+  \emph{「2.8 コンピュータの基本回路」}で学んだ論理演算を再確認．
+  \vfill
+  \begin{tabular}{l l}
+    \emph{論理積（AND）} & \emph{論理和（OR）}      \\
+    \includegraphics[scale=0.7]{../Tikz/and.pdf}    &
+    \includegraphics[scale=0.7]{../Tikz/or.pdf}     \\
+    \emph{排他的論理和（XOR）} & \emph{否定（NOT）} \\
+    \includegraphics[scale=0.7]{../Tikz/xor.pdf}    &
+    \includegraphics[scale=0.7]{../Tikz/not.pdf}    \\
+  \end{tabular}
+  \vfill
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{論理演算命令}
+  \emph{論理演算を行うTeCの命令} \\
+  8ビットデータを単位に，ビット毎の論理演算を行う． \\
+  \centerline{\includegraphics[scale=0.8]{../Tikz/land.pdf}}
+  \vfill
+  次の３種類がある（NOTはない）．
   \begin{itemize}
-  \item データの２進数を左右に桁移動する命令のこと．
-  \item TeCは４種類（実質は３種類）の命令を持っている．
-  \item \emph{左シフト（論理・算術）}\\
-    \vspace{-0.3cm}\centerline{\includegraphics[scale=0.7]{../Tikz/shft1.pdf}}
-  \item \emph{右シフト（論理）}\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/shft3.pdf}}
-  \item \emph{右シフト（算術）}\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/shft2.pdf}}
+  \item \emph{論理積（AND)}
+  \item \emph{論理和（OR)}
+  \item \emph{排他的論理和（XOR)}
   \end{itemize}
   \vfill
 \end{frame}
 
 %==============================================================================
 \begin{frame}
-  \frametitle{SHLA（Shift Left Arithmetic）命令}
-  左算術（算術＝Arithmetic）シフト命令．\\
-  レジスタの値を左に\emph{１ビット}ずらす．（シフトする）\\
-  \vfill
-  \centerline{\includegraphics[scale=0.7]{../Tikz/shft1.pdf}}
+  \frametitle{AND（Logical AND）命令（論理積）}
+  \begin{minipage}{0.48\columnwidth}
+  レジスタ値とメモリ値のビット毎の\emph{論理積}を計算し，
+  結果をレジスタに格納する．
+  \end{minipage}
+  \begin{minipage}{0.48\columnwidth}
+  \centerline{\includegraphics[scale=0.8]{../Tikz/land.pdf}}
+  \end{minipage}
   \vfill
   \begin{description}
-  \item[Cフラグ] 上の図のように変化する．
-  \item[Sフラグ] 結果が負なら1，それ以外は0になる．
+  \item[Cフラグ] 常に0になる．
+  \item[Sフラグ] 結果が負（MSBが1）なら1，それ以外は0になる．
   \item[Zフラグ] 結果がゼロなら1，それ以外は0になる．
     \vfill
-  \item[フローチャート：] Javaのシフト演算子を流用する．\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/shla.pdf}}
+  \item[ニーモニック：]\texttt{AND GR,EA}~~~~~~~~~\texttt{（GR ← GR \& [EA]）}
+    \vfill
+  \item[命令フォーマット：] 2バイトの長さを持つ．\\
+    {\small\twoByte{$0110_2$}{\GR~\XR}{\A}}
   \end{description}
   \vfill
 \end{frame}
@@ -60,224 +81,200 @@
 %==============================================================================
 \begin{frame}
   \begin{description}
-  \item[ニーモニック：] \texttt{SHLA GR}
+  \item[フローチャート：] Javaの演算子を流用する．\\
     \vfill
-  \item[命令フォーマット：] 1バイトの長さを持つ．\\
-    \oneByte{$1001_2$}{\GR~$00_2$}
+    \centerline{\includegraphics[scale=0.7]{../Tikz/and_chap5.pdf}}
+    \vfill
+  \item[使用例：]
+    A番地のデータとB番地のデータのビット毎の論理積を計算し，
+    C番地に格納するプログラムの例を示す．
   \end{description}
   \vfill
+  \begin{minipage}{0.58\columnwidth}
+    {\ttfamily\small\begin{center}
+      \begin{tabular}{|l|l|l|l l|} \hline
+        番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
+        \hline
+        00 & 10 07 &   & LD   & G0,A \\
+        02 & 60 08 &   & AND  & G0,B \\
+        04 & 20 09 &   & ST   & G0,C \\
+        06 & FF    &   & HALT &      \\
+        07 & 63    & A & DC   & 63H  \\
+        08 & 0F    & B & DC   & 0FH  \\
+        09 & 00    & C & DS   & 1    \\
+        \hline
+      \end{tabular}
+    \end{center}}
+  \end{minipage}
+  \begin{minipage}{0.38\columnwidth}
+    \centerline{\includegraphics[scale=0.8]{../Tikz/land1.pdf}}
+  \end{minipage}
   \vfill
-  \emph{例：}SHLA命令を実行して確かめる．（イルミネーション？）\\
-  （次のプログラムをG0を表示したままSTEP実行する．）
-  \vfill
-  \centerline{\ttfamily %\footnotesize
-    \begin{tabular}{|l|l|l|l|l|}
-      00 & 10 05 &      & LD   & G0, N    \\
-      02 & 90    & LOOP & SHLA & G0       \\
-      03 & A0 02 &      & JMP  & LOOP     \\
-      05 & 01    & N    & DC   & 1        \\
-    \end{tabular}}
-  \vfill
-  \emph{注：}左シフトは×２を計算している．\\
   \vfill
 \end{frame}
 
 %==============================================================================
 \begin{frame}
-  \frametitle{SHLL（Shift Left Logical）命令}
-  左論理（論理＝Logical）シフト命令．\\
-  レジスタの値を左に\emph{１ビット}ずらす．（シフトする）\\
-  （SHLL命令とSHLA命令の動作は全く同じ．）
+  \frametitle{AND命令の応用（１）}
+  \emph{特定のビットがゼロか判定する．} \\
+  ANDの結果が$00_{16}$かどうかで判断できる．\\
+  次は最下位ビット（LSB）を調べる例．\\
+  \vfill
+  \begin{minipage}{0.48\columnwidth}
+    {\small\ttfamily\begin{center}
+      \begin{tabular}{|l|l l|l}
+        \cline{1-3}
+        ラベル & \multicolumn{2}{|c|}{ニーモニック} & \\
+        \cline{1-3}
+        & ...  &        & \\
+        & AND  & G0,ONE & \\
+        & JZ   & L1     & \\
+        & ...  &        & \\
+        L1  & ...  &        & \\
+        & ...  &        & \\
+        ONE & DC   & 01H    & \\
+        \cline{1-3}
+      \end{tabular}
+    \end{center}}
+  \end{minipage}
+  \begin{minipage}{0.48\columnwidth}
+    \centerline{\includegraphics[scale=0.8]{../Tikz/land3.pdf}}
+  \end{minipage}
+  \vfill
+  LSB : Least Significant Bit （最下位ビットのこと, P.10参照）
+  \vfill
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{AND命令の応用（２）}
+  \emph{特定のビットを右詰めで取り出す．} \\
+  （$b_3$，$b_2$を右詰めで取り出す．）\\
+  \begin{minipage}{0.48\columnwidth}
+    {\small\ttfamily\begin{center}
+      \begin{tabular}{|l|l l|l}
+        \cline{1-3}
+        ラベル & \multicolumn{2}{|c|}{ニーモニック} & \\
+        \cline{1-3}
+        & ...  &        & \\
+        & AND  & G0,MSK & \\
+        & SHRL & G0     & \\
+        & SHRL & G0     & \\
+        & ...  &        & \\
+        MSK & DC   & 0CH    & \\
+        \cline{1-3}
+      \end{tabular}
+    \end{center}}
+  \end{minipage}
+  \begin{minipage}{0.48\columnwidth}
+    \centerline{\includegraphics[scale=0.8]{../Tikz/land2.pdf}}
+  \end{minipage}
+  \vfill
+  \vfill
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{OR（Logical OR）命令（論理和）}
+  レジスタ値とメモリ値のビット毎の\emph{論理和}をレジスタに格納する．
   \vfill
   \begin{description}
-  \item[フラグ] SHLAと同じ
+  \item[Cフラグ] 常に0になる．
+  \item[Sフラグ] 結果が負（MSBが1）なら1，それ以外は0になる．
+  \item[Zフラグ] 結果がゼロなら1，それ以外は0になる．
     \vfill
-  \item[フローチャート：] SHLAと同じ
+  \item[ニーモニック：]\texttt{OR GR,EA}~~~~~~~~~\texttt{（GR ← GR \textbar{} [EA]）}
     \vfill
-  \item[ニーモニック：] \texttt{SHLL GR}
+  \item[命令フォーマット：] 2バイトの長さを持つ．\\
+    {\small\twoByte{$0111_2$}{\GR~\XR}{\A}}
     \vfill
-  \item[命令フォーマット：] 1バイトの長さを持つ．\\
-    \oneByte{$1001_2$}{\GR~$01_2$}
   \end{description}
   \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{左シフトを用いた×２計算}
-  \begin{minipage}{0.48\columnwidth}
-    \begin{center}
-      {\ttfamily%\footnotesize
-        \begin{tabular}{r r}
-          \multicolumn{2}{c}{符号なし数の×２} \\
-          0000 0001 & (1) \\
-          0000 0010 & (2) \\
-          0000 0100 & (4) \\
-          0000 1000 & (8) \\
-          0001 0000 & (16) \\
-          0010 0000 & (32) \\
-          0100 0000 & (64) \\
-          1000 0000 & (128) \\
-          0000 0000 & (ERR) \\
-        \end{tabular}
-      }\\
-      \vspace{0.5cm}
-      SHLL命令はこちら用
-    \end{center}
-  \end{minipage}
-  \begin{minipage}{0.48\columnwidth}
-    \begin{center}
-      {\ttfamily%\footnotesize
-        \begin{tabular}{r r}
-          \multicolumn{2}{c}{符号付き数の×２} \\
-          1111 1111 & (-1) \\
-          1111 1110 & (-2) \\
-          1111 1100 & (-4) \\
-          1111 1000 & (-8) \\
-          1111 0000 & (-16) \\
-          1110 0000 & (-32) \\
-          1100 0000 & (-64) \\
-          1000 0000 & (-128) \\
-          0000 0000 & (ERR) \\
-        \end{tabular}
-      }\\
-      \vspace{0.5cm}
-      SHLA命令はこちら用
-    \end{center}
-  \end{minipage}
+  MSB : Most Significant Bit （最上位ビットのこと, P.10参照）
   \vfill
 \end{frame}
 
 %==============================================================================
 \begin{frame}
-  \frametitle{SHRA（Shift Right Arithmetic）命令}
-  右算術（算術＝Arithmetic）シフト命令．\\
-  レジスタの値を右に\emph{１ビット}ずらす．（シフトする）
+  \begin{description}
+  \item[フローチャート：] Javaの演算子を流用する．\\
   \vfill
-  \centerline{\includegraphics[scale=0.7]{../Tikz/shft2.pdf}}
+    \centerline{\includegraphics[scale=0.7]{../Tikz/or_chap5.pdf}}
+  \vfill
+  \item[応用：] G0の上位4ビットを全部1にする．
+  \end{description}
+  \vfill
+  \begin{minipage}{0.48\columnwidth}
+    {\ttfamily\small\begin{center}
+      \begin{tabular}{|l|l l|l}
+        \cline{1-3}
+        ラベル & \multicolumn{2}{|c|}{ニーモニック} & \\
+        \cline{1-3}
+        & ...  &        & \\
+        & LD   & G0,DATA& \\
+        & OR   & G0,MSK & \\
+        & ...  &        & \\
+        DATA& DC   & 0AAH    & \\
+        MSK & DC   & 0F0H    & \\
+        \cline{1-3}
+      \end{tabular}
+    \end{center}}
+  \end{minipage}
+  \begin{minipage}{0.48\columnwidth}
+    \centerline{\includegraphics[scale=0.8]{../Tikz/lor.pdf}}
+  \end{minipage}
+  \vfill
+  \emph{16進数の表記：}ラベルと区別が付くように注意！（P.44参照）
+  \vfill
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{XOR（Logical XOR）命令（排他的論理和）}
+  レジスタ値とメモリ値のビット毎の\emph{排他的論理和}をレジスタに格納する．
   \vfill
   \begin{description}
-  \item[フラグ] SHLAと同じ
+  \item[Cフラグ] 常に0になる．
+  \item[Sフラグ] 結果が負（MSBが1）なら1，それ以外は0になる．
+  \item[Zフラグ] 結果がゼロなら1，それ以外は0になる．
     \vfill
-  \item[フローチャート：] Javaのシフト演算子を流用する．\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/shra.pdf}}
+  \item[ニーモニック：]\texttt{XOR GR,EA}~~~~~~~~~\texttt{（GR ← GR \textasciicircum{} [EA]）}
     \vfill
-  \item[命令フォーマット：] 1バイトの長さを持つ．\\
-    \oneByte{$1001_2$}{\GR~$10_2$}
-  \item[注：] SHRAは符号付き数の÷２を計算している．\\
+  \item[命令フォーマット：] 2バイトの長さを持つ．\\
+    {\small\twoByte{$1000_2$}{\GR~\XR}{\A}}
+    \vfill
   \end{description}
   \vfill
 \end{frame}
 
 %==============================================================================
 \begin{frame}
-  \frametitle{SHRL（Shift Right Logical）命令}
-  右論理（論理＝Logical）シフト命令．\\
-  レジスタの値を右に\emph{１ビット}ずらす．（シフトする）
-  \vfill
-  \centerline{\includegraphics[scale=0.7]{../Tikz/shft3.pdf}}
-  \vfill
   \begin{description}
-  \item[フラグ] SHLAと同じ
-    \vfill
-  \item[フローチャート：] Javaのシフト演算子を流用する．\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/shrl.pdf}}
-    \vfill
-  \item[命令フォーマット：] 1バイトの長さを持つ．\\
-    \oneByte{$1001_2$}{\GR~$11_2$}
-  \item[注：] SHRLは符号なし数の÷２を計算している．\\
+  \item[フローチャート：] Javaの演算子を流用する．\\
+  \vfill
+    \centerline{\includegraphics[scale=0.7]{../Tikz/xor_chap5.pdf}}
+  \vfill
+  \item[応用：] G0上位4ビットの1/0を入れ替える（ビット反転する）．
   \end{description}
   \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{右シフトを用いた÷２計算（１）}
   \begin{minipage}{0.48\columnwidth}
-    \begin{center}
-      {\ttfamily%\footnotesize
-        \begin{tabular}{r r}
-          \multicolumn{2}{c}{符号なし数の÷２} \\
-          1100 0000 & (192) \\ % 128+64=192
-          0110 0000 & (96)  \\ % 64+32=96
-          0011 0000 & (48)  \\ % 32+16=48
-          0001 1000 & (24)  \\ % 16+8=24
-          0000 1100 & (12)  \\ % 8+4=12
-          0000 0110 & (6)   \\
-          0000 0011 & (3)   \\
-          0000 0001 & (1)   \\
-          0000 0000 & (0)   \\
-        \end{tabular}
-      }\\
-      \vspace{0.5cm}
-      SHRL命令を使用する
-    \end{center}
+    {\ttfamily\small\begin{center}
+      \begin{tabular}{|l|l l|l}
+        \cline{1-3}
+        ラベル & \multicolumn{2}{|c|}{ニーモニック} & \\
+        \cline{1-3}
+        & ...  &        & \\
+        & LD   & G0,DATA& \\
+        & XOR  & G0,MSK & \\
+        & ...  &        & \\
+        DATA& DC   & 0AAH    & \\
+        MSK & DC   & 0F0H    & \\
+        \cline{1-3}
+      \end{tabular}
+    \end{center}}
   \end{minipage}
   \begin{minipage}{0.48\columnwidth}
-    \begin{center}
-      {\ttfamily%\footnotesize
-        \begin{tabular}{r r}
-          \multicolumn{2}{c}{符号付き数の÷２} \\
-          1100 0000 & (-64) \\
-          1110 0000 & (-32) \\
-          1111 0000 & (-16) \\
-          1111 1000 & (-8)  \\
-          1111 1100 & (-4)  \\
-          1111 1110 & (-2)  \\
-          1111 1111 & (-1) \\
-          1111 1111 & (-1) \\
-          1111 1111 & (-1) \\
-        \end{tabular}
-      }\\
-      \vspace{0.5cm}
-      SHRA命令を使用する
-    \end{center}
-  \end{minipage}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{右シフトを用いた÷２計算（２）}
-  \begin{minipage}{0.48\columnwidth}
-    \begin{center}
-      {\ttfamily%\footnotesize
-        \begin{tabular}{r r}
-          \multicolumn{2}{c}{符号付き正数の÷２} \\
-          0100 0000 & (64) \\
-          0010 0000 & (32) \\
-          0001 0000 & (16) \\
-          0000 1000 & (8)  \\
-          0000 0100 & (4)  \\
-          0000 0010 & (2)  \\
-          0000 0001 & (1)  \\
-          0000 0000 & (0)  \\
-          0000 0000 & (0)  \\
-        \end{tabular}
-      }\\
-      \vspace{0.5cm}
-      SHRA命令使用
-    \end{center}
-  \end{minipage}
-  \begin{minipage}{0.48\columnwidth}
-    \begin{center}
-      {\ttfamily%\footnotesize
-        \begin{tabular}{r r}
-          \multicolumn{2}{c}{符号付き負数の÷２} \\
-          1100 0000 & (-64) \\
-          1110 0000 & (-32) \\
-          1111 0000 & (-16) \\
-          1111 1000 & (-8)  \\
-          1111 1100 & (-4)  \\
-          1111 1110 & (-2)  \\
-          1111 1111 & (-1)  \\
-          1111 1111 & (-1)  \\
-          1111 1111 & (-1)  \\
-        \end{tabular}
-      }\\
-      \vspace{0.5cm}
-      SHRA命令使用
-    \end{center}
+    \centerline{\includegraphics[scale=0.8]{../Tikz/lxor.pdf}}
   \end{minipage}
   \vfill
 \end{frame}
@@ -287,23 +284,22 @@
   \frametitle{まとめ}
   \emph{学んだこと}
   \begin{itemize}
-  \item TeCのシフト命令は\emph{１ビット}シフトする．
-  \item TeCは４種類（実質は３種類）のシフト命令を持っている．
-  \item シフト命令はイルミネーション（？）に使用できる．
-  \item \emph{左シフト（論理・算術）}は，\\
-    符号付き・なし兼用の×２計算に使用できる．
-  \item \emph{右シフト（論理）}は，
-    符号なし数の÷２計算に使用できる．
-  \item \emph{右シフト（算術）}は，
-    符号付き数の÷２計算に使用できる．
+  \item ビット毎の論理演算命令
+  \item TeCは次の演算命令を持っている．
+    \begin{enumerate}
+    \item[(1)] \emph{論理積（AND）命令}
+    \item[(2)] \emph{論理和（OR）命令}
+    \item[(3)] \emph{排他的論理和（XOR）命令}
+    \end{enumerate}
   \end{itemize}
   \vfill
   \emph{演習}
   \begin{itemize}
-  \item ビットの右回転（例題５−５を参考に）
-  \item シフト命令を使用した「×７の計算」（例題５−６を参考に）
-  \item シフト命令を使用した「÷４の計算」
-  \item シフト命令を使用した「×１．５の計算」
+  \item TeCにはNOT命令が無い．\\
+    NOT命令があったとすると，どんな計算をする命令になるか？
+  \item NOT命令の代用となる命令を考えなさい．
+  \item 値が奇数か偶数か判定する方法を考えなさい．
+  \item 8で割った余りを計算する方法を考えなさい．
   \end{itemize}
   \vfill
 \end{frame}

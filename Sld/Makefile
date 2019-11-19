@@ -10,7 +10,7 @@ PDFS = chap1_Sld.pdf chap2_1_Sld.pdf chap2_2_Sld.pdf chap2_3_Sld.pdf \
 
 %.pdf : %.tex *.sty
 	lualatex $*.tex
-	open $*.pdf
+#	open $*.pdf
 
 all : ${PDFS}
 
