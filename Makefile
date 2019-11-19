@@ -1,6 +1,17 @@
-all :
-	lualatex tec.tex
-	open tec.pdf
+.SUFFIXES:
+.SUFFIXES: .tex .pdf
 
-clean:
-	rm -f *.aux */*.aux *.dvi *.log *.out *.toc *.nav *.snm */*~ *~
+%.pdf : %.tex
+	lualatex $*.tex
+	#open $*.pdf
+
+SUBDIRS:=Sld
+
+all : tec.pdf Subdirs
+
+Subdirs :
+	$(foreach dir, $(SUBDIRS), $(MAKE) --directory=$(dir); )
+
+clean :
+	rm -f *.log *.aux *.dvi *.out *.toc *.vrb *.snm *.nav */*~ *~
+	$(foreach dir, $(SUBDIRS), $(MAKE) --directory=$(dir) clean; )
