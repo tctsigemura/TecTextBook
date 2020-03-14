@@ -132,35 +132,6 @@ ICの足2ヵ所程度を「仮にハンダ付けし，問題が無いか確認�
 
 \myfigureN{tbp}{scale=0.6}{chap3/icnoasi.pdf}{IC足の調整方法}{chap3:icnoasi}
 
-%\newpage
-\subsection{集合抵抗器とラダー抵抗器}
-集合抵抗器とラダー抵抗器は\figref{chap3:syuugou}のような部品です．
-一覧を\tabref{chap3:tbl4}に示します．
-この部品にも向きがありますので，注意して下さい．
-ICと同じ要領で，
-傾きや浮き上がりが無いよう注意深くハンダ付けしましょう．
-
-\begin{mytable}{tbp}{集合抵抗器}{chap3:tbl4}
-  {\small\begin{tabular}{l|l|l}
-    \hline
-    \hline
-    \multicolumn{1}{c|}{記号} &
-    \multicolumn{1}{c|}{型番} &
-    \multicolumn{1}{c}{説明} \\
-    \hline
-    RA1,2 & M9-1-471   & 470Ω（8素子） \\
-    &（L91S 471）&               \\
-    RA3   & M9-1-391   & 390Ω（8素子） \\
-    &（L91S 391）&               \\
-    RA4   & M5-1-391   & 390Ω（4素子） \\
-    &（L51S 391）&               \\
-    RA5   & 8L103      & ラダー抵抗器  \\
-  \end{tabular}}
-\end{mytable}
-
-\myfigureN{tbp}{scale=0.6}{chap3/syuugou.pdf}
-          {集合抵抗器とラダー抵抗器}{chap3:syuugou}
-
 \subsection{フェライトビーズ}
 フェライトビーズは電源のノイズを弱くする働きのある部品です．
 \figref{chap3:bead}の部品をハンダ付けします．
@@ -247,6 +218,88 @@ ICと同じ要領で，
 
 \myfigureN{tbp}{scale=0.6}{chap3/denkai.pdf}{電解コンデンサ}{chap3:denkai}
 
+\subsection{JTAG コネクタ}
+マイコン内部の回路を書き換えるときに使用するコネクタです．
+\tabref{chap3:tbl111}の部品を使用します．
+この部品にも向きがあります．
+\figref{chap3:cn}を良く見て，向きを間違えないように取り付けて下さい．
+
+\begin{mytable}{tbp}{JTAG コネクタ}{chap3:tbl111}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    CN4 & なし & 小さい14ピンのコネクタ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=1.3}{Tikz/cn.pdf}{JTAG コネクタ}{chap3:cn}
+
+\subsection{電源コネクタ}
+
+\tabref{chap3:tbl13}の電源コネクタは，
+\figref{chap3:cn1}~（1）のような形状の部品です．
+このコネクタからマイコンに電源を供給します．
+パソコンの USB ポートと接続してパソコンとの通信に使用することもあります．
+\figref{chap3:cn1}~（2）に示す基板上の取り付け穴にハンダ付けします．
+このコネクタの取り付けでは，失敗するとひどい火傷をする恐れがあります．
+以下の手順を良く読んで慎重に作業してください．
+
+\begin{mytable}{tbp}{電源コネクタ}{chap3:tbl13}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    CN1 & なし & USB-B コネクタ \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.7}{Keynote/cn1-crop.pdf}{電源コネクタ}{chap3:cn1}
+
+\begin{enumerate}
+\item 穴にしっかり差し込む．
+\item 大きな穴とコネクタの端子を十分熱する．
+\item 大きな穴が塞がるまで，ハンダを融かし込む．
+\item \emph{十分に冷めるのを待つ．}
+\item 部品が傾いていないか確認する．
+\item 小さな穴に部品の足をハンダ付けする．
+\end{enumerate}
+
+%\newpage
+\subsection{集合抵抗器とラダー抵抗器}
+集合抵抗器とラダー抵抗器は\figref{chap3:syuugou}のような部品です．
+一覧を\tabref{chap3:tbl4}に示します．
+この部品にも向きがありますので，注意して下さい．
+ICと同じ要領で，
+傾きや浮き上がりが無いよう注意深くハンダ付けしましょう．
+
+\begin{mytable}{tbp}{集合抵抗器}{chap3:tbl4}
+  {\small\begin{tabular}{l|l|l}
+    \hline
+    \hline
+    \multicolumn{1}{c|}{記号} &
+    \multicolumn{1}{c|}{型番} &
+    \multicolumn{1}{c}{説明} \\
+    \hline
+    RA1,2 & M9-1-471   & 470Ω（8素子） \\
+    &（L91S 471）&               \\
+    RA3   & M9-1-391   & 390Ω（8素子） \\
+    &（L91S 391）&               \\
+    RA4   & M5-1-391   & 390Ω（4素子） \\
+    &（L51S 391）&               \\
+    RA5   & 8L103      & ラダー抵抗器  \\
+  \end{tabular}}
+\end{mytable}
+
+\myfigureN{tbp}{scale=0.6}{chap3/syuugou.pdf}
+          {集合抵抗器とラダー抵抗器}{chap3:syuugou}
+
 %\newpage
 \subsection{LED（ランプ）}
 LED（ランプ）は，マイコンを使用するとき，いつも注視する部品です．
@@ -305,26 +358,6 @@ LEDをハンダ付けする要領は次の通りです．
 
 \myfigureN{tbp}{scale=0.9}{Tikz/sws.pdf}{スイッチの配置}{chap3:sws}
 
-\subsection{JTAG コネクタ}
-マイコン内部の回路を書き換えるときに使用するコネクタです．
-\tabref{chap3:tbl111}の部品を使用します．
-この部品にも向きがあります．
-\figref{chap3:cn}を良く見て，向きを間違えないように取り付けて下さい．
-
-\begin{mytable}{tbp}{JTAG コネクタ}{chap3:tbl111}
-  {\small\begin{tabular}{l|l|l}
-    \hline
-    \hline
-    \multicolumn{1}{c|}{記号} &
-    \multicolumn{1}{c|}{型番} &
-    \multicolumn{1}{c}{説明} \\
-    \hline
-    CN4 & なし & 小さい14ピンのコネクタ \\
-  \end{tabular}}
-\end{mytable}
-
-\myfigureN{tbp}{scale=1.3}{Tikz/cn.pdf}{JTAG コネクタ}{chap3:cn}
-
 \subsection{入出力ポートコネクタ}
 マイコンの外部に追加の回路を接続するときに使用するコネクタです．
 \tabref{chap3:tbl112}の部品を使用します．
@@ -344,39 +377,6 @@ LEDをハンダ付けする要領は次の通りです．
 \end{mytable}
 
 \myfigureN{tbp}{scale=0.7}{chap3/cnn.pdf}{入出力ポートコネクタ}{chap3:cnn}
-
-\subsection{電源コネクタ}
-
-\tabref{chap3:tbl13}の電源コネクタは，
-\figref{chap3:cn1}~（1）のような形状の部品です．
-このコネクタからマイコンに電源を供給します．
-パソコンの USB ポートと接続してパソコンとの通信に使用することもあります．
-\figref{chap3:cn1}~（2）に示す基板上の取り付け穴にハンダ付けします．
-このコネクタの取り付けでは，失敗するとひどい火傷をする恐れがあります．
-以下の手順を良く読んで慎重に作業してください．
-
-\begin{mytable}{tbp}{電源コネクタ}{chap3:tbl13}
-  {\small\begin{tabular}{l|l|l}
-    \hline
-    \hline
-    \multicolumn{1}{c|}{記号} &
-    \multicolumn{1}{c|}{型番} &
-    \multicolumn{1}{c}{説明} \\
-    \hline
-    CN1 & なし & USB-B コネクタ \\
-  \end{tabular}}
-\end{mytable}
-
-\myfigureN{tbp}{scale=0.7}{Keynote/cn1-crop.pdf}{電源コネクタ}{chap3:cn1}
-
-\begin{enumerate}
-\item 穴にしっかり差し込む．
-\item 大きな穴とコネクタの端子を十分熱する．
-\item 大きな穴が塞がるまで，ハンダを融かし込む．
-\item \emph{十分に冷めるのを待つ．}
-\item 部品が傾いていないか確認する．
-\item 小さな穴に部品の足をハンダ付けする．
-\end{enumerate}
 
 \subsection{ゴム足の取り付け}
 基板の裏側に足をつけます．

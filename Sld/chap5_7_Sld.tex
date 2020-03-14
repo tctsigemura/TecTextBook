@@ -73,14 +73,15 @@
 
 %==============================================================================
 \begin{frame}
-  \frametitle{JNZ命令の使用例}
+  \frametitle{JNZ命令の使用例（JZ命令との比較）}
   ループを３回，繰り返すプログラム\\
   \vfill
   \begin{minipage}{0.4\columnwidth}
-    \centerline{\includegraphics[scale=0.7]{../Tikz/flow0C.pdf}}
+    \centerline{\includegraphics[scale=0.6]{../Tikz/flow0C.pdf}}
+    \centerline{\includegraphics[scale=0.6]{../Tikz/flow0B.pdf}}
   \end{minipage}
   \begin{minipage}{0.59\columnwidth}
-    {\ttfamily\small\begin{center}
+    {\ttfamily\footnotesize\begin{center}
       \begin{tabular}{|l|l|l|l l|} \hline
         番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
         \hline
@@ -93,24 +94,8 @@
         \hline
       \end{tabular}
     \end{center}}
-  \end{minipage}
-  \vfill
-  \begin{itemize}
-  \item JNZを使用した方が簡単になった．
-  \end{itemize}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{JZ命令の使用例（比較のために再掲）}
-  ループを３回，繰り返すプログラム\\
-  \vfill
-  \begin{minipage}{0.4\columnwidth}
-    \centerline{\includegraphics[scale=0.7]{../Tikz/flow0B.pdf}}
-  \end{minipage}
-  \begin{minipage}{0.59\columnwidth}
-    {\ttfamily\small\begin{center}
+    \vspace{0.5cm}
+    {\ttfamily\footnotesize\begin{center}
       \begin{tabular}{|l|l|l|l l|} \hline
         番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
         \hline
