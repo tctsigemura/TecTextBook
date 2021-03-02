@@ -4,19 +4,19 @@
 \begin{document}
 \begin{tikzpicture}[node distance=13mm]
   \node (start) [startstop] {START};
-  \node (proc1) [process, below of=start, node distance=10mm]
-        {$G0 \leftarrow G0 << 1$};
+  \node (proc1) [process, below of=start] {$G0 \leftarrow G0 << 1$};
   \node (deci1) [decision, below of=proc1] {Cフラグ};
   \node [anchor=south west] at (deci1.east) {$=0$};
   \node [anchor=north west] at ([yshift=2mm]deci1.south) {$=1$};
   \node (proc2) [process, below of=deci1] {$G0 \leftarrow G0 + 1$};
-  \node (end) [startstop, below of=proc2] {END};
+  \node (end) [startstop, below of=proc2] {STOP};
   
-  \draw [arrow] (start) -- (proc1);
+  \draw [arrow] (start) to[midway] coordinate(L2) (proc1);
   \draw [arrow] (proc1) -- (deci1);
   \draw [arrow] (deci1) -- (proc2);
   \draw [arrow] (proc2) to[midway] coordinate(L1) (end);
   \draw [arrow] (deci1) -| ([xshift=25mm]L1) -- (L1);
+  \draw [arrow] (end) -- ++(0, -0.75) -| ([xshift=-20mm]L2) -- (L2);
   
 \end{tikzpicture}
 \end{document}
