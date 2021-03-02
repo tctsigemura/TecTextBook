@@ -8,9 +8,9 @@
       \node (proc1) [process, below of=start, align=center,node distance=13mm]
             {$G0 \leftarrow [M]$\\$G1 \leftarrow 0$};
       \node (proc2) [process, below of=proc1,node distance=15mm] {$G0 - [N]$};
-      \node (deci1) [decision, below of=proc2,node distance=13mm] {Sフラグ};
-      \node [anchor=south west] at (deci1.east) {$=1$(負)};
-      \node [anchor=north west] at ([yshift=2mm]deci1.south) {$=0$(正)};
+      \node (deci1) [decision, below of=proc2,node distance=13mm] {Cフラグ};
+      \node [anchor=south west] at (deci1.east) {$=1$(＜)};
+      \node [anchor=north west] at ([yshift=2mm]deci1.south) {$=0$(≧)};
       \node (proc3) [process, below of=deci1,node distance=13mm]
         {$G0 \leftarrow G0 - [N]$};
       \node (proc4) [process, below of=proc3] {$G1 \leftarrow G1 + 1$};
@@ -37,7 +37,7 @@
             &LD         &G1, ZERO       \\
             &           &               \\
       LOOP  &CMP        &G0, N          \\
-            &JM         &STOP           \\
+            &JC         &STOP           \\
             &SUB        &G0, N          \\
             &ADD        &G1, ONE        \\
             &JMP        &LOOP           \\
