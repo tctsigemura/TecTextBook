@@ -1237,6 +1237,7 @@ CMPはCompareの綴を縮めたものです．
   \item[問題：]
     M番地の値をN番地の値で割り，
     商をK番地，余りをL番地に求めるプログラムを作りなさい．
+    ただし，データは符号なしとします．
 
   \item[考え方：]
     TeCには割算命令がありません．
@@ -1252,7 +1253,7 @@ CMPはCompareの綴を縮めたものです．
       \myincludegraphics{Tikz/flow5.pdf}{width=0.85\columnwidth}
     \end{center}
 
-  \item[解説：]CMP命令とJM命令でG0がN番地のデータより大きいか
+  \item[解説：]CMP命令とJC命令でG0がN番地のデータより大きいか
     確認してから，引き算を実行します．
 
   \end{description}
