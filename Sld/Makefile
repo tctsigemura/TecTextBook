@@ -16,13 +16,15 @@ SLDS = chap1_Sld.pdf chap2_1_Sld.pdf chap2_2_Sld.pdf chap2_3_Sld.pdf \
        chap5_9_Sld.pdf chap5_A_Sld.pdf chap5_B_Sld.pdf
 
 %_Hnd.pdf : %_Hnd.tex %_Sld.pdf
-	lualatex $*_Hnd.tex
+	latexmk -lualatex $*_Hnd
+#	lualatex $*_Hnd.tex
 
 %_Sld.pdf : %_Sld.tex *.sty
-	lualatex $*_Sld.tex
-#	open $*.pdf
+	latexmk -lualatex $*_Sld.tex
+#	lualatex $*_Sld.tex
 
 all : ${SLDS} ${HNDS} # 中間ファイル *_Sld.pdf を消さないように
 
 clean:
-	rm -f *.aux */*.aux *.dvi *.log *.out *.toc *.nav *.snm */*~ *~
+	rm -f *.aux */*.aux *.dvi *.log *.out *.toc *.nav *.snm *.vrb */*~ *~ \
+              *.fls *.fdb_latexmk
