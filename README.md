@@ -20,7 +20,7 @@ TeC Textbook
 付録
 
 印刷物（表紙カラー，本文モノクロ）は
-[販売ページ](https://www.seichoku.com/user_data/booksale.php?id=238778393)
+[販売ページ](https://www.seichoku.com/item/DS2000690)
 から入手できます。
 
 ![ライセンス](https://i.creativecommons.org/l/by-sa/4.0/88x31.png "クリエイティブ・コモンズ・ライセンス")
