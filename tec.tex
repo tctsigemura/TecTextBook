@@ -6,7 +6,7 @@
 \documentclass[a4paper,twocolumn,twoside]{ltjsbook}   % lualatex の場合
 %----------- 印刷版とPDF版の区別 ----------------------------------------------
 \newif\ifPDF
-%\PDFfalse    %印刷版の場合
+%\PDFfalse    %印刷版の場合(https://www.seichoku.com の表紙自動コースに対応)
 \PDFtrue      %PDF版の場合
 %------------------------------------------------------------------------------
 \ifPDF
@@ -17,7 +17,7 @@
 %------------------------------------------------------------------------------
 \usepackage{tec}
 \newcommand{\edition}{第４版}
-\newcommand{\ver}{Ver. 4.2.0}
+\newcommand{\ver}{Ver. 4.2.1}
 %------------------------------------------------------------------------------
 % はじまり
 \begin{document}
@@ -143,4 +143,24 @@ sigemura@tokuyama.ac.jp
 \vspace{0.3cm}}}
 \end{center}
 \vfill
+
+%------------------------------------------------------------------------------
+% 裏表紙
+%------------------------------------------------------------------------------
+\ifPDF
+\newpage
+\setcounter{page}{0}
+\thispagestyle{empty}
+\onecolumn
+~
+\fi
+
+\newpage
+~
+\vfill
+\parbox{7cm}{
+\centerline{\includegraphics[width=6.5cm]{Img/Neko.png}}
+\centerline{\Large({\ver})}
+}
+\vfil
 \end{document}
