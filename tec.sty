@@ -17,9 +17,9 @@
 \usepackage[unicode=true,colorlinks=true,
   linkcolor=blue,urlcolor=blue]{hyperref}      % PDF用
 \else
-%\usepackage[unicode=true,hidelinks]{hyperref}  % 印刷用
-\newcommand{\url}[1]{\texttt{#1}}
-%\usepackage[x-1a]{pdfx}
+%\usepackage[unicode=true,draft=true,
+%  hidelinks,implicit=false]{hyperref}          % 印刷用
+\usepackage{url}
 \fi
 
 %------------------------------------------------------------------------------
