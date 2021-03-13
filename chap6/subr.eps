@@ -1,0 +1,366 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 65 579 204 744
+%%Title: subr
+%%CreationDate: Mon Mar  8 08:40:45 2021
+%%Creator: Tgif-4.2.5-QPL written by William Chia-Wei Cheng (bill.cheng@acm.org)
+%%ProducedBy: (unknown)
+%%Pages: 1
+%%DocumentFonts: (atend)
+%%EndComments
+%%BeginProlog
+
+/tgifdict 54 dict def
+tgifdict begin
+
+/tgifarrowtipdict 8 dict def
+tgifarrowtipdict /mtrx matrix put
+
+/TGAT % tgifarrowtip
+ { tgifarrowtipdict begin
+      /dy exch def
+      /dx exch def
+      /h exch def
+      /w exch def
+      /y exch def
+      /x exch def
+      /savematrix mtrx currentmatrix def
+      x y translate
+      dy dx atan rotate
+      0 0 moveto
+      w neg h lineto
+      w neg h neg lineto
+      savematrix setmatrix
+   end
+ } def
+
+/TGMAX
+ { exch dup 3 1 roll exch dup 3 1 roll gt { pop } { exch pop } ifelse
+ } def
+/TGMIN
+ { exch dup 3 1 roll exch dup 3 1 roll lt { pop } { exch pop } ifelse
+ } def
+/TGSW { stringwidth pop } def
+/tgifstrw 0 def
+
+/bd { bind def } bind def
+
+/GS { gsave } bd
+/GR { grestore } bd
+/NP { newpath } bd
+/CP { closepath } bd
+/CHP { charpath } bd
+/CT { curveto } bd
+/L { lineto } bd
+/RL { rlineto } bd
+/M { moveto } bd
+/RM { rmoveto } bd
+/S { stroke } bd
+/F { fill } bd
+/TR { translate } bd
+/RO { rotate } bd
+/SC { scale } bd
+/MU { mul } bd
+/DI { div } bd
+/DU { dup } bd
+/NE { neg } bd
+/AD { add } bd
+/SU { sub } bd
+/PO { pop } bd
+/EX { exch } bd
+/CO { concat } bd
+/CL { clip } bd
+/EC { eoclip } bd
+/EF { eofill } bd
+/IM { image } bd
+/IMM { imagemask } bd
+/ARY { array } bd
+/SG { setgray } bd
+/RG { setrgbcolor } bd
+/SD { setdash } bd
+/W { setlinewidth } bd
+/SM { setmiterlimit } bd
+/SLC { setlinecap } bd
+/SLJ { setlinejoin } bd
+/SH { show } bd
+/FF { findfont } bd
+/MS { makefont setfont } bd
+/AR { arcto 4 {pop} repeat } bd
+/CURP { currentpoint } bd
+/FLAT { flattenpath strokepath clip newpath } bd
+/TGSM { tgiforigctm setmatrix } def
+/TGRM { savematrix setmatrix } def
+
+end
+
+%%EndProlog
+%%Page: 1 1
+
+%%PageBoundingBox: 65 579 204 744
+tgifdict begin
+/tgifsavedpage save def
+
+1 SM
+1 W
+
+0 SG
+
+72 0 MU 72 11.602 MU TR
+72 128 DI 100.000 MU 100 DI DU NE SC
+
+GS
+
+/tgiforigctm matrix currentmatrix def
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      128 176 M
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (START  LD   SP,#0DCH) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       LD   G0,#'A') SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       CALL PUTCH) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       LD   G0,#'B') SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       CALL PUTCH) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       HALT) SH
+      GR
+      0 18 RM
+      GS
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (PUTCH  IN   G1,03H) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       AND  G1,#80H) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       JZ   PUTCH) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       OUT  G0,02H) SH
+      GR
+      0 18 RM
+      GS
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (       RET) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      244 400 M
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[12 0 0 -12 0 0] MS
+            (\243\261\312\270\273\372\275\320\316\317) SH
+      GR
+      0 14 RM
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[12 0 0 -12 0 0] MS
+            (\245\265\245\326\245\353\241\274\245\301\245\363) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      244 436 M
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[12 0 0 -12 0 0] MS
+            (\245\265\245\326\245\353\241\274\245\301\245\363) SH
+      GR
+      0 14 RM
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[12 0 0 -12 0 0] MS
+            (\270\306\244\323\275\320\244\267) SH
+      GR
+   GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 120 288 M 320 288 L 320 380 L 120 380 L CP
+      S
+   GR
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 120 236 M 320 236 L 320 252 L 120 252 L CP
+      S
+   GR
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 120 200 M 320 200 L 320 216 L 120 216 L CP
+      S
+   GR
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      320 400 M
+      348 400 L
+      348 340 L
+      0 -28 atan DU cos 10.000 MU 320 exch SU
+      exch sin 10.000 MU 340 exch SU L
+   TGSM
+   2 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      320 340 10.000 4.000 -28 0 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      320 340 10.000 4.000 -28 0 TGAT
+   CP F
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      320 436 M
+      360 436 L
+      360 208 L
+      0 -40 atan DU cos 10.000 MU 320 exch SU
+      exch sin 10.000 MU 208 exch SU L
+   TGSM
+   2 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      320 208 10.000 4.000 -40 0 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      320 208 10.000 4.000 -40 0 TGAT
+   CP F
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      360 244 M
+      0 -40 atan DU cos 10.000 MU 320 exch SU
+      exch sin 10.000 MU 244 exch SU L
+   TGSM
+   2 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      320 244 10.000 4.000 -40 0 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      320 244 10.000 4.000 -40 0 TGAT
+   CP F
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 240 388 M 320 388 L 320 416 L 240 416 L CP
+      2 W
+      S
+   GR
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 240 424 M 320 424 L 320 452 L 240 452 L CP
+      2 W
+      S
+   GR
+GR
+
+GR
+tgifsavedpage restore
+end
+showpage
+
+%%Trailer
+%MatchingCreationDate: Mon Mar  8 08:40:45 2021
+%%DocumentFonts: Ryumin-Light-EUC-H
+%%+ Courier
+%%EOF

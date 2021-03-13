@@ -1,0 +1,985 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 20 532 210 764
+%%Title: stack1
+%%CreationDate: Mon Mar  8 08:40:45 2021
+%%Creator: Tgif-4.2.5-QPL written by William Chia-Wei Cheng (bill.cheng@acm.org)
+%%ProducedBy: (unknown)
+%%Pages: 1
+%%DocumentFonts: (atend)
+%%EndComments
+%%BeginProlog
+
+/tgifdict 87 dict def
+tgifdict begin
+
+/tgifarrowtipdict 8 dict def
+tgifarrowtipdict /mtrx matrix put
+
+/TGAT % tgifarrowtip
+ { tgifarrowtipdict begin
+      /dy exch def
+      /dx exch def
+      /h exch def
+      /w exch def
+      /y exch def
+      /x exch def
+      /savematrix mtrx currentmatrix def
+      x y translate
+      dy dx atan rotate
+      0 0 moveto
+      w neg h lineto
+      w neg h neg lineto
+      savematrix setmatrix
+   end
+ } def
+
+/tgifpatdict 12 dict def
+
+/tgifpatbyte
+ { currentdict /retstr get exch
+   bytesperrow mul
+   pat i cellh mod bytesperrow mul bytesperrow getinterval putinterval
+ } def
+
+/tgifpatproc
+ { 0 1 cells_wd 1 sub {tgifpatbyte} for retstr
+   /i i 1 add def
+ } def
+
+/TGPF % tgifpatfill
+ { tgifpatdict begin
+      /h exch def
+      /w exch def
+      /lty exch def
+      /ltx exch def
+      /cellh exch def
+      /cellw exch def
+      /pat exch def
+
+      /cells_wd w cellw div cvi def
+      /bytesperrow cellw 8 div ceiling cvi def
+      /retstr cells_wd bytesperrow mul string def
+      /i 0 def
+
+      tgiforigctm setmatrix
+      ltx lty translate
+      w h true [1 0 0 1 0 0] {tgifpatproc} imagemask
+      ltx neg lty neg translate
+   end
+ } def
+
+/pat3 <8000000008000000> def
+/pat4 <8800000022000000> def
+/pat5 <8800220088002200> def
+/pat6 <8822882288228822> def
+/pat7 <aa55aa55aa55aa55> def
+/pat8 <77dd77dd77dd77dd> def
+/pat9 <77ffddff77ffddff> def
+/pat10 <77ffffffddffffff> def
+/pat11 <7ffffffff7ffffff> def
+/pat12 <8040200002040800> def
+/pat13 <40a00000040a0000> def
+/pat14 <ff888888ff888888> def
+/pat15 <ff808080ff080808> def
+/pat16 <f87422478f172271> def
+/pat17 <038448300c020101> def
+/pat18 <081c22c180010204> def
+/pat19 <8080413e080814e3> def
+/pat20 <8040201008040201> def
+/pat21 <8844221188442211> def
+/pat22 <77bbddee77bbddee> def
+/pat23 <c1e070381c0e0783> def
+/pat24 <7fbfdfeff7fbfdfe> def
+/pat25 <3e1f8fc7e3f1f87c> def
+/pat26 <0102040810204080> def
+/pat27 <1122448811224488> def
+/pat28 <eeddbb77eeddbb77> def
+/pat29 <83070e1c3870e0c1> def
+/pat30 <fefdfbf7efdfbf7f> def
+/pat31 <7cf8f1e3c78f1f3e> def
+
+/TGMAX
+ { exch dup 3 1 roll exch dup 3 1 roll gt { pop } { exch pop } ifelse
+ } def
+/TGMIN
+ { exch dup 3 1 roll exch dup 3 1 roll lt { pop } { exch pop } ifelse
+ } def
+/TGSW { stringwidth pop } def
+/tgifstrw 0 def
+
+/bd { bind def } bind def
+
+/GS { gsave } bd
+/GR { grestore } bd
+/NP { newpath } bd
+/CP { closepath } bd
+/CHP { charpath } bd
+/CT { curveto } bd
+/L { lineto } bd
+/RL { rlineto } bd
+/M { moveto } bd
+/RM { rmoveto } bd
+/S { stroke } bd
+/F { fill } bd
+/TR { translate } bd
+/RO { rotate } bd
+/SC { scale } bd
+/MU { mul } bd
+/DI { div } bd
+/DU { dup } bd
+/NE { neg } bd
+/AD { add } bd
+/SU { sub } bd
+/PO { pop } bd
+/EX { exch } bd
+/CO { concat } bd
+/CL { clip } bd
+/EC { eoclip } bd
+/EF { eofill } bd
+/IM { image } bd
+/IMM { imagemask } bd
+/ARY { array } bd
+/SG { setgray } bd
+/RG { setrgbcolor } bd
+/SD { setdash } bd
+/W { setlinewidth } bd
+/SM { setmiterlimit } bd
+/SLC { setlinecap } bd
+/SLJ { setlinejoin } bd
+/SH { show } bd
+/FF { findfont } bd
+/MS { makefont setfont } bd
+/AR { arcto 4 {pop} repeat } bd
+/CURP { currentpoint } bd
+/FLAT { flattenpath strokepath clip newpath } bd
+/TGSM { tgiforigctm setmatrix } def
+/TGRM { savematrix setmatrix } def
+
+end
+
+%%EndProlog
+%%Page: 1 1
+
+%%PageBoundingBox: 20 532 210 764
+tgifdict begin
+/tgifsavedpage save def
+
+1 SM
+1 W
+
+0 SG
+
+72 0 MU 72 11.602 MU TR
+72 128 DI 100.000 MU 100 DI DU NE SC
+
+GS
+
+/tgiforigctm matrix currentmatrix def
+
+% BOX
+0 SG
+GS
+   NP 128 456 M 224 456 L 224 520 L 128 520 L CP 1 SG F
+   0 SG
+   NP 128 456 M 224 456 L 224 520 L 128 520 L CP EC NP
+   pat4 8 8 120 448 112 80 TGPF
+GR
+GS
+   10 SM
+   GS
+      NP 128 456 M 224 456 L 224 520 L 128 520 L CP
+      S
+   GR
+GR
+
+% BOX
+0 SG
+GS
+   NP 128 328 M 224 328 L 224 392 L 128 392 L CP 1 SG F
+   0 SG
+   NP 128 328 M 224 328 L 224 392 L 128 392 L CP EC NP
+   pat4 8 8 120 320 112 80 TGPF
+GR
+GS
+   10 SM
+   GS
+      NP 128 328 M 224 328 L 224 392 L 128 392 L CP
+      S
+   GR
+GR
+
+% BOX
+0 SG
+GS
+   NP 128 184 M 224 184 L 224 248 L 128 248 L CP 1 SG F
+   0 SG
+   NP 128 184 M 224 184 L 224 248 L 128 248 L CP EC NP
+   pat4 8 8 120 176 112 80 TGPF
+GR
+GS
+   10 SM
+   GS
+      NP 128 184 M 224 184 L 224 248 L 128 248 L CP
+      S
+   GR
+GR
+
+% TEXT
+NP
+   /tgifstrw 0 def
+   /tgifstrw tgifstrw
+      /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+      (\245\271\245\277\245\303\245\257\316\316\260\350) TGSW 
+   add def
+0 SG
+NP 176 195 M tgifstrw 2 DI NE 0 RM tgifstrw 0 RL 0 16 RL tgifstrw neg 0 RL CP 1 SG F
+0 SG
+   GS
+      1 W
+      176 208 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      68 256 M
+      GS
+        GS
+        0
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) SH
+      GR
+   GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 128 144 M 224 144 L 224 280 L 128 280 L CP
+      S
+   GR
+GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      124 152 M
+      GS
+        GS
+        0
+            /Courier FF [14 0 0 -14 0 0] MS
+            (00) TGSW 
+        AD
+        GR
+      NE 0 RM
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (00) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      124 280 M
+      GS
+        GS
+        0
+            /Courier FF [14 0 0 -14 0 0] MS
+            (FF) TGSW 
+        AD
+        GR
+      NE 0 RM
+            0 SG
+            /Courier FF [14 0 0 -14 0 0] MS
+            (FF) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      192 140 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\274\347\265\255\262\261) TGSW 
+        AD
+        GR
+      NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\274\347\265\255\262\261) SH
+      GR
+   GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      96 248 M
+      0 32 atan DU cos 8.000 MU 128 exch SU
+      exch sin 8.000 MU 248 exch SU L
+   TGSM
+   1 W
+   S
+GR
+GS
+   TGSM
+   NP
+      128 248 8.000 3.000 32 0 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      128 248 8.000 3.000 32 0 TGAT
+   CP F
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 40 240 M 96 240 L 96 260 L 40 260 L CP
+      S
+   GR
+GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      256 156 M
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350\244\317\241\244) SH
+      GR
+      0 15 RM
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\274\347\265\255\262\261\276\345\244\313\272\356\244\353\241\245) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      256 200 M
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\272\307\275\351\244\317\241\244\245\271\245\277\245\303\245\257) SH
+      GR
+      0 15 RM
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\316\316\260\350\244\316\241\244\272\307\270\345\244\316\245\242) SH
+      GR
+      0 17 RM
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\311\245\354\245\271\244\362) SH
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) SH
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\244\316\303\315\244\254) SH
+      GR
+      0 15 RM
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\274\250\244\267\244\306\244\244\244\353\241\245) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      156 308 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\303\315\244\316\312\335\302\270) TGSW 
+        AD
+        GR
+      NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\303\315\244\316\312\335\302\270) SH
+      GR
+   GR
+
+% TEXT
+NP
+   /tgifstrw 0 def
+   /tgifstrw tgifstrw
+      /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+      (\245\271\245\277\245\303\245\257\316\316\260\350) TGSW 
+   add def
+0 SG
+NP 176 335 M tgifstrw 2 DI NE 0 RM tgifstrw 0 RL 0 16 RL tgifstrw neg 0 RL CP 1 SG F
+0 SG
+   GS
+      1 W
+      176 348 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      68 380 M
+      GS
+        GS
+        0
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) SH
+      GR
+   GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      96 372 M
+      0 32 atan DU cos 8.000 MU 128 exch SU
+      exch sin 8.000 MU 372 exch SU L
+   TGSM
+   1 W
+   S
+GR
+GS
+   TGSM
+   NP
+      128 372 8.000 3.000 32 0 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      128 372 8.000 3.000 32 0 TGAT
+   CP F
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 40 364 M 96 364 L 96 384 L 40 384 L CP
+      S
+   GR
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      128 316 M
+      128 408 L
+   TGSM
+   1 W
+   S
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      224 316 M
+      224 408 L
+   TGSM
+   1 W
+   S
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   [2 2] 0 SD
+   NP
+      128 372 M
+      224 372 L
+   TGSM
+   1 W
+   S
+   [] 0 SD
+GR
+
+% TEXT
+NP
+   /tgifstrw 0 def
+   /tgifstrw tgifstrw
+      /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+      (\312\335\302\270\244\265\244\354\244\277\303\315) TGSW 
+   add def
+   /tgifstrw tgifstrw
+      /Times-Roman FF [14 0 0 -14 0 0] MS
+      (1) TGSW 
+   add def
+0 SG
+NP 176 373 M tgifstrw 2 DI NE 0 RM tgifstrw 0 RL 0 18 RL tgifstrw neg 0 RL CP 1 SG F
+0 SG
+   GS
+      1 W
+      176 388 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\312\335\302\270\244\265\244\354\244\277\303\315) TGSW 
+        AD
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (1) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\312\335\302\270\244\265\244\354\244\277\303\315) SH
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (1) SH
+      GR
+   GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      168 288 M
+      32 0 atan DU cos 12.000 MU 168 exch SU
+      exch sin 12.000 MU 320 exch SU L
+   TGSM
+   3 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      168 320 12.000 5.000 0 32 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      168 320 12.000 5.000 0 32 TGAT
+   CP F
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      184 320 M
+      -32 0 atan DU cos 12.000 MU 184 exch SU
+      exch sin 12.000 MU 288 exch SU L
+   TGSM
+   3 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      184 288 12.000 5.000 0 -32 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      184 288 12.000 5.000 0 -32 TGAT
+   CP F
+GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      204 308 M
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\303\315\244\316\274\350\244\352\275\320\244\267) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      156 428 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\303\315\244\316\312\335\302\270) TGSW 
+        AD
+        GR
+      NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\303\315\244\316\312\335\302\270) SH
+      GR
+   GR
+
+% TEXT
+NP
+   /tgifstrw 0 def
+   /tgifstrw tgifstrw
+      /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+      (\245\271\245\277\245\303\245\257\316\316\260\350) TGSW 
+   add def
+0 SG
+NP 176 463 M tgifstrw 2 DI NE 0 RM tgifstrw 0 RL 0 16 RL tgifstrw neg 0 RL CP 1 SG F
+0 SG
+   GS
+      1 W
+      176 476 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\245\271\245\277\245\303\245\257\316\316\260\350) SH
+      GR
+   GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      68 488 M
+      GS
+        GS
+        0
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (SP) SH
+      GR
+   GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      96 480 M
+      0 32 atan DU cos 8.000 MU 128 exch SU
+      exch sin 8.000 MU 480 exch SU L
+   TGSM
+   1 W
+   S
+GR
+GS
+   TGSM
+   NP
+      128 480 8.000 3.000 32 0 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      128 480 8.000 3.000 32 0 TGAT
+   CP F
+GR
+
+% BOX
+0 SG
+GS
+   10 SM
+   GS
+      NP 40 472 M 96 472 L 96 492 L 40 492 L CP
+      S
+   GR
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      128 444 M
+      128 536 L
+   TGSM
+   1 W
+   S
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      224 444 M
+      224 536 L
+   TGSM
+   1 W
+   S
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   [2 2] 0 SD
+   NP
+      128 500 M
+      224 500 L
+   TGSM
+   1 W
+   S
+   [] 0 SD
+GR
+
+% TEXT
+NP
+   /tgifstrw 0 def
+   /tgifstrw tgifstrw
+      /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+      (\312\335\302\270\244\265\244\354\244\277\303\315) TGSW 
+   add def
+   /tgifstrw tgifstrw
+      /Times-Roman FF [14 0 0 -14 0 0] MS
+      (1) TGSW 
+   add def
+0 SG
+NP 176 501 M tgifstrw 2 DI NE 0 RM tgifstrw 0 RL 0 18 RL tgifstrw neg 0 RL CP 1 SG F
+0 SG
+   GS
+      1 W
+      176 516 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\312\335\302\270\244\265\244\354\244\277\303\315) TGSW 
+        AD
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (1) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\312\335\302\270\244\265\244\354\244\277\303\315) SH
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (1) SH
+      GR
+   GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      168 408 M
+      32 0 atan DU cos 12.000 MU 168 exch SU
+      exch sin 12.000 MU 440 exch SU L
+   TGSM
+   3 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      168 440 12.000 5.000 0 32 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      168 440 12.000 5.000 0 32 TGAT
+   CP F
+GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   NP
+      184 440 M
+      -32 0 atan DU cos 12.000 MU 184 exch SU
+      exch sin 12.000 MU 408 exch SU L
+   TGSM
+   3 W
+   S
+   1 W
+GR
+GS
+   TGSM
+   NP
+      184 408 12.000 5.000 0 -32 TGAT
+   1 SG CP F
+   0 SG
+   NP
+      184 408 12.000 5.000 0 -32 TGAT
+   CP F
+GR
+
+% TEXT
+NP
+0 SG
+   GS
+      1 W
+      204 428 M
+      GS
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\303\315\244\316\274\350\244\352\275\320\244\267) SH
+      GR
+   GR
+
+% POLY/OPEN-SPLINE
+0 SG
+GS
+   [2 2] 0 SD
+   NP
+      128 480 M
+      224 480 L
+   TGSM
+   1 W
+   S
+   [] 0 SD
+GR
+
+% TEXT
+NP
+   /tgifstrw 0 def
+   /tgifstrw tgifstrw
+      /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+      (\312\335\302\270\244\265\244\354\244\277\303\315) TGSW 
+   add def
+   /tgifstrw tgifstrw
+      /Times-Roman FF [14 0 0 -14 0 0] MS
+      (2) TGSW 
+   add def
+0 SG
+NP 176 481 M tgifstrw 2 DI NE 0 RM tgifstrw 0 RL 0 18 RL tgifstrw neg 0 RL CP 1 SG F
+0 SG
+   GS
+      1 W
+      176 496 M
+      GS
+        GS
+        0
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\312\335\302\270\244\265\244\354\244\277\303\315) TGSW 
+        AD
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (2) TGSW 
+        AD
+        GR
+      2 DI NE 0 RM
+            0 SG
+            /Ryumin-Light-EUC-H FF dup /WMode known {dup /WMode get 1 eq {[0 1 -1 0 0 0.3] makefont} if} if
+[14 0 0 -14 0 0] MS
+            (\312\335\302\270\244\265\244\354\244\277\303\315) SH
+            0 SG
+            /Times-Roman FF [14 0 0 -14 0 0] MS
+            (2) SH
+      GR
+   GR
+
+GR
+tgifsavedpage restore
+end
+showpage
+
+%%Trailer
+%MatchingCreationDate: Mon Mar  8 08:40:45 2021
+%%DocumentFonts: Courier
+%%+ Times-Roman
+%%+ Ryumin-Light-EUC-H
+%%EOF
