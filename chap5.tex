@@ -919,37 +919,6 @@ Sフラグが1のとき（計算結果が負だったとき）だけジャンプ
 \end{figure}
 
 %----------------------------------------------------------------------------
-\begin{figure}[btp]
-  \begin{framed}{\parindent=1em
-      \subsection*{繰り返し処理1}
-      ジャンプ命令を用いて同じ操作を繰り返すプログラムを作ることができます．
-      次のフローチャートとプログラムは，点線部分を10回繰り返すためのものです．
-
-      \begin{center}
-        \myincludegraphics{Tikz/flow2.pdf}{width=0.85\columnwidth}
-      \end{center}
-  }\end{framed}
-\end{figure}
-
-%----------------------------------------------------------------------------
-\begin{figure}[btp]
-  \begin{framed}{\parindent=1em
-      \subsection*{繰り返し処理2}
-      計算結果によって繰り返し回数が決まる場合，
-      繰り返し回数がゼロの場合も考慮しなければならないことがあります．
-      そのような場合は，条件判断を前に移動すると，うまく処理できます．
-      次のフローチャートとプログラムは，
-      点線部分をN回繰り返すためのものです．
-      条件判断の前の引算は，
-      G0の値でフラグを強制的に変化させるためのものです．
-
-      \begin{center}
-        \myincludegraphics{Tikz/flow2C.pdf}{width=0.85\columnwidth}
-      \end{center}
-  }\end{framed}
-\end{figure}
-
-%----------------------------------------------------------------------------
 \newpage
 \begin{reidai}{絶対値を求める．}{5_1}
   \begin{description}
@@ -1009,6 +978,37 @@ Sフラグが1のとき（計算結果が負だったとき）だけジャンプ
 
   \end{description}
 \end{reidai}
+
+%----------------------------------------------------------------------------
+\begin{figure}[btp]
+  \begin{framed}{\parindent=1em
+      \subsection*{繰り返し処理1}
+      ジャンプ命令を用いて同じ操作を繰り返すプログラムを作ることができます．
+      次のフローチャートとプログラムは，点線部分を10回繰り返すためのものです．
+
+      \begin{center}
+        \myincludegraphics{Tikz/flow2.pdf}{width=0.85\columnwidth}
+      \end{center}
+  }\end{framed}
+\end{figure}
+
+%----------------------------------------------------------------------------
+\begin{figure}[btp]
+  \begin{framed}{\parindent=1em
+      \subsection*{繰り返し処理2}
+      計算結果によって繰り返し回数が決まる場合，
+      繰り返し回数がゼロの場合も考慮しなければならないことがあります．
+      そのような場合は，条件判断を前に移動すると，うまく処理できます．
+      次のフローチャートとプログラムは，
+      点線部分をN回繰り返すためのものです．
+      条件判断の前の引算は，
+      G0の値でフラグを強制的に変化させるためのものです．
+
+      \begin{center}
+        \myincludegraphics{Tikz/flow2C.pdf}{width=0.85\columnwidth}
+      \end{center}
+  }\end{framed}
+\end{figure}
 
 %----------------------------------------------------------------------------
 \newpage
