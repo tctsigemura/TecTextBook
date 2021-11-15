@@ -5,7 +5,7 @@
 
 \begin{document}
 \title{基礎コンピュータ工学\\第５章 機械語プログラミング\\
-       （パート７：条件分岐命令と比較命令）}
+       （パート７：繰り返し処理と比較命令）}
 \date{}
 
 \begin{frame}
@@ -22,204 +22,64 @@
 %  \tableofcontents
 %\end{frame}
 
-\section{条件ジャンプ命令}
+\section{繰り返し}
 %==============================================================================
 \begin{frame}
-  \frametitle{ジャンプ命令（７種類）の残り３種類}
-  \begin{description}
-  \item[無条件ジャンプ命令：]\emph{プログラムの流れ}を指定のアドレスに飛ばす．
-    \begin{itemize}
-      \item \emph{JMP（Jump）命令}：いつもジャンプする．
-    \end{itemize}
-    \vfill
-  \item[条件ジャンプ命令：]ある条件のときだけジャンプする．
-    \begin{itemize}
-      \item \emph{JZ（Jump on Zero）命令}：$Z=1$ ならジャンプ
-        \vfill
-      \item \emph{JC（Jump on Carry）命令}：$C=1$ ならジャンプ
-        \vfill
-      \item \emph{JM（Jump on Minus）命令}：$S=1$ ならジャンプ
-        \vfill
-      \item \emph{JNZ（Jump on Not Zero）命令}：$Z=0$ ならジャンプ
-        \vfill
-      \item \emph{JNC（Jump on Not Carry）命令}：$C=0$ ならジャンプ
-        \vfill
-      \item \emph{JNM（Jump on Not Minus）命令}：$S=0$ ならジャンプ
-    \end{itemize}
-  \end{description}
+  \frametitle{繰り返し処理（１）}
+  ループの最後で条件判断する例（Javaの do ... while に似ている）\\
+  \vfill
+  \centerline{\includegraphics[scale=0.7]{../Tikz/flow2.pdf}}
   \vfill
 \end{frame}
 
 %==============================================================================
 \begin{frame}
-  \frametitle{JNZ（Jump on Not Zero）命令}
-  Zフラグが0なら（計算結果が0でないなら）ジャンプする．
+  \frametitle{繰り返し処理（２）}
+  ループの最初で条件判断する例（Javaの while に似ている）
   \vfill
-  \begin{description}
-  \item[フラグ：] 変化しない．
-    \vfill
-
-  \item[ニーモニック：]\texttt{JNZ EA}~~~~~~~~~\texttt{（if(Z=0) PC ← EA）}
-    \vfill
-
-  \item[命令フォーマット：] 2バイトの長さを持つ．\\
-    \twoByte{$1011_2$}{$01_2$~\XR}{\A}
-    \vfill
-
-  \item[フローチャート：] ある程度，自由にアレンジしてよい．\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/jnz.pdf}}
-  \end{description}
+  \centerline{\includegraphics[scale=0.7]{../Tikz/flow2C.pdf}}
   \vfill
 \end{frame}
 
 %==============================================================================
-\begin{frame}
-  \frametitle{JNZ命令の使用例（JZ命令との比較）}
-  ループを３回，繰り返すプログラム\\
-  \vfill
-  \begin{minipage}{0.4\columnwidth}
-    \centerline{\includegraphics[scale=0.6]{../Tikz/flow0C.pdf}}
-    \centerline{\includegraphics[scale=0.6]{../Tikz/flow0B.pdf}}
-  \end{minipage}
-  \begin{minipage}{0.59\columnwidth}
-    {\ttfamily\footnotesize\begin{center}
-      \begin{tabular}{|l|l|l|l l|} \hline
-        番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
-        \hline
-        00 & 10 07 &           & LD   & G0,THREE              \\
-        02 & 40 08 &  LOOP     & SUB  & G0,ONE                \\
-        04 & B4 02 &           & JNZ  & LOOP                  \\
-        06 & FF    &           & HALT &                       \\
-        07 & 03    &  THREE    & DC   & 3                     \\
-        08 & 01    &  ONE      & DC   & 1                     \\
-        \hline
-      \end{tabular}
-    \end{center}}
-    \vspace{0.5cm}
-    {\ttfamily\footnotesize\begin{center}
-      \begin{tabular}{|l|l|l|l l|} \hline
-        番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
-        \hline
-        00 & 10 09 &           & LD   & G0,THREE              \\
-        02 & 40 0A &  LOOP     & SUB  & G0,ONE                \\
-        04 & A4 08 &           & JZ   & STOP                  \\
-        06 & A0 02 &           & JMP  & LOOP                  \\
-        08 & FF    &  STOP     & HALT &                       \\
-        09 & 03    &  THREE    & DC   & 3                     \\
-        0A & 01    &  ONE      & DC   & 1                     \\
-        \hline
-      \end{tabular}
-    \end{center}}
-  \end{minipage}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{JNC（Jump on Not Carry）命令}
-  Cフラグが0なら（オーバーフローしていないなら）ジャンプする．
-  \vfill
-  \begin{description}
-  \item[フラグ：] 変化しない．
-    \vfill
-
-  \item[ニーモニック：]\texttt{JNC EA}~~~~~~~~~\texttt{（if(C=0) PC ← EA）}
-    \vfill
-
-  \item[命令フォーマット：] 2バイトの長さを持つ．\\
-    \twoByte{$1011_2$}{$10_2$~\XR}{\A}
-    \vfill
-
-  \item[フローチャート：] ある程度，自由にアレンジしてよい．\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/jnc.pdf}}
-  \end{description}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{JNM（Jump on Not Minus）命令}
-  Sフラグが0なら（正かゼロなら）ジャンプする．
-  \vfill
-  \begin{description}
-  \item[フラグ：] 変化しない．
-    \vfill
-
-  \item[ニーモニック：]\texttt{JNM EA}~~~~~~~~~\texttt{（if(S=0) PC ← EA）}
-    \vfill
-
-  \item[命令フォーマット：] 2バイトの長さを持つ．\\
-    \twoByte{$1011_2$}{$11_2$~\XR}{\A}
-    \vfill
-
-  \item[フローチャート：] ある程度，自由にアレンジしてよい．\\
-    \centerline{\includegraphics[scale=0.7]{../Tikz/jnm.pdf}}
-  \end{description}
-  \vfill
-\end{frame}
-
-%==============================================================================
-%\begin{frame}
-%  \frametitle{条件判断１（JNZ使用）}
-%  計算結果により処理をするかしないか変化する例
-%  \vfill
-%  \begin{minipage}{0.49\columnwidth}
-%    \begin{itembox}[l]{\footnotesize 計算結果がゼロなら「処理」\emph{しない}}
-%      \centerline{\includegraphics[scale=0.6]{../Tikz/flow2AB.pdf}}
-%    \end{itembox}
-%  \end{minipage}
-%  \begin{minipage}{0.5\columnwidth}
-%    \begin{itembox}[l]{\footnotesize 計算結果がゼロなら「処理」\emph{する}}
-%      \centerline{\includegraphics[scale=0.6]{../Tikz/flow2AC.pdf}}
-%    \end{itembox}
-%  \end{minipage}
-%  \vfill
-%\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{条件判断の例（JNM使用）}
-  絶対値を求めるプログラム（例題5-1の改良）\\
-  \vfill
-  \begin{minipage}{0.49\columnwidth}
-    \centerline{\includegraphics[scale=0.5]{../Tikz/flow1.pdf}}
-  \end{minipage}
-  \begin{minipage}{0.5\columnwidth}
-    {\ttfamily\scriptsize\begin{center}
-      \begin{tabular}{|l|l|l|l l|}
-        \hline
-        番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
-        \hline
-        00 & 10 0E & START& LD   & G0,N    \\
-        02 & 40 0D &      & SUB  & G0,ZERO \\
-        04 & BC 0A &      & JNM  & L1      \\
-        06 & 10 0D &      & LD   & G0,ZERO \\
-        08 & 40 0E &      & SUB  & G0,N    \\
-        0A & 20 0F & L1   & ST   & G0,M    \\
-        0C & FF    &      & HALT &         \\
-        0D & 00    & ZERO & DC   & 0       \\
-        0E & FF    & N    & DC   & -1      \\
-        0F & 00    & M    & DS   & 1       \\
-        \hline
-      \end{tabular}
-    \end{center}}
-  \end{minipage}
-  \vfill
-  \begin{itemize}
-  \item JNMを使用したほうが短くなる．
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \frametitle{繰り返しの例}
+%   $1 + 2 + 3 + ... + 10$を計算する．（例題5-2）\\
+%   \vfill
+%   \begin{minipage}{0.47\columnwidth}
+%     \centerline{\includegraphics[scale=0.55]{../Tikz/flow3.pdf}}
+%   \end{minipage}
+%   \begin{minipage}{0.52\columnwidth}
+%     {\ttfamily
+%       G0，G1，G2，SP が使用可能．\\
+%       これらの役割を決める．\\
+%       例えば次のように割り振る．
+%       \begin{itemize}
+%       \item G0：繰り返し回数のカウンタ
+%       \item G1：足す数（1,2,3,...,10）
+%       \item G2：合計（足される数）
+%       \item G2 ← G2 + G1 はできない \\
+%         次の２ステップに分解する．
+%         \begin{itemize}
+%           \item $[TMP] ← G1$
+%           \item $G2 ←G2 + [TMP]$
+%         \end{itemize}
+%       \end{itemize}
+%     }
+%   \end{minipage}
+%   \vfill
+% \end{frame}
 
 %==============================================================================
 \begin{frame}
   \frametitle{繰り返しの例}
-  $1 + 2 + 3 + ... + 10$を計算する．（例題5-2の改良）\\
+  $1 + 2 + 3 + ... + 10$を計算する．\\
   \vfill
   \begin{minipage}{0.26\columnwidth}
     \centerline{\includegraphics[scale=0.55]{../Tikz/flow3A.pdf}}
   \end{minipage}
   \begin{minipage}{0.36\columnwidth}
-    {\ttfamily JZ使用（以前の例）\\\scriptsize
+    {\ttfamily JZ使用（例題5-2）\\\scriptsize
       \begin{tabular}{|l|l|l|}
               & LD     & G0, N    \\
               & LD     & G1, ONE  \\
@@ -243,7 +103,7 @@
     \end{tabular}}
   \end{minipage}
   \begin{minipage}{0.36\columnwidth}
-    {\ttfamily JNZ使用（改良版）\\\scriptsize
+    {\ttfamily JNZ使用（例題5-2改良版）\\\scriptsize
       \begin{tabular}{|l|l|l|}
               & LD     & G0, N    \\
               & LD     & G1, ONE  \\
@@ -356,14 +216,22 @@
   \frametitle{まとめ}
   \emph{学んだこと}
   \begin{itemize}
-  \item 今回の命令は，必須ではないが，あると便利なもの．
-  \item 残りの条件ジャンプ命令（JNZ，JNC，JNM）
+  \item ループの作り方
   \item 比較命令（CMP）
-  \item 新しい命令を使用して改良したプログラム
+  %\item 新しい命令を使用して改良したプログラム
   \end{itemize}
   \vfill
 
-  \emph{演習（宿題）}
+  \emph{演習（ループ）}
+  \begin{itemize}
+  \item \emph{掛け算プログラム}：N番地のデータと，
+    M番地のデータのかけ算を計算しL番地に格納するプログラム
+  \item データはどれも符号なし整数とする．
+  \item 繰り返し処理１のフローチャートを参考に作る．
+  \end{itemize}
+  \vfill
+
+  \emph{演習（CMP命令）}
   \begin{itemize}
   \item \emph{割り算プログラム：}M番地のデータをN番地のデータで割り，
     商をK番地，余りをL番地に格納するプログラム

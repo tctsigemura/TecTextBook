@@ -1,7 +1,7 @@
 SUBDIRS:=Tikz Sld
 
 all : Subdirs
-	latexmk -lualatex tec
+	latexmk -interaction=nonstopmode -lualatex tec
 
 Subdirs :
 	$(foreach dir, $(SUBDIRS), $(MAKE) --directory=$(dir); )
