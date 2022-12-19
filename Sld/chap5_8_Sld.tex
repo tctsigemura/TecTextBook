@@ -68,16 +68,20 @@
   \end{description}
   \vfill
   \vfill
-  \emph{例：}SHLA命令を実行して確かめる．（イルミネーション？）\\
-  （次のプログラムをG0を表示したままSTEP実行する．）
+  \emph{例題5-4：}SHLA命令を実行して確かめる．（イルミネーション？）\\
+  （次のプログラムをG0に何かデータをセットしたあとでG0を表示したまま実行する．）
   \vfill
-  \centerline{\ttfamily %\footnotesize
-    \begin{tabular}{|l|l|l|l|l|}
-      00 & 10 05 &      & LD   & G0, N    \\
-      02 & 90    & LOOP & SHLA & G0       \\
-      03 & A0 02 &      & JMP  & LOOP     \\
-      05 & 01    & N    & DC   & 1        \\
-    \end{tabular}}
+  \begin{minipage}{0.48\columnwidth}
+    \centerline{\ttfamily %\footnotesize
+      \begin{tabular}{|l|l|l|l|l|}
+        00 & 90    & L0   & SHLA & G0       \\
+        01 & FF    &      & HALT &          \\
+        02 & A0 00 &      & JMP  & L0       \\
+      \end{tabular}}
+  \end{minipage}
+  \begin{minipage}{0.48\columnwidth}
+    \centerline{\includegraphics[scale=0.7]{../Tikz/flow4A.pdf}}
+  \end{minipage}
   \vfill
   \emph{注：}左シフトは×２を計算している．\\
   \vfill
@@ -108,7 +112,8 @@
   \frametitle{左シフトを用いた×２計算}
   \begin{minipage}{0.48\columnwidth}
     \begin{center}
-      {\ttfamily%\footnotesize
+ 
+     {\ttfamily%\footnotesize
         \begin{tabular}{r r}
           \multicolumn{2}{c}{符号なし数の×２} \\
           0000 0001 & (1) \\
