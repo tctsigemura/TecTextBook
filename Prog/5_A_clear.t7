@@ -1,0 +1,10 @@
+	ld	g0,a
+	ld	g1,#10
+	ld	g2,#0
+loop	st	g0,b,g2
+	add	g2,#1
+	sub	g1,#1
+	jnz	loop
+	halt
+a	dc	0aah
+b	ds	10
