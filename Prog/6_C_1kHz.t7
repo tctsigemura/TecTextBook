@@ -1,0 +1,20 @@
+	; 1kHzブザー
+spk	equ	01h
+start	ld	sp,#0dch
+loop	call	ms5
+	ld	g1,#01h
+	out	g1,spk
+	call	ms5
+	ld	g1,#00h
+	out	g1,spk
+	jmp	loop
+
+	; 0.5msサブルーチン
+ms5	push	g0	; 3
+	ld	g0,#122	; 4
+matu	sub	g0,#1	; 4
+	jz	kaeru	; 3
+	jmp	matu	; 3
+kaeru	pop	g0	; 4
+	ret		; 3
+
