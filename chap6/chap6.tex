@@ -709,21 +709,20 @@ G1レジスタが PUTCH サブルーチンで破壊される
 00 & 1F DC & START & LD   & SP,\#0DCH       \\
 02 & 17 00 &       & LD   & G1,\#0          \\
 04 & 1B 09 &       & LD   & G2,\#9          \\
-06 & 11 1E & LOOP  & LD   & G0,DATA,G1      \\
+06 & 11 1C & LOOP  & LD   & G0,DATA,G1      \\
 08 & D4    &       & PUSH & G1              \\
-09 & B0 15 &       & CALL & PUTCH           \\
+09 & B0 13 &       & CALL & PUTCH           \\
 0B & D6    &       & POP  & G1              \\
 0C & 37 01 &       & ADD  & G1,\#1          \\
 0E & 4B 01 &       & SUB  & G2,\#1          \\
-10 & A4 14 &       & JZ   & END             \\
-12 & A0 06 &       & JMP  & LOOP            \\
+10 & B4 06 &       & JNZ  & LOOP            \\
 %14 &       &       &      &                 \\
-14 & FF    & END   & HALT &                 \\
-15 &       &       &      &                 \\
-15 & C4 03 & PUTCH & ...  &                 \\
-1E &       &       &      &                 \\
-1E & 53 48 & DATA  & DC   & "SHIGEMURA"     \\
-20 & ...   &       &      &                 \\
+12 & FF    & END   & HALT &                 \\
+13 &       &       &      &                 \\
+13 & C4 03 & PUTCH & IN   & G1,SIOS         \\
+...& ...   &       & ...  &                 \\
+1C & 53 48 & DATA  & DC   & "SHIGEMURA"     \\
+...& ...   &       &      &                 \\
 \hline
 \end{tabular}
 %\\TeC6ではCALL命令の機械語がBCになります．
@@ -746,7 +745,7 @@ PUTCH サブルーチンがG1レジスタを破壊しないようにしました
 「\reidairef{6_3} 文字列出力（改良版1）」より完成度の高いPUTCH サブルーチンです．
 
 \begin{center}
-\myincludegraphics{flowL.pdf}{scale=0.75}
+\myincludegraphics{flowL.pdf}{scale=0.71}
 \end{center}
 
 \item[プログラム：]PUTCH ルーチンも掲載します．
@@ -761,26 +760,24 @@ PUTCH サブルーチンがG1レジスタを破壊しないようにしました
 00 & 1F DC & START & LD   & SP,\#0DCH       \\
 02 & 17 00 &       & LD   & G1,\#0          \\
 04 & 1B 09 &       & LD   & G2,\#9          \\
-06 & 11 1E & LOOP  & LD   & G0,DATA,G1      \\
-08 & B0 13 &       & CALL & PUTCH           \\
+06 & 11 1C & LOOP  & LD   & G0,DATA,G1      \\
+08 & B0 11 &       & CALL & PUTCH           \\
 0A & 37 01 &       & ADD  & G1,\#1          \\
 0C & 4B 01 &       & SUB  & G2,\#1          \\
-0E & A4 12 &       & JZ   & END             \\
-10 & A0 06 &       & JMP  & LOOP            \\
-12 & FF    & END   & HALT &                 \\
-%13 &       &       &      &                 \\
-13 & D4    & PUTCH & PUSH & G1              \\
-14 & C4 03 & WAIT  & IN   & G1,SIOS         \\
-16 & 67 80 &       & AND  & G1,\#80H        \\
-18 & A4 14 &       & JZ   & WAIT            \\
-1A & C3 02 &       & OUT  & G0,SIOD         \\
-1C & D6    &       & POP  & G1              \\
-1D & EC    &       & RET  &                 \\
-%1E &       &       &      &                 \\
-1E & 53 48 49 & DATA  & DC   & "SHIGEMURA"     \\
-%21 & ...   &       &      &                 \\
-21 & 47 45 4D &       &      &                 \\
-24 & 55 52 41 &       &      &                 \\
+0E & B4 06 &       & JNZ  & LOOP            \\
+10 & FF    & END   & HALT &                 \\
+11 &       &       &      &                 \\
+11 & D4    & PUTCH & PUSH & G1              \\
+12 & C4 03 & WAIT  & IN   & G1,SIOS         \\
+14 & 67 80 &       & AND  & G1,\#80H        \\
+16 & A4 12 &       & JZ   & WAIT            \\
+18 & C3 02 &       & OUT  & G0,SIOD         \\
+1A & D6    &       & POP  & G1              \\
+1B & EC    &       & RET  &                 \\
+1C &       &       &      &                 \\
+1C & 53 48 49 & DATA  & DC   & "SHIGEMURA"     \\
+1F & 47 45 4D &       &      &                 \\
+22 & 55 52 41 &       &      &                 \\
 \hline
 \end{tabular}
 %\\TeC6ではCALL命令の機械語がBCになります．
@@ -1917,7 +1914,9 @@ PSWが復元されると，割込みが発生前のプログラムの実行が�
 
 \oneByte{$1110_2$}{$11_2$~$11_2$}
 
-\item[動作の詳細：]スタックから値を２つ取り出しフラグとPCにセットします．
+\item[動作の詳細：]
+スタックから，フラグ，PCの順にPOPし，
+PSWを割り込み前の状態に復元します．
 
 \item[フローチャート：]
 次のフローチャートの最後の角を取った四角が RETI 命令に対応します．
@@ -1932,12 +1931,14 @@ PSWが復元されると，割込みが発生前のプログラムの実行が�
 \begin{tabular}{|l|l l l|} \hline
 ラベル & \multicolumn{2}{|c}{ニーモニック} & コメント      \\
 \hline
+      & LD    & SP,\#0DCH         & ; SP初期化       \\
       & LD    & G0,\#NEXT         & ; RETIの次番地   \\
       & PUSH  & G0                & ; スタックに積む \\
       & LD    & G0,\#87H          & ; フラグの値     \\
       & PUSH  & G0                & ; スタックに積む \\
       & RETI  &                   & ; スタックから   \\
-NEXT  &       &                   & ; PC,フラグをPOP \\
+      &       &                   & ; PC,フラグをPOP \\
+NEXT  & HALT  &                   & ; 停止           \\
 \hline
 \end{tabular}
 \end{center}}
@@ -2351,7 +2352,7 @@ INT1割込みを発生することができます．
 \end{enumerate}
 
 文字を受信するとINT1割込みが発生します．
-受信した文字をI/Oマップ3番地のSIO受信データレジスタ
+受信した文字をI/Oマップ2番地のSIO受信データレジスタ
 （「\tabref{chap5:iomap} I/Oマップ」参照）から
 読み出すことでINT1割込みが解除されます．
 
@@ -2373,7 +2374,7 @@ TeCのSIOは文字を送信することが可能なときINT2割込みを発生�
 \end{enumerate}
 
 次の文字を送信することが可能になるとINT2割込みが発生します．
-次に送信する文字をI/Oマップ3番地のSIO送信データレジスタ
+次に送信する文字をI/Oマップ2番地のSIO送信データレジスタ
 （「\tabref{chap5:iomap} I/Oマップ」参照）に書込みます．
 これで割込みが解除されます．
 %データを書き込まないで割込み処理ルーチンから戻ると，
