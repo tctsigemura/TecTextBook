@@ -1,11 +1,10 @@
 %\documentclass[dvipdfmx]{beamer}      % platex の場合
 \documentclass[handout]{beamer}        % lualatex の場合
 \usepackage{mySld}
-\usepackage{multirow}
 
 \begin{document}
 \title{基礎コンピュータ工学\\第２章 情報の表現\\
-      （パート５：論理演算と基本回路）}
+       （パート５：小数や文字の表現と補助単位）}
 \date{}
 
 \begin{frame}
@@ -13,7 +12,7 @@
   \centerline{\url{https://github.com/tctsigemura/TecTextBook}}
   \vfill
   \centerline{本スライドの入手：
-    \raisebox{-7mm}{\includegraphics[scale=0.3]{../Img/QRs2_5.png}}}
+    \raisebox{-7mm}{\includegraphics[scale=0.3]{../Img/QRs2_4.png}}}
 \end{frame}
 
 %==============================================================================
@@ -24,175 +23,206 @@
 \section{情報の表現}
 %==============================================================================
 \begin{frame}
-  \frametitle{コンピュータの基本回路}
-  \emph{論理回路}を組合せてコンピュータは製作される．
+  \frametitle{2進数による小数の表現}
+  \emph{固定小数点方式}（小数点の位置を\emph{約束}する．）
+  \vfill
+  \begin{quote}
+    \begin{minipage}{0.4\columnwidth}
+      $00.00_2 = 0.0_{10}$  \\
+      $00.01_2 = 0.25_{10}$  \\
+      $00.10_2 = 0.5_{10}$  \\
+      $00.11_2 = 0.75_{10}$  \\
+      $01.00_2 = 1.0_{10}$  \\
+      $01.01_2 = 1.25_{10}$  \\
+      $01.10_2 = 1.5_{10}$  \\
+      $01.11_2 = 1.75_{10}$  \\
+      $10.00_2 = 2.0_{10}$  \\
+      ...\\
+      $11.11_2 = 3.75_{10}$
+    \end{minipage}
+    \begin{minipage}{0.5\columnwidth}
+      \emph{桁の重み}
+      \begin{itemize}
+      \item 小数点から左に進むと２倍
+        $001.0000_2 = 1.0_{10}$ \\
+        $010.0000_2 = 2.0_{10}$ \\
+        $100.0000_2 = 4.0_{10}$ \\
+        \vspace{1ex}
+      \item 小数点から右に進むと1/2倍\\
+        $000.1000_2 = 0.5_{10}$ \\
+        $000.0100_2 = 0.25_{10}$ \\
+        $000.0010_2 = 0.125_{10}$ \\
+        $000.0001_2 = 0.0625_{10}$
+      \end{itemize}
+    \end{minipage}
+  \end{quote}
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{固定小数点方式2進数 →  10進数}
+  桁の重みを合計する．
+  \begin{align}
+    10.01_2 &= 1 \times 2 + 0 \times 1 + 0 \times 1/2 + 1 \times 1/4 \notag\\
+            &= 2 + 0 + 0 + 1/4 \notag\\
+            &= 2 + 0.25 \notag\\
+            &= 2.25 \notag
+  \end{align}
+  \vfill
+  \emph{問題１２：}2進数を10進数に変換しなさい．
+  \begin{enumerate}
+  \item[1)] $0101.1010_2$
+  \vfill
+  \item[2)] $0011.0011_2$
+  \vfill
+  \item[3)] $0100.0101_2$
+  \vfill
+  \item[4)] $1010.1111_2$
+  \end{enumerate}
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{10進数 →  固定小数点方式2進数}
+  \centerline{\parbox{0.8\columnwidth}{\small
+      \begin{center}
+\begin{tabular}{ r l  l r}
+\multicolumn{1}{c}{2進数} &  ~~~$\times 2$は~~~ & \multicolumn{2}{c}{10進数}\\
+$0.101_2$ &        左シフ       &           & $0.625$ \\
+\multicolumn{1}{c}{$\swarrow$} &   トと同じ     & $\times$  &     $2$ \\
+\cline{3-4}
+$1.010_2$      &                &           & $\underline{1}.250$ \\
+&&&\\
+\multicolumn{1}{c}{2進数} &  ~~~$\times 2$は~~~ & \multicolumn{2}{c}{10進数}\\
+$0.010_2$ &        左シフ       &           & $0.250$ \\
+\multicolumn{1}{c}{$\swarrow$} &   トと同じ     & $\times$  &     $2$ \\
+\cline{3-4}
+$0.100_2$      &                &           & $\underline{0}.500$ \\
+&&&\\
+\multicolumn{1}{c}{2進数} &  ~~~$\times 2$は~~~ & \multicolumn{2}{c}{10進数}\\
+$0.100_2$ &        左シフ       &           & $0.500$ \\
+\multicolumn{1}{c}{$\swarrow$} &   トと同じ     & $\times$  &     $2$ \\
+\cline{3-4}
+$1.000_2$      &                &           & $\underline{1}.000$ \\
+\end{tabular}
+      \end{center}
+      10進数で計算したとき，小数点を横切って整数部に出てきた数を
+      小数点の右に順番に並べると $0.\underline{101}_2$ になる．}}
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{固定小数点方式2進数 →  10進数}
+  \emph{問題１３：}10進数を2進数に変換しなさい．\\
+       但し2進数は，小数点以下4桁，全体で6桁とする．
+       \vfill
+  \begin{enumerate}
+  \item[1)] $0.75_{10}$
+  \vfill
+  \item[2)] $0.5625_{10}$
+  \vfill
+  \item[3)] $2.5_{10}$
+  \vfill
+  \item[4)] $1.1875_{10}$
+  \end{enumerate}
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{文字の表現(ASCIIコード)}
+  \emph{ASCIIコード（American Standard Code for Information Interchange）}\\
+  1963年にアメリカ規格協会（ANSI）が定めた情報交換用の文字コード．
+%  英字，数字，記号等が含まれる．
+%  今でもASCIIコードが基本になっている．
+
+  \centerline{\includegraphics[scale=0.80]{../Tikz/ascii.pdf}}
+
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{文字の表現(JIS 8ビットコード)}
+  \emph{JIS（Japan Industrial Standard：日本工業規格）8ビットコード}\\
+  JIS 8ビットコードは，ASCIIコードに半角カタカナを追加したもの．
+  記号，数字，英字の部分は，\.ほ\.ぼ，同じ並びになっている．
+
+  \centerline{\includegraphics[scale=0.85]{../chap2/jisx0201.pdf}}
+
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{文字の表現(Unicode)}
+  \emph{Unicode : 最も用いられている業界標準規格}\\
+  世界中で使用される全ての文字を収録しようと現在も拡張が続いている．
+  \begin{enumerate}
+    \item[1.] 全ての文字に21ビットのコードを割り振る．\\
+          最大で約111万文字にコードを割り振ることができる．\\
+          現在，約15万文字が登録されている．
+    \item[2.] 000000H〜00007FHの範囲はASCIIコードと同じ
+    \item[3.] 000370H〜0003FFHの範囲にギリシャ文字
+    \item[4.] その後に，キリル文字，アルメニア文字，ヘブライ文字...
+    \item[5.] 002E80H〜009FFFHの範囲に漢字・かな・カナ・その他
+    \item[6.] 00F900H〜00FAFFHの範囲は漢字
+    \item[7.] 01F600H〜01F64FHの範囲に顔文字
+    \item[8.] 020000H〜0323AFHの範囲も漢字
+  \end{enumerate} 
+  参考：\url{https://ja.wikipedia.org/wiki/Unicode}
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{文字の表現(UTF-8)}
+  \emph{Unicodeのエンコーディング（符号化）方式の一つ}\\
+  21ビットのUnicodeをそのままファイル等に書き込むと，
+  00Hのバイトだらけになり容量がもったいないし，
+  通信すると時間がかかる． \\
+  よく使う文字(ASCII)を短く符号化する．(8ビット可変長）
+  \begin{enumerate}
+    \item[1.] 000000H〜00007FHの範囲は1バイトに変換 \\
+              (00H〜7FH，第１バイトが0で始まる)
+    \item[2.] 000080H〜0007FFHの範囲は2バイトに変換  \\
+              (C2H,80H〜DFH,BFH，第１バイトが110で始まる)
+    \item[3.] 000800H〜00FFFFHの範囲は3バイトに変換 \\
+              (E0H,A0H,80H〜EFH,BFH,BFH，第１バイトが1110で始まる)
+    \item[4.] 010000H〜10FFFFHの範囲は4バイトに変換 \\
+              (F0H,90H,80H,80H〜F7H,BFH,BFH,BFH，第１バイトが11110で始まる)
+  \end{enumerate}
+  第２バイト以降は，10で始まっている．\\
+  参考：\url{https://ja.wikipedia.org/wiki/UTF-8}
+\end{frame}
+
+%==============================================================================
+\begin{frame}
+  \frametitle{補助単位}
+  1,000m を 1km，1,000g を 1kg， 0.001 l を 1ml， 0.001m を 1mm\\
+  ここで，k や m は\emph{補助単位}と呼ばれる．\\
+
+  \begin{center}
+    {\small\begin{tabular}{r l l | r l l}\hline\hline
+      \multicolumn{3}{c|}{一般的に} &
+      \multicolumn{3}{c}{記憶容量} \\
+      \hline
+      \multicolumn{1}{c}{値} &
+      \multicolumn{1}{c}{記号} &
+      \multicolumn{1}{c|}{読み方} &
+      \multicolumn{1}{c}{値} &
+      \multicolumn{1}{c}{記号} &
+      \multicolumn{1}{c}{読み方} \\
+      \hline
+      $10^3$   & $k$ & キロ   & $2^{10}$ & $Ki$ & キビ \\
+      $10^6$   & $M$ & メガ   & $2^{20}$ & $Mi$ & メビ \\
+      $10^9$   & $G$ & ギガ   & $2^{30}$ & $Gi$ & ギビ \\
+      $10^{12}$& $T$ & テラ   & $2^{40}$ & $Ti$ & テビ \\
+    \end{tabular}}
+  \end{center}
+
   \begin{itemize}
-  \item 電気のONとOFFだけ用いて情報を表現する．
-  \item \emph{ON/OFF}をビット\emph{1/0}に対応付ける．
-  \item これは\emph{論理値}（True/False，真/偽，Yes/No）と同じ．
-  \item 論理値を対象とする演算を\emph{論理演算}と言う．
-  \item 論理演算を計算する回路を\emph{論理回路}と言う。
+  \item 通常は$10^3$毎に補助単位がある．
+  \item コンピュータの記憶容量では$2^{10}$毎に補助単位がある．\\
+    $2^{10} = 1,024 = 1Ki$ \\
+    $10^3   = 1,000 = 1k$
   \end{itemize}
-  \vfill
-  \centerline{\includegraphics[scale=0.7]{../Tikz/lic.pdf}}
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{論理ICで作った手作りコンピュータ}
-  \emph{徳山高専卒業研究}で約４０年前に製作された手作りコンピュータ
-  \vfill
-  \begin{tabular}{c c}
-  \multirow{2}{*}{\includegraphics[scale=0.04]{../Img/uCom16_1.jpg}}
-  &\includegraphics[scale=0.03]{../Img/uCom16_2.jpg} \\
-  &\includegraphics[scale=0.03]{../Img/uCom16_3.jpg}
-  \end{tabular}
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{論理ICで回路を作る}
-  \centerline{\includegraphics[scale=0.6]{../Keynote/majority-crop.pdf}}
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{現代の手作りコンピュータ}
-  \emph{FPGA}の中に論理IC数万個に相当する回路が書き込める．
-  \vfill
-  \centerline{\includegraphics[scale=0.26]{../Img/TeC7c.jpg}}
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{基本的な論理回路（１）}
-  \emph{論理積（AND）} --- 「かつ」\\
-  \vfill
-  ２ビット入力し，両方が１のときだけ１を出力する．
-  \centerline{\includegraphics[scale=1.4]{../Tikz/and.pdf}}
-  \begin{quote}
-    A \emph{かつ} B が１ なら 1\\
-    A \emph{AND} B が１ なら 1
-  \end{quote}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{基本的な論理回路（２）}
-  \emph{論理和（OR）} --- 「または」\\
-  \vfill
-  ２ビット入力し，どちらかが１のとき１を出力する．
-  \centerline{\includegraphics[scale=1.4]{../Tikz/or.pdf}}
-  \begin{quote}
-    A \emph{または} B が１ なら 1\\
-    A \emph{OR} B が１ なら 1
-  \end{quote}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{基本的な論理回路（３）}
-  \emph{否定（NOT）} --- 「ではない」\\
-  \vfill
-  １ビット入力し，入力とは逆の論理値をを出力する．
-  \centerline{\includegraphics[scale=1.4]{../Tikz/not.pdf}}
-  \begin{quote}
-    A が 1 \emph{ではない} なら 1\\
-  \end{quote}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{基本的な論理回路（４）}
-  \emph{排他的論理和（XOR）} --- 「異なる」\\
-  \vfill
-  ２ビット入力し，二つが異なるなら１を出力する．
-  \centerline{\includegraphics[scale=1.4]{../Tikz/xor.pdf}}
-  \begin{quote}
-    A と B が異なるなら 1\\
-  \end{quote}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{基本的な論理回路（５）}
-  \emph{NOTとANDの組合せ（NAND）} \\
-  \vfill
-  \centerline{\includegraphics[scale=1.3]{../Tikz/nand.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{基本的な論理回路（６）}
-  \emph{NOTとORの組合せ（NOR）} \\
-  \vfill
-  \centerline{\includegraphics[scale=1.3]{../Tikz/nor.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{演算回路（１）}
-  \emph{半加算器} \\
-  １桁の２進数を二つ入力し，０，１，２のどれかを出力する．
-  \vfill
-  \centerline{\includegraphics[scale=1.3]{../Tikz/ha.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{演算回路（２）}
-  \emph{全加算器} \\
-  １桁の２進数を三つ入力し，０，１，２，３のどれかを出力する．
-  \vfill
-  \centerline{\includegraphics[scale=1.3]{../Tikz/fa.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{演算回路（３）}
-  \emph{４ビット加算器} \\
-  ４桁の２進数を二つ入力し，和を計算する
-  \vfill
-  \centerline{\includegraphics[scale=0.8]{../Tikz/adder.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{演算回路（４）}
-  \emph{４ビット １の補数器} \\
-  ４桁の２進数を入力し，１の補数を計算する
-  \vfill
-  \centerline{\includegraphics[scale=1.0]{../Tikz/onesc.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{演算回路（５）}
-  \emph{４ビット ２の補数器} \\
-  ４桁の２進数を入力し，２の補数を計算する
-  \vfill
-  \centerline{\includegraphics[scale=0.7]{../Tikz/twosc.pdf}}
-  \vfill
-\end{frame}
-
-%==============================================================================
-\begin{frame}
-  \frametitle{記憶回路}
-  \emph{RSフリップフロップ} \\
-  直前の状態を記憶する回路
-  \vfill
-  \centerline{\includegraphics[scale=1.3]{../Tikz/rsff.pdf}}
-  \vfill
 \end{frame}
 
 \end{document}

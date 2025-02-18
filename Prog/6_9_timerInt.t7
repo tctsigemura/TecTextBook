@@ -1,0 +1,39 @@
+buz	equ	00h	; ブザーポート
+tmrvct	equ	0dch	; タイマ割込みベクタ
+tmrcnt	equ	4	; カウンタ(周期)
+tmrctr	equ	5	; コントロール
+
+start	; メインプログラム
+	ld	sp,#0dch
+	ld	g0,#tmrint
+	st	g0,tmrvct
+	ld	g0,#74
+	out	g0,tmrcnt
+	ld	g0,#81h
+	out	g0,tmrctr
+	ei
+wait	ld	g0,flg
+	cmp	g0,#0
+	jz	wait
+	ld	g0,val
+	xor	g0,#01h
+	st	g0,val
+	out	g0,buz
+	ld	g0,#0
+	st	g0,flg
+	jmp	wait
+
+; 共有変数
+flg	dc	0
+val	dc	0
+
+; 割込みルーチン
+tmrint	push	g0
+	push	g1
+	push	g2
+	ld	g0,#1
+	st	g0,flg
+	pop	g2
+	pop	g1
+	pop	g0
+	reti

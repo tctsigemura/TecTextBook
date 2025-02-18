@@ -1,0 +1,10 @@
+start	ld	g0,a
+	cmp	g0,b
+	jnm	L1
+	ld	g0,b
+l1	st	g0,c
+	halt
+a	dc	100
+b	dc	200
+c	ds	1
+

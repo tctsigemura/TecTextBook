@@ -9,15 +9,15 @@ TeCクロス開発環境は，
 教育用コンピュータTeC（Tokuyama kousen Educational Computer）の
 機械語プログラムを開発するためのパソコン上で動作するプログラム群です．
 クロス開発環境は，クロスアセンブラtasm7，
-ダウンロードプログラムtsend7からなります．
+ダウンロードプログラムtwrite7からなります．
 これらを用いてTeCのプログラムをパソコン上でクロス開発する
 様子を\figref{appB:cross}に示します．
 
 これらの入手とパソコンへのインストール方法は，
 \url{https://github.com/tctsigemura/Tasm}を参照して下さい．
 以下では，
-UNIXまたはmacOSにインストールされた「TeCクロス開発環境」を
-使用する前提で說明しています．
+UNIX（Linux）またはmacOSにインストールされた「TeCクロス開発環境」を
+使用する前提で説明しています．
 
 \myfigureNA{btp}{scale=0.75}{develop-crop.pdf}{処理の流れ}{appB:cross}
 
@@ -211,8 +211,6 @@ STR  & DC & "abc" \\\hline
 \hline\hline
 \multicolumn{1}{c|}{命令} & \multicolumn{1}{c}{意味} \\\hline
 NO & 何もしない \\
-PUSHF & フラグをスタックに退避 \\
-POPF & フラグをスタックから復旧 \\
 EI & 割り込み許可 \\
 DI & 割り込み禁止 \\
 RET & サブルーチンから復帰 \\
@@ -396,7 +394,7 @@ ST & レジスタの値をメモリオペランドに格納
 メモリオペランドだけの機械語命令のグループです．
 \tabref{appB:m6}に示すジャンプ・コール命令が，このグループに属します．
 インデクスレジスタとしてG1，G2が使用できます．
-このグループの命令の書式を以下に，使用例を\figref{appB:m6ex}に示す．
+このグループの命令の書式を以下に，使用例を\figref{appB:m6ex}に示します．
 
 {\small\[ %機械語命令6 =
 [ラベル]~~命令~~\left\{
@@ -491,7 +489,7 @@ CALL & サブルーチン呼び出し
               &     &  ｜ P ｜ Q ｜ R ｜ S ｜ T ｜ U ｜ V ｜ W ｜ X
                        ｜ Y ｜ Z ｜ \_ \\
 ＜数字＞      & ::= &0 ｜ 1 ｜ 2 ｜ 3 ｜ 4 ｜ 5 ｜ 6 ｜ 7 ｜ 8 ｜ 9 \\
-＜命令１＞    & ::= &NO ｜ PUSHF ｜ POPF ｜ EI ｜ DI ｜ RET ｜RETI ｜ HALT \\
+＜命令１＞    & ::= &NO ｜ ｜ EI ｜ DI ｜ RET ｜RETI ｜ HALT \\
 ＜命令２＞    & ::= &SHLA ｜ SHLL ｜ SHRA ｜ SHRL ｜ PUSH ｜ POP \\
 ＜命令３＞    & ::= &IN ｜ OUT \\
 ＜命令４＞    & ::= &LD ｜ ADD ｜ SUB ｜ CMP ｜ AND ｜ OR ｜XOR \\

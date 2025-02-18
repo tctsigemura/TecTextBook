@@ -1,0 +1,41 @@
+siod	equ	02h
+sios	equ	03h
+
+start	ld	sp,#0dch
+	ld	g1,#str1
+	call	putstr
+	ld	g1,#crlf
+	call	putstr
+	ld	g1,#str2
+	call	putstr
+	ld	g1,#crlf
+	call	putstr
+	halt
+
+	; 文字列出力ルーチン
+putstr	push	g0
+	push	g1
+loop	ld	g0,0,g1
+	cmp	g0,#0
+	jz	return
+	call	putch
+	add	g1,#1
+	jmp	loop
+return	pop	g1
+	pop	g0
+	ret
+
+	; １文字出力ルーチン
+putch	push	g1
+wait	in	g1,sios
+	and	g1,#80h
+	jz	wait
+	out	g0,siod
+	pop	g1
+	ret
+
+str1	dc	"SHIGEMURA",0
+
+str2	dc	"TETSUJI",0
+
+crlf	dc	0dh,0ah,0

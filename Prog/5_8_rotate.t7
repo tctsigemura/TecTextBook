@@ -1,0 +1,6 @@
+l1	shll	g0
+	jnc	l2
+	add	g0,one
+l2	halt
+	jmp	l1
+one	dc	1

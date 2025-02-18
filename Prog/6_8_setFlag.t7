@@ -1,0 +1,7 @@
+	ld	sp,#0dch
+	ld	g0,#next
+	push	g0
+	ld	g0,#87h
+	push	g0
+	reti
+next	halt

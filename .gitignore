@@ -11,3 +11,5 @@
 *.vrb
 *.fls
 *.fdb_latexmk
+*.bin
+*.lst
