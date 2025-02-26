@@ -24,7 +24,7 @@ SLDS = chap1_Sld.pdf chap2_1_Sld.pdf chap2_2_Sld.pdf chap2_3_Sld.pdf \
 	latexmk -interaction=nonstopmode -lualatex $*_Hnd
 #	lualatex $*_Hnd.tex
 
-%_Sld.pdf : %_Sld.tex *.sty Fig/*-crop.pdf
+%_Sld.pdf : %_Sld.tex *.sty Fig/*-crop.pdf ../Keynote/*-crop.pdf ../Tikz/*.pdf
 	latexmk -interaction=nonstopmode -lualatex $*_Sld.tex
 #	lualatex $*_Sld.tex
 
