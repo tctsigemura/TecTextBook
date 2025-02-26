@@ -281,21 +281,20 @@
       \begin{tabular}{|l|l|l|l l|} \hline
         番地 & 機械語 & ラベル & \multicolumn{2}{|c|}{ニーモニック} \\
         \hline
-        00 & 10 11 &      & LD   & G0,A          \\
+        00 & 10 0F &      & LD   & G0,A          \\
         02 & 17 0A &      & LD   & G1,\#10       \\
         04 & 1B 00 &      & LD   & G2,\#0        \\
-        06 & 22 12 & LOOP & ST   & G0,B,G2       \\
+        06 & 22 10 & LOOP & ST   & G0,B,G2       \\
         08 & 3B 01 &      & ADD  & G2,\#1        \\
         0A & 47 01 &      & SUB  & G1,\#1        \\
-        0C & A4 10 &      & JZ   & STOP          \\
-        0E & A0 06 &      & JMP  & LOOP          \\
-        10 & FF    & STOP & HALT &               \\
-        11 & AA    & A    & DC   & 0AAH          \\
-        12 & 00 00 & B    & DS   & 10            \\
+        0C & B4 06 &      & JNZ  & LOOP          \\
+        0E & FF    &      & HALT &               \\
+        0F & AA    & A    & DC   & 0AAH          \\
+        10 & 00 00 & B    & DS   & 10            \\
+        12 & 00 00 &      &      &               \\
         14 & 00 00 &      &      &               \\
         16 & 00 00 &      &      &               \\
         18 & 00 00 &      &      &               \\
-        1A & 00 00 &      &      &               \\
         \hline
       \end{tabular}
     \end{center}}

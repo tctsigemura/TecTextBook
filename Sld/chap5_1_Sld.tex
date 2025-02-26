@@ -133,8 +133,12 @@
   \centerline{\includegraphics[scale=0.2]{../Keynote/naibu-crop.pdf}}
   \vfill
   \begin{itemize}
-    \item フラグ
-    \item レジスタ：PC（Program Counter）は\emph{逐次実行}の要
+    \item PSW（Program Status Word）はCPUの状態
+      \begin{itemize}
+         \item PC（Program Counter）はプログラムのどこを実行中か記憶
+         \item フラグは直前の計算結果の特徴などを記憶
+      \end{itemize}
+    \item レジスタ：G0，G1，G2，SP は計算に使用
     \item 主記憶：プログラムとデータを置く（\emph{ストアード・プログラム方式}）
   \end{itemize}
   \vfill
